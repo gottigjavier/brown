@@ -5,19 +5,19 @@ import FooterMenu from './FooterMenu.astro';
 ---
 
 <section
-  class="landing-section bg-black h-screen w-screen text-center overflow-hidden relative"
+  class=`landing-section ${textColor} h-screen w-screen overflow-hidden relative `
   data-header-color={color}
   id={id}
 >
   <div class="z-30 relative h-full flex flex-col">
-    <header>
-      <h2 class={`${textColor} pt-40 text-[40px] font-medium`}>
-        {title}
-      </h2>
-      <p class={`${textColor} text-sm`}>
-        {subtitle}
+    <p class={`${textColor} text-sm`}>
+        <details>
+          <summary>Descripción</summary>
+          <article>
+              aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadd
+          </article>
+          </details>
       </p>
-    </header>
 
     <footer class="flex flex-col flex-grow justify-end pb-20">
       <slot name="footer" />
@@ -30,3 +30,30 @@ import FooterMenu from './FooterMenu.astro';
     <slot name="background" />
   </div>
 </section>
+
+<style>
+  details {
+    margin-top: 60px;
+    margin-left: 28px;
+    opacity: 0.5;
+    overflow: hidden;
+}
+
+details[open] article {
+  animation: animateUp .5s linear forwards;;
+}
+
+@keyframes animateUp {
+  0% {
+    opacity: 0;
+    transform: translatey(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translatey(0);
+  }
+}
+
+
+/* extra styles */
+</style>
