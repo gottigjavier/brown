@@ -20,6 +20,3 @@ bun.lockb
 
 # macOS-specific files
 .DS_Store
-
-# no sube archivos media
-public/
