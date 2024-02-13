@@ -1,0 +1,10 @@
+---
+const { color, texto, visib } = Astro.props;
+const textColor = `text-${color}`;
+---
+
+<section >
+        <p class={`${textColor} ${visib} text-center text-sm absolute bottom-8 right-5 p-2 rounded-md backdrop-brightness-75`}>
+                {texto}
+        </p>
+</sec>

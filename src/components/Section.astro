@@ -1,7 +1,8 @@
 ---
-const { color, title, subtitle, id, showFooterContent } = Astro.props;
+const { color, texto, visib, id, showFooterContent } = Astro.props;
 const textColor = `text-${color}`;
 import FooterMenu from './FooterMenu.astro';
+import Detalles from "./Detalles.astro";
 ---
 
 <section
@@ -10,15 +11,8 @@ import FooterMenu from './FooterMenu.astro';
   id={id}
 >
   <div class="z-30 relative h-full flex flex-col">
-    <p class={`${textColor} text-sm`}>
-        <details>
-          <summary>Descripción</summary>
-          <article>
-              aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadd
-          </article>
-          </details>
-      </p>
-
+    
+    <Detalles {texto} {visib}/>
     <footer class="flex flex-col flex-grow justify-end pb-20">
       <slot name="footer" />
       <!-- Contidionally load footer: -->
@@ -31,29 +25,3 @@ import FooterMenu from './FooterMenu.astro';
   </div>
 </section>
 
-<style>
-  details {
-    margin-top: 60px;
-    margin-left: 28px;
-    opacity: 0.5;
-    overflow: hidden;
-}
-
-details[open] article {
-  animation: animateUp .5s linear forwards;;
-}
-
-@keyframes animateUp {
-  0% {
-    opacity: 0;
-    transform: translatey(100%);
-  }
-  100% {
-    opacity: 1;
-    transform: translatey(0);
-  }
-}
-
-
-/* extra styles */
-</style>
