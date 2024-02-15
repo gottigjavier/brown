@@ -40,6 +40,10 @@ const { texto, visib } = Astro.props;
          const viewer = new Viewer({
            container: document.querySelector("#imagepantalla3"),
            panorama: "brown04.avif",
+           caption: 'Cascada. <b>Patagonia Argentina.</b><hr>',
+          description: "Río y cascada en la patagonia",
+          navbar: 'caption description',
+          mousewheelCtrlKey: true,
          });
          </script>
          <Detalles {texto} {visib}/>
