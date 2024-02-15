@@ -8,6 +8,8 @@ import Pantalla4 from "../components/Pantalla4.astro";
 import Pantalla1 from "../components/Pantalla1.astro";
 import Pantalla5 from "../components/Pantalla5.astro";
 import Layout from "../layouts/Layout.astro";
+import Detalles from "../components/Detalles.astro";
+const { texto, visib } = Astro.props;
 ---
 
 <Layout title="Fly Drone">
@@ -26,7 +28,21 @@ import Layout from "../layouts/Layout.astro";
       <Pantalla2 />
     </div>
     <div class="snap-center">
-      <Pantalla3 />
+      <div 
+      id="imagepantalla3"
+      style="width: 100vw; height: 100vh;"
+      slot="background"
+      >
+    </div>
+       <script type="module">
+         import { Viewer } from "@photo-sphere-viewer/core";
+         
+         const viewer = new Viewer({
+           container: document.querySelector("#imagepantalla3"),
+           panorama: "brown04.avif",
+         });
+         </script>
+         <Detalles {texto} {visib}/>
     </div>
     <div class="snap-center">
       <Pantalla4 />

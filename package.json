@@ -6,14 +6,16 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",
+    "preview": "deno run --allow-net --allow-read --allow-env ./dist/server/entry.mjs",
     "astro": "astro"
   },
   "dependencies": {
     "@astrojs/tailwind": "^3.1.2",
+    "@photo-sphere-viewer/core": "^5.7.1",
     "astro": "^2.4.5",
     "astro-imagetools": "^0.2.7",
     "sass": "^1.70.0",
-    "tailwindcss": "^3.3.2"
+    "tailwindcss": "^3.3.2",
+    "@astrojs/deno": "^5.0.1"
   }
 }

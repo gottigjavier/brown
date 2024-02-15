@@ -1,41 +1,38 @@
 ---
-import Section from "./Section.astro";
+import Section from "./Section.astro"
 ---
 
 <Section
-  texto="Cascada pre-cordillera. Patagonia Argentina"
-  id="pantalla-3"
+  texto="Patagonia Argentina"
   color="white"
+  id="pantalla-3"
 >
-  
-  <img
-    slot="background"
-    alt="Pantalla 3"
-    class="h-full w-full object-cover object-center"
-    src="brown03.avif" 
-    id="bg-image-pantalla-3"
-  />
-  
-</Section>
-<!-- 
-<script>
-  function isEdge() {
-    if (
-      navigator.userAgent.indexOf("Edge") > -1 ||
-      navigator.userAgent.indexOf("Edg") > -1
-    ) {
-      return true;
-    } else {
-      return false;
+    <div 
+      id="imagepantalla3"
+      class="h-full w-full object-cover object-center"
+      slot="background"
+      >
+
+    </div>
+
+  </Section>
+    
+    
+    <script type="importmap">
+   {
+     "imports": {
+       "three": "https://cdn.jsdelivr.net/npm/three/build/three.module.js",
+       "@photo-sphere-viewer/core": "https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/core/index.module.js",
+      }
     }
-  }
+  </script>
+  
+  <script type="module">
+    import { Viewer } from "@photo-sphere-viewer/core";
+    
+    const viewer = new Viewer({
+      container: document.querySelector("#imagepantalla3"),
+      panorama: "brown04.avif",
+    });
+    </script>
 
-  let imageElement = document.querySelector("#bg-image-models") as HTMLImageElement; // TypeScript
-
-  if (isEdge()) {
-    imageElement.src = "brown2.jpg";
-  } else {
-    imageElement.src = "brown2.jpg";
-  }
-</script>
- -->
