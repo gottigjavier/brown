@@ -3,8 +3,8 @@ const { color, texto, visib } = Astro.props;
 const textColor = `text-${color}`;
 ---
 
-<section >
-        <p class={`${textColor} ${visib} text-center text-sm absolute bottom-8 right-5 p-2 rounded-md backdrop-brightness-75`}>
-                {texto}
+<section class="grid">
+        <p class={`${textColor} ${visib} justify-self-center text-center text-sm absolute bottom-9 p-2 rounded-md backdrop-brightness-75`}>
+                <b>{texto}</b>
         </p>
 </sec>
