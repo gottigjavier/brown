@@ -12,16 +12,28 @@
       class="hidden fixed z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-100 bg-white rounded-md px-8 py-6 space-y-5 drop-shadow-lg">
       <iframe
         id="the-frame"
-        class="mi-iframe" 
+        class="mi-iframe mb-8"
         src="https://docs.google.com/forms/d/e/1FAIpQLScY9bs9ayJoqq5tfjzbs6nTu-KX4iE9V6lmyPbLL5o9XXnHAg/viewform?embedded=true" 
         >
         Cargando…
       </iframe>
-      <div class="flex justify-center">
-          <!-- This button is used to close the dialog -->
-          <button id="close" class="px-5 py-2 bg-indigo-500 hover:bg-indigo-700 text-white cursor-pointer rounded-md">
-              Close</button>
-      </div>
+      <footer
+      	class="py-3 px-10 flex justify-center items-center absolute bottom-0 w-full z-40 text-gray-800 text-xs font-medium"
+      	id="form-footer"
+      >
+      <nav>
+      	<ul class="flex [&>li>a]:inline-block [&>li>a]:px-3 [&>li>a]:py-2">
+      	  <li>
+            <a role="button" id="close" class="px-5 py-o mt-2 bg-indigo-500 hover:bg-indigo-700 text-white cursor-pointer rounded-md">
+              Cerrar</a>
+            </li>
+            <li><a class="pb-2" href="https://wa.me/5493436109763?text=Hola. Quisiera más información" target="_blank">
+              <img title="Click para contactar por Whatsapp" class="whatsapp" src="whatsapp.png" width="30">
+            </a>
+          </li>
+      	</ul>
+        </nav>
+      </footer>
   </div>
 
   <!-- Javascript code -->
