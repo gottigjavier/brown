@@ -1,0 +1,73 @@
+
+    <!-- This button is used to open the dialog -->
+    <!-- <button id="open-modal" class="px-5 py-2 bg-rose-500 hover:bg-rose-700 text-white cursor-pointer rounded-md">
+      Show Dialog
+  </button> -->
+
+  <!-- Overlay element -->
+  <div id="overlay" class="fixed hidden z-40 w-screen h-screen inset-0 bg-gray-900 bg-opacity-60"></div>
+
+  <!-- The dialog -->
+  <div id="dialog"
+      class="hidden fixed z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-100 bg-white rounded-md px-8 py-6 space-y-5 drop-shadow-lg">
+      <iframe
+        id="the-frame"
+        class="mi-iframe" 
+        src="https://docs.google.com/forms/d/e/1FAIpQLScY9bs9ayJoqq5tfjzbs6nTu-KX4iE9V6lmyPbLL5o9XXnHAg/viewform?embedded=true" 
+        >
+        Cargando…
+      </iframe>
+      <div class="flex justify-center">
+          <!-- This button is used to close the dialog -->
+          <button id="close" class="px-5 py-2 bg-indigo-500 hover:bg-indigo-700 text-white cursor-pointer rounded-md">
+              Close</button>
+      </div>
+  </div>
+
+  <!-- Javascript code -->
+  <script>
+      var openButton = document.getElementById('open-modal');
+      var dialog = document.getElementById('dialog');
+      var closeButton = document.getElementById('close');
+      var overlay = document.getElementById('overlay');
+
+      // show the overlay and the dialog
+      openButton.addEventListener('click', function () {
+          dialog.classList.remove('hidden');
+          overlay.classList.remove('hidden');
+      });
+
+      // hide the overlay and the dialog
+      closeButton.addEventListener('click', function () {
+          dialog.classList.add('hidden');
+          overlay.classList.add('hidden');
+      });
+  </script>
+
+  <style>
+      /* CSS general */
+.mi-iframe {
+width: 280px;
+height: 560px;
+}
+
+/* CSS pantallas de 320px o superior */
+@media (min-width: 320px) {
+
+.mi-iframe {
+  width: 320px;
+  height: 420px;
+} 
+
+}
+
+/* CSS pantalla 768px o superior */
+@media (min-width: 768px) {
+
+.mi-iframe {
+  width: 800px;
+  height: 480px;
+} 
+
+}
+  </style>
