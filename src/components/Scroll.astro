@@ -1,15 +1,10 @@
----
-const { nextid } = Astro.props;
-const next = `#${nextid}`;
----
-<div id="lat-nav" class="asside">
-    <!--- more free and premium Tailwind CSS components at https://tailwinduikit.com/ --->
-  
+<div id="lat-nav" class="asside"> 
         <ul>
             <li class="itemss items-center px-2">
-              <a href="#">
-                &#9650;</li>
-              </a>
+              <button id="scrollUp">
+                &#9650;
+              </button>
+            </li>
             <li class="itemss items-center px-2" >
               <a href="https://wa.me/5493436109763?text=Hola. Quisiera más información" target="_blank">
                 <img title="Contactar por Whatsapp" src="/whatsapp.png">
@@ -36,22 +31,20 @@ const next = `#${nextid}`;
               </a>
             </li>
             <li id="button-down" class="itemss items-center px-2">
-              <a href=`${next}`>
+              <button id="scrollDown">
                 &#9660;
-              </a>
-              
+              </button> 
             </li>
         </ul>  
-  </div>
-  
+</div> 
 
 <style>
-    .asside{
-      z-index: 50;
-      margin: 90vh 0 0 -3vw;
-      position: fixed;
-      justify-items: center;
-    }
+  .asside{
+    z-index: 50;
+    margin: 90vh 0 0 -3vw;
+    position: fixed;
+    justify-items: center;
+  }
     .itemss{
       vertical-align: middle;
       width: 50px;
@@ -68,11 +61,9 @@ const next = `#${nextid}`;
 
 /* CSS pantalla 768px o superior */
 @media (max-width: 380px) and (orientation: portrait) {
-
-
-.asside{
+  .asside{
   margin: 90vh 0 0 -13vw;
-}
+  }
 
 .itemss{
     width: 35px;
@@ -84,11 +75,9 @@ const next = `#${nextid}`;
 
 /* CSS pantalla 768px o superior */
 @media (max-height: 380px) and (orientation: landscape) {
-
-
-.asside{
+  .asside{
   margin: 90vh 0 0 -6vw;
-}
+  }
 
 .itemss{
     width: 35px;
@@ -97,4 +86,3 @@ const next = `#${nextid}`;
 
 }
 </style>
-  
