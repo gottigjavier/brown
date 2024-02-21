@@ -1,32 +1,34 @@
-        <!-- Tab Buttons -->
+---
+import VideosTab from "./VideosTab.astro";
+import Fotos360Tab from "../galeria/Fotos360Tab.astro";
+import FotosTab from "../galeria/FotosTab.astro";
+---
+<!-- Tab Buttons -->
         <div id="tab-buttons" class="flex bg-blue-500 rounded-md">
             <a href="javascript:void(0)" onclick="changeTab(event, 0)"
-                class="inline-block px-8 py-3 bg-gray-200 text-blue-600 rounded-md">Videos</a>
+                class="inline-block md:px-8 py-3 px2 bg-gray-200 text-blue-600 rounded-md">Videos</a>
             <a href="javascript:void(0)" onclick="changeTab(event, 1)" 
-                class="inline-block px-8 py-3 text-white rounded-md">Fotos 360º</a>
+                class="inline-block md:px-8 py-3 px2 text-white rounded-md">Fotos 360º</a>
             <a href="javascript:void(0)" onclick="changeTab(event, 2)" 
-                class="inline-block px-8 py-3 text-white rounded-md">Fotos</a>
+                class="inline-block md:px-8 py-3 px2 text-white rounded-md">Fotos</a>
         </div>
 
         <!-- Tab Panels -->
         <div id="tab-panels" class="bg-white px-8 py-6">
             <div>
-                <h1 class="text-2xl">Tab 1 Content</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, doloremque.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, doloremque.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, doloremque.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, doloremque.</p>
+                <VideosTab />
             </div>
 
             <div class="hidden">
-                <h1 class="text-2xl text-red-500">Tab 2 Content</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, doloremque.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, doloremque.</p>
+                <div>
+                    <Fotos360Tab />
+                </div>
             </div>
 
             <div class="hidden">
-                <h1 class="text-2xl text-purple-600">Tab 3 Content</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, doloremque.</p>
+                <div>
+                    <FotosTab />
+                </div>
             </div>
         </div>
 
