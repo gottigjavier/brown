@@ -11,15 +11,15 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Flydrone Video">
-  <LandingHeader nextid="hotel-ext1" />
+  <LandingHeader color="white"/>
 
   <main
-    class="snap-y snap-mandatory relative w-full h-screen overflow-y-auto overflow-x-hidden scroll-smooth scrollbar scrollbar-50 scrollbar-thumb-gray-700"
+    class="snap-y snap-mandatory relative w-full h-screen overflow-y-auto overflow-x-hidden scroll-smooth"
   >
-    <div class="snap-center">
+    <div id="pantalla1" class="snap-center">
       <ObeliscoCABA />
     </div>
-    <div class="snap-center">
+    <div id="pantalla2" class="snap-center">
       <div 
         id="hotel-ext1"
         style="width: 100vw; height: 100vh;"
@@ -38,7 +38,7 @@ import Layout from "../layouts/Layout.astro";
         });
       </script>
     </div>
-    <div class="snap-center">
+    <div id="pantalla3" class="snap-center">
       <div 
         id="room1"
         style="width: 100vw; height: 100vh;"
@@ -57,57 +57,13 @@ import Layout from "../layouts/Layout.astro";
         });
       </script>
     </div>
-    <div class="snap-center">
-      <div 
-        id="aloj-ext1"
-        style="width: 100vw; height: 100vh;"
-        slot="background"
-      >
-      </div>
-      <script type="module">
-        import { Viewer } from "@photo-sphere-viewer/core";  
-        const viewer3 = new Viewer({
-          container: document.querySelector("#aloj-ext1"),
-          panorama: "aloj-ext1.avif",
-          caption: '<b>| 360º | Hotelería * Inmobiliarios * Eventos.</b><hr>',
-          description: "Fotografías Aéreas 360º en Alta Definición.",
-          navbar: 'caption description',
-          mousewheelCtrlKey: true,
-        });
-      </script>
-    </div>
-    <div class="snap-center">
-      <div 
-        id="cascada1"
-        style="width: 100vw; height: 100vh;"
-        slot="background"
-      >
-      </div>
-      <script type="module">
-        import { Viewer } from "@photo-sphere-viewer/core";  
-        const viewer4 = new Viewer({
-          container: document.querySelector("#cascada1"),
-          panorama: "cascada1.avif",
-          caption: '<b>| 360º | Sitios Turísticos * Eventos</b><hr>',
-          description: "Fotografías Aéreas 360º en Alta Definición",
-          navbar: 'caption description',
-          mousewheelCtrlKey: true,
-        });
-      </script>
-    </div>
-    <div class="snap-center">
-      <CasaGobER />
-    </div>
-    <div class="snap-center">
+    <div id="pantalla4" class="snap-center">
       <BuqueDesdemona />
     </div>
-    <div class="snap-center">
+    <div id="pantalla5" class="snap-center">
       <ThompsonPNA />
     </div>
-    <div class="snap-center">
-      <FaroBR />
-    </div>
-    <div class="snap-center">
+    <div id="pantalla6" class="snap-center">
       <FlyDrone />
     </div>
     <div class="snap-center">

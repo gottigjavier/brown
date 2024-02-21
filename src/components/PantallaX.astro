@@ -1,38 +1,48 @@
----
-import Section from "./Section.astro"
----
-
-<Section
-  texto="Patagonia Argentina"
-  color="white"
-  id="pantalla-3"
->
-    <div 
-      id="imagepantalla3"
-      class="h-full w-full object-cover object-center"
-      slot="background"
-      >
-
-    </div>
-
-  </Section>
-    
-    
-    <script type="importmap">
-   {
-     "imports": {
-       "three": "https://cdn.jsdelivr.net/npm/three/build/three.module.js",
-       "@photo-sphere-viewer/core": "https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/core/index.module.js",
-      }
-    }
-  </script>
-  
+<div class="snap-center">
+  <div 
+    id="aloj-ext1"
+    style="width: 100vw; height: 100vh;"
+    slot="background"
+  >
+  </div>
   <script type="module">
-    import { Viewer } from "@photo-sphere-viewer/core";
-    
-    const viewer = new Viewer({
-      container: document.querySelector("#imagepantalla3"),
-      panorama: "brown04.avif",
+    import { Viewer } from "@photo-sphere-viewer/core";  
+    const viewer3 = new Viewer({
+      container: document.querySelector("#aloj-ext1"),
+      panorama: "aloj-ext1.avif",
+      caption: '<b>| 360º | Hotelería * Inmobiliarios * Eventos.</b><hr>',
+      description: "Fotografías Aéreas 360º en Alta Definición.",
+      navbar: 'caption description',
+      mousewheelCtrlKey: true,
     });
-    </script>
+  </script>
+</div>
+<div class="snap-center">
+  <div 
+    id="cascada1"
+    style="width: 100vw; height: 100vh;"
+    slot="background"
+  >
+  </div>
+  <script type="module">
+    import { Viewer } from "@photo-sphere-viewer/core";  
+    const viewer4 = new Viewer({
+      container: document.querySelector("#cascada1"),
+      panorama: "cascada1.avif",
+      caption: '<b>| 360º | Sitios Turísticos * Eventos</b><hr>',
+      description: "Fotografías Aéreas 360º en Alta Definición",
+      navbar: 'caption description',
+      mousewheelCtrlKey: true,
+    });
+  </script>
+</div>
 
+
+
+<div class="snap-center">
+  <CasaGobER />
+</div>
+
+<div class="snap-center">
+  <FaroBR />
+</div>

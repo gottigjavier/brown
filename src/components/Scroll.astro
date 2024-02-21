@@ -1,73 +1,67 @@
-<div id="lat-nav" class="asside"> 
-        <ul>
-            <li class="itemss items-center px-2">
-              <button id="scrollUp">
-                &#9650;
-              </button>
-            </li>
-            <li class="itemss items-center px-2" >
-              <a href="https://wa.me/5493436109763?text=Hola. Quisiera más información" target="_blank">
-                <img title="Contactar por Whatsapp" src="/whatsapp.png">
-              </a>
-            </li>
-            <li class="itemss items-center px-2">
-              <a href="mailto:jorgebrownvideo@gmail.com?Subject=Flydorne%20Video.%20Contacto">
-                <img title="Contactar por Mail" src="/mail.png">
-              </a>
-            </li>
-            <li class="itemss items-center px-2">
-              <a href="https://www.instagram.com/flydrone_video?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">
-                <img title="Instagram" src="/instagram.png">
-              </a>
-            </li>
-            <li class="itemss items-center px-2">
-              <a href="https://www.facebook.com/jorge.brown1" target="_blank">
-                <img title="Facebook" src="/facebook.png">
-              </a>
-            </li>
-            <li class="itemss items-center px-2">
-              <a href="https://www.youtube.com/channel/UCSzxKL1PYl2HHQ6SXOmHLew" target="_blank">
-                <img title="Youtube" src="/youtube.png">
-              </a>
-            </li>
-            <li id="button-down" class="itemss items-center px-2">
-              <button id="scrollDown">
-                &#9660;
-              </button> 
-            </li>
-        </ul>  
+<div id="lat-nav" class="asside-r right-4"> 
+  <ul>
+      <li class="itemss items-center px-2" >
+        <a href="#pantalla1">
+          <img title="Obelisco CABA" src="/circulo.png">
+        </a>
+      </li>
+      <li class="itemss items-center px-2" >
+        <a href="#pantalla2">
+          <img title="Exterior Hotel" src="/circulo.png">
+        </a>
+      </li>
+      <li class="itemss items-center px-2" >
+        <a href="#pantalla3">
+          <img title="Interior Hotel" src="/circulo.png">
+        </a>
+      </li>
+      <li class="itemss items-center px-2" >
+        <a href="#pantalla4">
+          <img title="Naufragio Desdemona" src="/circulo.png">
+        </a>
+      </li>
+      <li class="itemss items-center px-2" >
+        <a href="#pantalla5">
+          <img title="Nocturna Thompson Paraná" src="/circulo.png">
+        </a>
+      </li>
+      <li class="itemss items-center px-2" >
+        <a href="#pantalla6">
+          <img title="Flydrone" src="/circulo.png">
+        </a>
+      </li>
+  </ul>  
 </div> 
 
 <style>
-  .asside{
-    z-index: 50;
-    margin: 90vh 0 0 -3vw;
-    position: fixed;
-    justify-items: center;
-  }
-    .itemss{
-      vertical-align: middle;
-      width: 50px;
-      font-size: 30px;
-      color: rgb(236, 239, 241);
-      margin: 2vh 0 2vh 0;
-      opacity: 0.5;
-    }
-    .itemss:hover{
-      opacity: 1;
-      color: rgb(162, 0, 255);
-    }
+.asside-r{
+z-index: 50;
+margin: 90vh 0 0 -3vw;
+position: fixed;
+justify-items: center;
+}
+.itemss{
+vertical-align: middle;
+width: 40px;
+color: rgb(236, 239, 241);
+margin: 7vh 0 7vh 0;
+opacity: 0.5;
+}
+.itemss:hover{
+opacity: 1;
+color: rgb(226, 214, 233);
+}
 
 
 /* CSS pantalla 768px o superior */
 @media (max-width: 380px) and (orientation: portrait) {
-  .asside{
-  margin: 90vh 0 0 -13vw;
-  }
+.asside-r{
+margin: 90vh 0 0 -13vw;
+}
 
 .itemss{
-    width: 35px;
-    font-size: 20px;
+width: 25px;
+font-size: 20px;
 }
 
 }
@@ -75,13 +69,13 @@
 
 /* CSS pantalla 768px o superior */
 @media (max-height: 380px) and (orientation: landscape) {
-  .asside{
-  margin: 90vh 0 0 -6vw;
-  }
+.asside-r{
+margin: 90vh 0 0 -6vw;
+}
 
 .itemss{
-    width: 35px;
-    font-size: 20px;
+width: 25px;
+font-size: 20px;
 }
 
 }
