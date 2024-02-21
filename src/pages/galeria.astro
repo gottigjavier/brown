@@ -1,19 +1,23 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import GaleriaHeader from "../components/GaleriaHeader.astro";
-import ModalGoogle from "../components/ModalGoogle.astro";
-import FooterMenu from "../components/FooterMenu.astro";
+import GaleriaHeader from "../components/layout/GaleriaHeader.astro";
+import ModalGoogle from "../components/layout/ModalGoogle.astro";
+import FooterMenu from "../components/layout/FooterMenu.astro";
+import Tabs from "../components/galeria/Tabs.astro";
 ---
 <Layout title="Flydrone Video">
-    <div class="galería">
+    <div class="galería-header">
         <GaleriaHeader color="black"/>
+    </div>
+    <div class="tabs">
+        <Tabs event />
     </div>
     <div>
         <ModalGoogle />
     </div>
-    <div class="absolute top-0 bottom-0 h-full w-full z-10">
-        <div class="z-30 relative h-full flex flex-col mb-10">
-            <footer class="flex flex-col flex-grow justify-end pb-20">
+    <div class="absolute bottom-0 w-full z-10">
+        <div class="z-30 relative h-full flex flex-col mb-0">
+            <footer class="flex flex-col flex-grow justify-end pb-10">
                 <FooterMenu />
             </footer>
         </div>
@@ -21,7 +25,10 @@ import FooterMenu from "../components/FooterMenu.astro";
 </Layout>
 
 <style>
-    .galeria{
+    .galeria-header{
         background-color: rgb(75, 64, 50);
+    }
+    .tabs{
+        margin: 10vh 2vh 3vh 9vh;
     }
 </style>
