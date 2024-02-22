@@ -30,9 +30,9 @@ const textColor = `text-${color}`;
 
   
   <div
-  id="menu-backdrop"
+  id="menu-backdropp"
   class={`
-      absolute bg-white/5 backdrop-blur-lg rounded
+      absolute bg-sky-100 backdrop-blur-lg rounded-lg
       translate-x-[var(--left)] translate-y-[var(--top)]
       left-0 top-0
       w-[var(--width)] h-[var(--height)]
@@ -45,25 +45,25 @@ const textColor = `text-${color}`;
 </header>
 
 <script>
-  const listItem = document.querySelectorAll("#landing-header li")
-  const menuBackDrop = document.querySelector("#menu-backdrop") as HTMLElement
+  const listItemm = document.querySelectorAll("#galeria-header li")
+  const menuBackDropp = document.querySelector("#menu-backdropp") as HTMLElement
 
-  listItem.forEach((item) => {
-    item.addEventListener("mouseenter", () => {
-      const { left, top, width, height } = item.getBoundingClientRect()
+  listItemm.forEach((itemm) => {
+    itemm.addEventListener("mouseenter", () => {
+      const { left, top, width, height } = itemm.getBoundingClientRect()
 
-      menuBackDrop.style.setProperty("--left", `${left}px`)
-      menuBackDrop.style.setProperty("--top", `${top}px`)
-      menuBackDrop.style.setProperty("--width", `${width}px`)
-      menuBackDrop.style.setProperty("--height", `${height}px`)
+      menuBackDropp.style.setProperty("--left", `${left}px`)
+      menuBackDropp.style.setProperty("--top", `${top}px`)
+      menuBackDropp.style.setProperty("--width", `${width}px`)
+      menuBackDropp.style.setProperty("--height", `${height}px`)
 
-      menuBackDrop.style.opacity = "1"
-      menuBackDrop.style.visibility = "visible"
+      menuBackDropp.style.opacity = "1"
+      menuBackDropp.style.visibility = "visible"
     })
 
-    item.addEventListener("mouseleave", () => {
-      menuBackDrop.style.opacity = "0"
-      menuBackDrop.style.visibility = "hidden"
+    itemm.addEventListener("mouseleave", () => {
+      menuBackDropp.style.opacity = "0"
+      menuBackDropp.style.visibility = "hidden"
     })
   })
 </script>
