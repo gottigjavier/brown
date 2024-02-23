@@ -1,10 +1,36 @@
 ---
+import Marquesina from "./Marquesina.astro";
+
 const { color, texto, visib } = Astro.props;
 const textColor = `text-${color}`;
 ---
 
-<section class="grid">
-        <p class={`${textColor} ${visib} justify-self-center text-center text-sm absolute bottom-5 p-2 rounded-md backdrop-brightness-75`}>
-                <b>{texto}</b>
-        </p>
-</sec>
+<section class={`${textColor} ${visib} marq text-md text-pretty lg:text-xl absolute bottom-2 lg:bottom-5 mx-20`}>
+
+        <Marquesina {texto} />
+        
+</section>
+
+<style>
+.marq{
+
+}
+
+@media (max-width: 460px) and (orientation: portrait) {
+.marq{
+        margin-bottom: 23px;
+}
+
+}
+
+
+/* CSS pantalla 768px o superior */
+@media (max-height: 460px) and (orientation: landscape) {
+.marq{
+        margin-bottom: 8px;
+}
+
+}
+</style>
+
+</style>
