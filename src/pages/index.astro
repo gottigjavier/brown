@@ -2,10 +2,8 @@
 import FlyDrone from "../components/indexcomp/FlyDrone.astro";
 import ObeliscoCABA from "../components/indexcomp/ObeliscoCABA.astro";
 import LandingHeader from "../components/layout/LandingHeader.astro";
-import CasaGobER from "../components/indexcomp/CasaGobER.astro";
 import BuqueDesdemona from "../components/indexcomp/BuqueDesdemona.astro";
 import ThompsonPNA from "../components/indexcomp/ThompsonPNA.astro";
-import FaroBR from "../components/indexcomp/FaroBR.astro";
 import ModalGoogle from "../components/layout/ModalGoogle.astro";
 import Layout from "../layouts/Layout.astro";
 ---
@@ -38,7 +36,7 @@ import Layout from "../layouts/Layout.astro";
           fisheye: { start: 2, end: 0 },
         };
 
-        const viewer = new Viewer({
+        const viewer1 = new Viewer({
           container: document.querySelector("#hotel-ext1"),
           panorama: "hotel-ext1.avif",
           caption: "<b>|360º| Hotelería Inmobiliario Eventos</b>",
@@ -72,15 +70,15 @@ import Layout from "../layouts/Layout.astro";
           ],
         });
 
-        const autorotate = viewer.getPlugin(AutorotatePlugin);
+        const autorotate = viewer1.getPlugin(AutorotatePlugin);
 
         let isInit = true;
 
         // setup timer for automatic animation on startup
-        viewer.addEventListener(
+        viewer1.addEventListener(
           "ready",
           () => {
-            viewer.navbar.hide();
+            viewer1.navbar.hide();
 
             setTimeout(() => {
               if (isInit) {
@@ -92,17 +90,28 @@ import Layout from "../layouts/Layout.astro";
         );
 
         // launch animation to clicked point
-        viewer.addEventListener("click", ({ data }) => {
+        viewer1.addEventListener("click", ({ data }) => {
           if (isInit) {
             intro(data.pitch, data.yaw);
           }
         });
 
+        viewer1.container.addEventListener("mouseleave", () => {
+          isInit = false;
+          autorotate.stop();
+        });
+
+        document.addEventListener("touchstart", () => {
+          isInit = false;
+          autorotate.stop();
+        },
+        false);
+
         // perform the intro animation
         function intro(pitch, yaw) {
           isInit = false;
           autorotate.stop();
-          viewer.navbar.hide();
+          viewer1.navbar.hide();
 
           new utils.Animation({
             properties: {
@@ -113,17 +122,17 @@ import Layout from "../layouts/Layout.astro";
             duration: 2500,
             easing: "inOutQuad",
             onTick: (properties) => {
-              viewer.setOptions({
+              viewer1.setOptions({
                 fisheye: properties.fisheye,
                 maxFov: properties.maxFov,
               });
-              viewer.rotate({ yaw: properties.yaw, pitch: properties.pitch });
-              viewer.zoom(properties.zoom);
+              viewer1.rotate({ yaw: properties.yaw, pitch: properties.pitch });
+              viewer1.zoom(properties.zoom);
             },
           }).then(() => {
-            autorotate.start();
-            viewer.navbar.show();
-            viewer.setOptions({
+            autorotate.stop();
+            viewer1.navbar.show();
+            viewer1.setOptions({
               mousemove: true,
               mousewheel: false,
             });
@@ -134,8 +143,8 @@ import Layout from "../layouts/Layout.astro";
         function reset() {
           isInit = true;
           autorotate.stop();
-          viewer.navbar.hide();
-          viewer.setOptions({
+          viewer1.navbar.hide();
+          viewer1.setOptions({
             mousemove: false,
             mousewheel: false,
           });
@@ -143,15 +152,15 @@ import Layout from "../layouts/Layout.astro";
           new utils.Animation({
             properties: {
               pitch: {
-                start: viewer.getPosition().pitch,
+                start: viewer1.getPosition().pitch,
                 end: animatedValues.pitch.start,
               },
               yaw: {
-                start: viewer.getPosition().yaw,
+                start: viewer1.getPosition().yaw,
                 end: animatedValues.yaw.start,
               },
               zoom: {
-                start: viewer.getZoomLevel(),
+                start: viewer1.getZoomLevel(),
                 end: animatedValues.zoom.start,
               },
               maxFov: {
@@ -166,12 +175,12 @@ import Layout from "../layouts/Layout.astro";
             duration: 1500,
             easing: "inOutQuad",
             onTick: (properties) => {
-              viewer.setOptions({
+              viewer1.setOptions({
                 fisheye: properties.fisheye,
                 maxFov: properties.maxFov,
               });
-              viewer.rotate({ yaw: properties.yaw, pitch: properties.pitch });
-              viewer.zoom(properties.zoom);
+              viewer1.rotate({ yaw: properties.yaw, pitch: properties.pitch });
+              viewer1.zoom(properties.zoom);
             },
           });
         }
@@ -252,6 +261,17 @@ import Layout from "../layouts/Layout.astro";
           }
         });
 
+        viewer.container.addEventListener("mouseleave", () => {
+          isInit = false;
+          autorotate.stop();
+        });
+
+        document.addEventListener("touchstart", () => {
+          isInit = false;
+          autorotate.stop();
+        },
+        false);
+
         // perform the intro animation
         function intro(pitch, yaw) {
           isInit = false;
@@ -275,7 +295,7 @@ import Layout from "../layouts/Layout.astro";
               viewer.zoom(properties.zoom);
             },
           }).then(() => {
-            autorotate.start();
+            autorotate.stop();
             viewer.navbar.show();
             viewer.setOptions({
               mousemove: true,

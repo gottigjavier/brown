@@ -1,0 +1,73 @@
+---
+import FlyDrone from "../components/indexcomp/FlyDrone.astro";
+import ObeliscoCABA from "../components/indexcomp/ObeliscoCABA.astro";
+import LandingHeader from "../components/layout/LandingHeader.astro";
+import CasaGobER from "../components/indexcomp/CasaGobER.astro";
+import BuqueDesdemona from "../components/indexcomp/BuqueDesdemona.astro";
+import ThompsonPNA from "../components/indexcomp/ThompsonPNA.astro";
+import FaroBR from "../components/indexcomp/FaroBR.astro";
+import ModalGoogle from "../components/layout/ModalGoogle.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Flydrone Video">
+  <LandingHeader color="white"/>
+
+  <main
+    class="snap-y snap-mandatory relative w-full h-screen overflow-y-auto overflow-x-hidden scroll-smooth"
+  >
+    <div id="pantalla1" class="snap-center">
+      <ObeliscoCABA />
+    </div>
+    <div id="pantalla2" class="snap-center">
+      <div 
+        id="hotel-ext1"
+        style="width: 100vw; height: 100vh;"
+        slot="background"
+      >
+      </div>
+      <script type="module">
+        import { Viewer } from "@photo-sphere-viewer/core";  
+        const viewer1 = new Viewer({
+          container: document.querySelector("#hotel-ext1"),
+          panorama: "hotel-ext1.avif",
+          caption: '<b>| 360º | Hotelería * Inmobiliarios * Eventos.</b><hr>',
+          description: 'Filmaciones Aéreas 4K <br> Fotografías Aéreas 360º',
+          navbar: 'caption description',
+          mousewheelCtrlKey: true,
+        });
+      </script>
+    </div>
+    <div id="pantalla3" class="snap-center">
+      <div 
+        id="room1"
+        style="width: 100vw; height: 100vh;"
+        slot="background"
+      >
+      </div>
+      <script type="module">
+        import { Viewer } from "@photo-sphere-viewer/core";  
+        const viewer2 = new Viewer({
+          container: document.querySelector("#room1"),
+          panorama: "room1.avif",
+          caption: '<b>| 360º | Hotelería * Inmobiliarios * Eventos.</b><hr>',
+          description: "Filmaciones interiores 4K <br> Fotografías Interiores 360º",
+          navbar: 'caption description',
+          mousewheelCtrlKey: true,
+        });
+      </script>
+    </div>
+    <div id="pantalla4" class="snap-center">
+      <BuqueDesdemona />
+    </div>
+    <div id="pantalla5" class="snap-center">
+      <ThompsonPNA />
+    </div>
+    <div id="pantalla6" class="snap-center">
+      <FlyDrone />
+    </div>
+    <div class="snap-center">
+      <ModalGoogle />
+    </div>
+  </main>
+</Layout>
