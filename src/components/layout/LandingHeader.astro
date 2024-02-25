@@ -14,7 +14,7 @@ const textColor = `text-${color}`;
   <ul class="flex text-sm [&>li>a]:transition-colors [&>li>a]:duration-500 [&>li>a]:text-current [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2">
     <li id="logo" title="Home" class="block">
       <a href="/">
-        <Logo/>
+        <span class="flex"><Logo/> <b class="pt-2.5 fly"><i>Flydrone</i></b></span>
       </a>
     </li>
   </ul>
@@ -24,8 +24,8 @@ const textColor = `text-${color}`;
     <ul
       class="flex text-sm [&>li>a]:transition-colors [&>li>a]:duration-500 [&>li>a]:text-current [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2"
     >
-      <li class="block"><a id="open-modal" href="#">Contacto</a></li>
       <li class="block"><a href="/galeria">Galería</a></li>
+      <li class="block"><a id="open-modal" href="#">Contacto</a></li>
     </ul>
   </nav>
 
@@ -70,3 +70,9 @@ const textColor = `text-${color}`;
     })
   })
 </script>
+
+<style>
+  .fly{
+    color: rgb(255, 198, 111);
+  }
+</style>
