@@ -1,0 +1,40 @@
+---
+const { xhref, xsrc, xalt, xtitle, xcaption } = Astro.props;
+---
+
+<dir class="foto">
+
+    <figure>
+        <a href={xhref} target="_blank" title={xalt}
+        ><img src={xsrc} alt={xalt} /></a
+        >
+        <figcaption>
+            <small><i> {xcaption}</i></small>
+        </figcaption>
+    </figure>
+    
+</dir>
+<style>
+    .foto {
+        margin: 0.4ch;
+        background-color: rgb(41, 70, 70);
+        border-radius: 2%;
+    }
+    figure{
+        max-width: 35vmax;
+        width: 100%;
+        padding: 2px;
+        margin: 20px 0 0 -20px;
+    }
+    figcaption{
+        color: aliceblue;
+        font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        text-wrap: pretty;
+        padding: 0 4px;
+    }
+    img{
+        object-fit: fill;
+        border-radius: 2%;
+
+    }
+</style>

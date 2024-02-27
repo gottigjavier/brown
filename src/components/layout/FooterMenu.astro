@@ -1,5 +1,9 @@
+---
+const { fcolor } = Astro.props;
+const ftextColor = `text-${fcolor}`;
+---
 <footer
-	class="py-1 px-10 flex justify-center items-center absolute bottom-0 w-full z-40 text-gray-800 text-xs font-medium"
+	class=`py-1 px-10 flex justify-center items-center absolute bottom-0 w-full z-40 ${ftextColor} text-xs font-medium`
 	id="landing-footer"
 >
 <nav>

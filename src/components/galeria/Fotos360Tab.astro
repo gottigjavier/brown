@@ -1,49 +1,34 @@
+---
+import PrevPic from "./PrevPic.astro";
+---
+
 <div class="flex flex-wrap justify-center">
-
-    <div class="foto">
-        <a href="https://photos.google.com/share/AF1QipPHWTFwNPko58lrQDYg0mJkZpiVRleiH9qRkHh1TsP0x6PcVZinIvYLZyJ534Z2Tg/photo/AF1QipMaz_cGEbdDLO2t3UmNZAih5V6G9-tICUr5Qyef?key=NWtfdndXN3hGS0JuOE5NQmpqOVZfRGVzQXpjYzNR"
-            target="_blank"
-        ><img src="https://lh3.googleusercontent.com/pw/ABLVV85wrVJ507mzbkFJUc8BllwoJH02u2e_fEXBngF5Uh9louQb7jkbONvnUFOoiZshaeXcyKTjVZ5hLeUqJDeITg2yYNvy-yPfPH8inuSxagjUMh8E7u7SfG2E2q3J8d-3jDPXSKL7LHExmne8eDHyiHlGZg=w1224-h612-s-no" alt="f"></a>
-    </div>
-    <div class="foto">
-        <a href="https://photos.app.goo.gl/YnwoaWwZzGACDCGr6"
-        ><img src="https://lh3.googleusercontent.com/pw/ABLVV87UF5Jc7KZAbMSnHljz520Z43Zo1pnKOOw151gEqRy0NsvFWkNUEEXd_IGXWNdEKxYDZPnwOcFNUrgq2ajkSQz6kxO9rtc8qgnkF9GWYcpcmW1KnT-tlyB808e8VIR-UGs2YYf1FSuAG-0vaITZt57B=w1224-h612-s-no?authuser=0" alt="f"></a>
-    </div>
-    <div class="foto">
-        <a href="https://photos.google.com/share/AF1QipPHWTFwNPko58lrQDYg0mJkZpiVRleiH9qRkHh1TsP0x6PcVZinIvYLZyJ534Z2Tg/photo/AF1QipMaz_cGEbdDLO2t3UmNZAih5V6G9-tICUr5Qyef?key=NWtfdndXN3hGS0JuOE5NQmpqOVZfRGVzQXpjYzNR"
-        ><img src="https://lh3.googleusercontent.com/pw/ABLVV85wrVJ507mzbkFJUc8BllwoJH02u2e_fEXBngF5Uh9louQb7jkbONvnUFOoiZshaeXcyKTjVZ5hLeUqJDeITg2yYNvy-yPfPH8inuSxagjUMh8E7u7SfG2E2q3J8d-3jDPXSKL7LHExmne8eDHyiHlGZg=w1224-h612-s-no" alt="f"></a>
-    </div>
-    <div class="foto">
-        <a href="https://photos.app.goo.gl/YnwoaWwZzGACDCGr6"
-        ><img src="https://lh3.googleusercontent.com/pw/ABLVV87UF5Jc7KZAbMSnHljz520Z43Zo1pnKOOw151gEqRy0NsvFWkNUEEXd_IGXWNdEKxYDZPnwOcFNUrgq2ajkSQz6kxO9rtc8qgnkF9GWYcpcmW1KnT-tlyB808e8VIR-UGs2YYf1FSuAG-0vaITZt57B=w1224-h612-s-no?authuser=0" alt="f"></a>
-    </div>
-    <div class="foto">
-        <a href="https://photos.app.goo.gl/YnwoaWwZzGACDCGr6"
-        ><img src="https://lh3.googleusercontent.com/pw/ABLVV87UF5Jc7KZAbMSnHljz520Z43Zo1pnKOOw151gEqRy0NsvFWkNUEEXd_IGXWNdEKxYDZPnwOcFNUrgq2ajkSQz6kxO9rtc8qgnkF9GWYcpcmW1KnT-tlyB808e8VIR-UGs2YYf1FSuAG-0vaITZt57B=w1224-h612-s-no?authuser=0" alt="f"></a>
-    </div>
+    <PrevPic 
+      xhref="https://photos.app.goo.gl/7fsbUibH6vNVqaf79"
+      xsrc="/fabrega-hotel.avif"
+      xalt="Fábrega Hotel"
+      xtitle="Fábrega Hotel"
+      xcaption="El Castillo Hotel Fábrega. Valle Hermoso, Córdoba, Argentina."      
+    />
+    <PrevPic 
+      xhref="https://photos.app.goo.gl/T7gCR5rTf3GLeQBE6"
+      xsrc="/enjoy-hotel.avif"
+      xalt="Enjoy Hotel"
+      xtitle="Enjoy Hotel"
+      xcaption="Enjoy Hotel. Mendoza, Argentina"      
+    />
+    <PrevPic 
+      xhref="https://photos.app.goo.gl/aKKHiXRMhER2ZQoD9"
+      xsrc="/ansenuza-hotel.avif"
+      xalt="Ansenuza Hotel"
+      xtitle="Ansenuza Hotel"
+      xcaption="Ansenuza Hotel. Miramar, Córdoba, Argentina."      
+    />
+    <PrevPic 
+      xhref="https://photos.app.goo.gl/P2eKbRweQeK17LCFA"
+      xsrc="/sadop-hotel.avif"
+      xalt="Sadop Hotel"
+      xtitle="Sadop Hotel"
+      xcaption="Sadop Hotel. Cosquín, Córdoba, Argentina."      
+    />
 </div>
-<style>
-    .foto{
-        margin: .4ch;
-        width: 27vmax;
-    }
-</style>
-
-<!-- 
-<div 
-        id="hotel-ext1"
-        style="width: 40vw; height: 40vh;"
-        slot="background"
-      >
-      </div>
-      <script type="module">
-        import { Viewer } from "@photo-sphere-viewer/core";  
-        const viewer1 = new Viewer({
-          container: document.querySelector("#hotel-ext1"),
-          panorama: "hotel-ext1.avif",
-          caption: '<b>| 360º | Hotelería * Inmobiliarios * Eventos.</b><hr>',
-          description: "Fotografías Aéreas 360º en Alta Definición.",
-          navbar: 'caption description',
-          mousewheelCtrlKey: true,
-        });
-      </script> -->
