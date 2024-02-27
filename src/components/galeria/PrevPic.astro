@@ -2,7 +2,7 @@
 const { xhref, xsrc, xalt, xtitle, xcaption } = Astro.props;
 ---
 
-<dir class="foto">
+<dir class="foto shdw">
 
     <figure>
         <a href={xhref} target="_blank" title={xalt}
@@ -17,7 +17,7 @@ const { xhref, xsrc, xalt, xtitle, xcaption } = Astro.props;
 <style>
     .foto {
         margin: 0.4ch;
-        background-color: rgb(41, 70, 70);
+        background-color: rgb(21, 32, 32);
         border-radius: 2%;
     }
     figure{
@@ -37,4 +37,13 @@ const { xhref, xsrc, xalt, xtitle, xcaption } = Astro.props;
         border-radius: 2%;
 
     }
+
+    .shdw {
+        box-shadow: 0 8px 16px 0 rgba(253, 253, 253, 0.2), 0 6px 20px 0 rgba(128, 128, 128, 0.699);
+    }
+
+    .shdw:hover {
+        box-shadow: 0 12px 16px 0 rgba(182, 182, 182, 0.24), 0 17px 50px 0 rgba(141, 119, 119, 0.19);
+    }
+
 </style>

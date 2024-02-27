@@ -6,19 +6,19 @@ import FotosTab from "../galeria/FotosTab.astro";
 <div class="ml-6">
         <div id="tab-buttons" class="flex justify-center">
             <a href="javascript:void(0)" onclick="changeTab(event, 0)"
-            class="inline-block py-3 px-2 bg-blue-500 text-white rounded-lg mr-0.5">
+            class="inline-block py-3 px-2 bg-gray-500 text-white rounded-lg mr-0.5">
             <span class="">
                 Videos
             </span>
         </a>
         <a href="javascript:void(0)" onclick="changeTab(event, 1)" 
-        class="inline-block py-3 px-2 bg-gray-200 text-blue-600 rounded-lg mr-0.5 underline">
+        class="inline-block py-3 px-2 bg-gray-700 text-white rounded-lg mr-0.5 underline">
         <span class="">
                     Fotos 360º
                 </span>
             </a>
             <a href="javascript:void(0)" onclick="changeTab(event, 2)" 
-                class="inline-block py-3 px-2 bg-gray-200 text-blue-600 rounded-lg underline">
+                class="inline-block py-3 px-2 bg-gray-700 text-white rounded-lg underline">
                 <span class="">
                     Fotos
                 </span>
@@ -52,24 +52,20 @@ import FotosTab from "../galeria/FotosTab.astro";
             var tabButtons = document.getElementById('tab-buttons').children;
             var tabPanels = document.getElementById('tab-panels').children;
 
-            // Remove the active utility classes from all tabs (bg-white, text-blue-600)
+            // Remove the active utility classes from all tabs (bg-white, text-white)
             // And hide all tab content (with the "hidden" utility)
             for (var i = 0; i < tabButtons.length; i++) {
-                tabButtons[i].classList.remove('text-white');
-                tabButtons[i].classList.remove('bg-blue-500');
+                tabButtons[i].classList.remove('bg-gray-500');
                 tabButtons[i].classList.add('underline');
-                tabButtons[i].classList.add('bg-gray-200');
-                tabButtons[i].classList.add('text-blue-600');
+                tabButtons[i].classList.add('bg-gray-700');
                 tabPanels[i].classList.add('hidden');
             }
             
-            // Add the active utility classes to the currently active tab (bg-white, text-blue-600)
+            // Add the active utility classes to the currently active tab (bg-white, text-white)
             // And show the current tab content (remove the "hidden" utility)
-            tabButtons[index].classList.remove('text-blue-600');
-            tabButtons[index].classList.remove('bg-gray-200');
+            tabButtons[index].classList.remove('bg-gray-700');
             tabButtons[index].classList.remove('underline');
-            tabButtons[index].classList.add('text-white');
-            tabButtons[index].classList.add('bg-blue-500');
+            tabButtons[index].classList.add('bg-gray-500');
             tabPanels[index].classList.remove('hidden');
         }
     </script>
