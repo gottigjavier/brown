@@ -20,3 +20,7 @@ bun.lockb
 
 # macOS-specific files
 .DS_Store
+
+# main files
+astro.config-build.mjs
+package-build.json
