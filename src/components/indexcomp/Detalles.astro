@@ -5,7 +5,7 @@ const { color, texto, visib } = Astro.props;
 const textColor = `text-${color}`;
 ---
 
-<section class={`${textColor} ${visib} marq text-md text-pretty lg:text-xl absolute bottom-2 lg:bottom-5 mx-20`}>
+<section class={`${textColor} ${visib} marq text-md text-pretty lg:text-xl absolute bottom-7 lg:bottom-7 mx-20`}>
 
         <Marquesina {texto} />
         
@@ -13,12 +13,14 @@ const textColor = `text-${color}`;
 
 <style>
 .marq{
+        opacity: 0.7;
+        text-shadow: -1px -1px 1px #333, 1px -1px 1px #333, -1px 1px 1px #333, 1px 1px 1px #333;
 
 }
 
 @media (max-width: 460px) and (orientation: portrait) {
 .marq{
-        margin-bottom: 23px;
+        margin-bottom: 4%;
 }
 
 }
@@ -27,7 +29,7 @@ const textColor = `text-${color}`;
 /* CSS pantalla 768px o superior */
 @media (max-height: 460px) and (orientation: landscape) {
 .marq{
-        margin-bottom: 8px;
+        margin-bottom: 1%;
 }
 
 }
