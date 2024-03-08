@@ -1,7 +1,6 @@
 ---
-const { fcolor, color, texto, visib, id, showFooterContent } = Astro.props;
+const { color, texto, id, showFooterContent } = Astro.props;
 const textColor = `text-${color}`;
-const ftextColor = `text-${fcolor}`;
 import FooterMenu from './FooterMenu.astro';
 import Detalles from "../indexcomp/Detalles.astro";
 ---
@@ -11,9 +10,9 @@ import Detalles from "../indexcomp/Detalles.astro";
   data-header-color={color}
   id={id}
 >
-  <div class="z-30 relative h-full flex justify-center">
+<div class="z-30 relative h-full flex justify-center">
     
-    <Detalles {texto} {visib}/>
+    <Detalles {texto} />
     <footer class="flex flex-col flex-grow justify-end pb-20 text-gray-700">
       <slot name="footer" />
       <!-- Contidionally load footer: -->

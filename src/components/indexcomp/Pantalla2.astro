@@ -1,13 +1,12 @@
   <div
     id="hotel-ext1"
     style="width: 100vw; height: 100vh;"
-    slot="background"
-  >
+    >
   </div>
   <script type="module">
     import { Viewer, utils } from "@photo-sphere-viewer/core";
     import { AutorotatePlugin } from "@photo-sphere-viewer/autorotate-plugin";
-
+    
     const animatedValues = {
       pitch: { start: -Math.PI / 2, end: 0 },
       yaw: { start: Math.PI / 2, end: 0 },
@@ -15,6 +14,60 @@
       maxFov: { start: 130, end: 90 },
       fisheye: { start: 2, end: 0 },
     };
+
+    // declare the custom element
+class CustomScroll2Button extends HTMLElement {
+    constructor() {
+        super();
+
+        const dom = this.attachShadow({ mode: 'closed' });
+
+        const style = document.createElement('style');
+        style.innerText = `
+:host {
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
+    opacity: 0.8;
+    
+}
+`;
+        dom.appendChild(style);
+
+        const scroll2 = document.createElement('span');
+        scroll2.id = 'scroll2';
+        dom.appendChild(scroll2);
+
+        this.aUp2 = document.createElement('a');
+        this.aUp2.href = '#pantalla1';
+        this.aUp2.id = 'aUp2'
+        this.aUp2.title = 'Pantalla Previa';
+        this.aUp2.style = 'margin: 0 5px;'
+        this.imgUp2 = document.createElement('img');
+        this.imgUp2.src = '/up.png';
+        this.imgUp2.width = '25'
+        this.aUp2.appendChild(this.imgUp2);
+        scroll2.appendChild(this.aUp2);
+        
+        this.aDown2 = document.createElement('a');
+        this.aDown2.href = '#pantalla3';
+        this.aDown2.id = 'aDown2';
+        this.aDown2.title = 'Pantalla Siguiente';
+        this.aDown2.style = 'margin: 0 5px;'
+        this.imgDown2 = document.createElement('img');
+        this.imgDown2.src = '/down.png';
+        this.imgDown2.width = '25'
+        this.aDown2.appendChild(this.imgDown2);
+        scroll2.appendChild(this.aDown2);
+
+    }
+
+}
+
+// register the custom element
+customElements.define('scroll2-button', CustomScroll2Button);
+
+
 
     const viewer = new Viewer({
       container: document.querySelector("#hotel-ext1"),
@@ -36,6 +89,9 @@
           onClick: reset,
         },
         "caption",
+        {
+          content: document.createElement('scroll2-button'),
+        },
         "fullscreen",
       ],
       plugins: [

@@ -16,6 +16,59 @@
     fisheye: { start: 2, end: 0 },
   };
 
+    // declare the custom element
+    class CustomScroll3Button extends HTMLElement {
+    constructor() {
+        super();
+
+        const dom = this.attachShadow({ mode: 'closed' });
+
+        const style = document.createElement('style');
+        style.innerText = `
+:host {
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
+    opacity: 0.8;
+    
+}
+`;
+        dom.appendChild(style);
+
+        const scroll3 = document.createElement('span');
+        scroll3.id = 'scroll3';
+        dom.appendChild(scroll3);
+
+        this.aUp3 = document.createElement('a');
+        this.aUp3.href = '#pantalla2';
+        this.aUp3.id = 'aUp3'
+        this.aUp3.title = 'Pantalla Previa';
+        this.aUp3.style = 'margin: 0 5px;'
+        this.imgUp3 = document.createElement('img');
+        this.imgUp3.src = '/up.png';
+        this.imgUp3.width = '25'
+        this.aUp3.appendChild(this.imgUp3);
+        scroll3.appendChild(this.aUp3);
+        
+        this.aDown3 = document.createElement('a');
+        this.aDown3.href = '#pantalla4';
+        this.aDown3.id = 'aDown3';
+        this.aDown3.title = 'Pantalla Siguiente';
+        this.aDown3.style = 'margin: 0 5px;'
+        this.imgDown3 = document.createElement('img');
+        this.imgDown3.src = '/down.png';
+        this.imgDown3.width = '25'
+        this.aDown3.appendChild(this.imgDown3);
+        scroll3.appendChild(this.aDown3);
+
+    }
+
+}
+
+// register the custom element
+customElements.define('scroll3-button', CustomScroll3Button);
+
+
   const viewer = new Viewer({
     container: document.querySelector("#room1"),
     panorama: "room111.avif",
@@ -36,6 +89,9 @@
         onClick: reset,
       },
       "caption",
+      {
+        content: document.createElement('scroll3-button'),
+      },
       "fullscreen",
     ],
     plugins: [
