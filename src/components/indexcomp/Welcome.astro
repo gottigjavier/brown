@@ -1,0 +1,26 @@
+---
+import Section from "../layout/Section.astro"
+---
+
+<Section
+color="white"
+id="welcome"
+xnext="#pantalla1"
+>
+
+
+<div
+    id="welcome-int"
+    slot="background"
+    class="object-center object-cover h-full w-full bg-zinc-700"
+>
+<img class="welcome-image" src="/logo-color.png" alt="Fly Drone Logo" width="50">
+</div>
+</Section>
+
+<style>
+    .welcome-image{
+        width: 100%;
+        padding: 42vh 33vw;
+    }
+</style>
