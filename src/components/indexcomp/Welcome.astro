@@ -1,26 +1,57 @@
----
-import Section from "../layout/Section.astro"
----
-
-<Section
-color="white"
-id="welcome"
-xnext="#pantalla1"
->
-
 
 <div
     id="welcome-int"
     slot="background"
-    class="object-center object-cover h-full w-full bg-zinc-700"
+    class="object-center object-cover bg-zinc-700 h-screen w-screen overflow-hidden relative"
 >
-<img class="welcome-image" src="/logo-color.png" alt="Fly Drone Logo" width="50">
+<img class="welcome-image" src="/logo-color.png" alt="Fly Drone Logo">
+<div class="container flex flex-auto">
+    <p class="parag">Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia obcaecati laudantium cumque, tempora veniam, quia deserunt a aliquid et praesentium laboriosam voluptatem in, perspiciatis neque! Quas earum sint quisquam exercitationem?</p>
 </div>
-</Section>
+</div>
 
 <style>
-    .welcome-image{
-        width: 100%;
-        padding: 42vh 33vw;
+    .parag{
+        margin-top: 52vh;
+        font-size: 20ch;
+        
     }
+    .welcome-image{
+        width: 50%;
+
+        margin: 100vh 25vw;
+    }
+
+    @-webkit-keyframes float {
+  0% {
+    transform: translatey(0px);
+  }
+  20% {
+    transform: translatey(-200px);
+  }
+  100% {
+    transform: translatey(-5000px);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translatey(0px);
+  }
+  20% {
+    transform: translatey(-200px);
+  }
+  100% {
+    transform: translatey(-5000px);
+  }
+}
+
+.welcome-image {
+  overflow: hidden;
+  transform: translatey(0px);
+  -webkit-animation: float 20s ease-in-out both;
+          animation: float 20s ease-in-out both;
+          animation-delay: 2s;
+}
+
 </style>
