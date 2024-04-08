@@ -1,0 +1,29 @@
+---
+import Layout from "../layouts/Layout.astro";
+import GaleriaHeader from "../components/layout/GaleriaHeader.astro";
+import ModalGoogle from "../components/layout/ModalGoogle.astro";
+import FooterMenu from "../components/layout/FooterMenu.astro";
+import Tabs from "../components/galeria/Tabs.astro";
+---
+<Layout title="Fly Drone">
+    <div class="galería-header">
+        <GaleriaHeader color="white"/>
+    </div>
+    <div class="tabs">
+        <Tabs event />
+    </div>
+    <div>
+        <ModalGoogle />
+    </div>
+    <div class="bottom-0 h-full w-full z-10">
+        <div class="z-30 relative h-full flex flex-col mb-0">
+            <footer class="flex flex-col flex-grow justify-end pb-10">
+                <FooterMenu color = white/>
+            </footer>
+        </div>
+    </div>
+</Layout>
+
+<style>
+    
+</style><

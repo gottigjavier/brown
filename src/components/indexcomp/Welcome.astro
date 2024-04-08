@@ -1,25 +1,64 @@
-
+---
+import Topico from "./Topico.astro"
+---
 <div
     id="welcome-int"
     slot="background"
     class="object-center object-cover bg-zinc-700 h-screen w-screen overflow-hidden relative"
 >
-<img class="welcome-image" src="/logo-color.png" alt="Fly Drone Logo">
-<div class="container flex flex-auto">
-    <p class="parag">Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia obcaecati laudantium cumque, tempora veniam, quia deserunt a aliquid et praesentium laboriosam voluptatem in, perspiciatis neque! Quas earum sint quisquam exercitationem?</p>
-</div>
+  <div class="container-all container absolute grid place-items-center h-screen w-screen">
+    <div class="welcome-image z-50 absolute">
+      <img src="/logo-color.png" alt="Fly Drone Logo">
+    </div>
+    <div class="container grid place-items-center gap-8">
+      <div class="fly-grid z-10 place-items-center">
+        <div class="">
+          <Topico 
+            titlex="Título 1"
+            textx = "Texto 1"
+          />
+        </div>
+        <div class=""></div>
+        <div class="">tres</div>
+        <div class=""></div>
+        <div class="">
+          <img class="logo" src="/favicon.png" alt="fav">
+        </div>
+        <div class=""></div>
+        <div class="">siete</div>
+        <div class=""></div>
+        <div class="">nueve</div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <style>
-    .parag{
-        margin-top: 52vh;
-        font-size: 20ch;
-        
+  .container-all{
+    margin-left: 4.5vw;
+  }
+
+  /* CSS pantalla 768px o superior */
+@media (max-width: 420px) {
+
+  .container-all {
+    margin-left: 0.5vw;
+  }
+} 
+
+    .fly-grid{
+      margin-top: 9vh;
+      margin-right: 0;
+      display: grid;
+      width: 80vmin;
+      height: auto;
+      grid-template-columns: 1fr 2fr 1fr;
+      grid-template-rows: 1fr 2fr 1fr;        
     }
     .welcome-image{
-        width: 50%;
-
-        margin: 100vh 25vw;
+        width: 30%;
+        opacity: 0.5;
+        margin-top: 10rem;
     }
 
     @-webkit-keyframes float {
@@ -51,7 +90,40 @@
   transform: translatey(0px);
   -webkit-animation: float 20s ease-in-out both;
           animation: float 20s ease-in-out both;
-          animation-delay: 2s;
+          animation-delay: 3s;
 }
+
+.logo:hover{
+        transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+    }
+
+.logo,.logo:hover,.post-centro,.post-centro:hover{
+  transition:all 1s ease-in-out;
+  -webkit-transition:all 2s ease-in-out;
+}
+
+@-moz-keyframes spin {
+  100% 
+  {
+    -moz-transform:rotate(360deg);
+  }
+}
+
+@-webkit-keyframes spin {
+  100% 
+  {
+    -webkit-transform:rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  100% 
+  {
+    -webkit-transform:rotate(360deg);	
+    transform:rotate(360deg);
+  }
+}  
+  
 
 </style>
