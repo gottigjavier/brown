@@ -8,7 +8,7 @@ import Topico from "./Topico.astro"
 >
   <div class="container-all container absolute grid place-items-center h-screen w-screen">
     <div class="welcome-image z-50 absolute">
-      <img src="/logo-color.png" alt="Fly Drone Logo">
+      <img src="/logo-nonat.png" alt="Fly Drone Logo">
     </div>
     <div class="container grid place-items-center gap-8">
       <div class="fly-grid z-10 place-items-center">
@@ -22,7 +22,7 @@ import Topico from "./Topico.astro"
         <div class="">tres</div>
         <div class=""></div>
         <div class="">
-          <img class="logo" src="/favicon.png" alt="fav">
+          <img class="logo" src="/faviconold.svg" alt="fav">
         </div>
         <div class=""></div>
         <div class="">siete</div>
@@ -38,7 +38,7 @@ import Topico from "./Topico.astro"
     margin-left: 4.5vw;
   }
 
-  /* CSS pantalla 768px o superior */
+  /* CSS pantalla 420px o menor */
 @media (max-width: 420px) {
 
   .container-all {
@@ -56,9 +56,13 @@ import Topico from "./Topico.astro"
       grid-template-rows: 1fr 2fr 1fr;        
     }
     .welcome-image{
-        width: 30%;
-        opacity: 0.5;
-        margin-top: 10rem;
+      display: flex;
+      position:fixed;
+      z-index: 0;
+      width: 45vmax;
+      opacity: 1;
+      margin-top: 75dvh;
+      margin-left: 10vw;
     }
 
     @-webkit-keyframes float {
@@ -90,9 +94,13 @@ import Topico from "./Topico.astro"
   transform: translatey(0px);
   -webkit-animation: float 20s ease-in-out both;
           animation: float 20s ease-in-out both;
-          animation-delay: 3s;
+          animation-delay: 2s;
 }
 
+.logo{
+  width: 100dvh;
+  z-index: 900 !important;
+}
 .logo:hover{
         transform: rotate(360deg);
         -webkit-transform: rotate(360deg);
@@ -100,7 +108,7 @@ import Topico from "./Topico.astro"
 
 .logo,.logo:hover,.post-centro,.post-centro:hover{
   transition:all 1s ease-in-out;
-  -webkit-transition:all 2s ease-in-out;
+  -webkit-transition:all 10s ease-in-out;
 }
 
 @-moz-keyframes spin {
