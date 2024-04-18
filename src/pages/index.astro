@@ -1,42 +1,16 @@
 ---
-import FlyDrone from "../components/indexcomp/FlyDrone.astro";
-import VideoInicial from "../components/indexcomp/VideoInicial.astro";
 import LandingHeader from "../components/layout/LandingHeader.astro";
-import BuqueDesdemona from "../components/indexcomp/BuqueDesdemona.astro";
-import ThompsonPNA from "../components/indexcomp/ThompsonPNA.astro";
 import ModalGoogle from "../components/layout/ModalGoogle.astro";
 import Layout from "../layouts/Layout.astro";
-import Pantalla2 from "../components/indexcomp/Pantalla2.astro";
-import Pantalla3 from "../components/indexcomp/Pantalla3.astro";
 import Welcome from "../components/indexcomp/Welcome.astro";
 ---
 
 <Layout title="Fly Drone">
   <LandingHeader color="white" />
 
-  <main
-    class="snap-y snap-mandatory relative w-full h-screen overflow-y-auto overflow-x-hidden scroll-none"
-  >
-  <div id="pantalla0" class="snap-center">
-    <Welcome />
-  </div>
-    <div id="pantalla1" class="snap-center">
-      <VideoInicial />
-    </div>
-    <div id="pantalla2" class="snap-center">
-      <Pantalla2 />
-    </div>
-    <div id="pantalla3" class="snap-center">
-      <Pantalla3 />
-    </div>
-    <div id="pantalla4" class="snap-center">
-      <BuqueDesdemona />
-    </div>
-    <div id="pantalla5" class="snap-center">
-      <ThompsonPNA />
-    </div>
-    <div id="pantalla6" class="snap-center">
-      <FlyDrone />
+  <main>
+    <div id="pantalla0">
+      <Welcome />
     </div>
     <div class="snap-center">
       <ModalGoogle />

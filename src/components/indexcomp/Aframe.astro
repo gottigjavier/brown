@@ -1,20 +1,47 @@
 <a-scene>
   <a-assets>
-    <img src="hotel-ext111.avif" id="sky">
-    <img src="jorgeflynat.png" id="logo-nat">
+    <img src="hotel-ext111.avif" id="sky" />
+    <img src="jorgeflynat.png" id="logo-nat" />
+    <img src="favicon.png" id="logo-link" />
   </a-assets>
   <a-sky src="#sky"></a-sky>
-  <a-plane position="-1.5 1.5 -1" rotation="0 40 0" width="1" height="2.5" color="#000000" opacity="0.2"></a-plane>
-  <a-plane position="0 1.5 -2" rotation="0 0 0" width="2" height="2.5" src="#logo-nat" material="transparent: true; opacity: 1"></a-plane>
-  <a-plane position="1.5 1.5 -1" rotation="0 -40 0" width="1" height="2.5" color="#000000" opacity="0.2"></a-plane>
+  <a-plane
+    position="-1.5 1.5 -1"
+    rotation="0 40 0"
+    width="1"
+    height="2.5"
+    color="#000000"
+    opacity="0.2"></a-plane>
+  <a-curvedimage
+    src="#logo-nat"
+    width="5"
+    height="5"
+    radius="5"
+    theta-length="100"
+    position="0 3 0"
+    rotation="0 122 0"
+    scale="2 2 2">
+  </a-curvedimage>
+  <a-plane
+  position="1.5 1.5 -1"
+  rotation="0 -40 0"
+  width="1"
+  height="2.5"
+  color="#000000"
+  opacity="0.2">
+</a-plane>
+
+  <a-link window.location.href="https://google.com"></a-link>
   <a-entity position="0 0 0.5" rotation="0 0 0">
-    <a-camera></a-camera>
-</a-entity>
+    <a-camera>
+
+    </a-camera>
+  </a-entity>
 </a-scene>
 
-  <style>
-    a-scene {
-      width: 100dvw;
-      height: 100dvh;
-    }
-  </style>
+<style>
+  a-scene {
+    width: 100dvw;
+    height: 100dvh;
+  }
+</style>
