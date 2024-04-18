@@ -13,7 +13,7 @@ const textColor = `text-${color}`;
 <nav class="flex flex-grow justify-start basis-0">
   <ul class="flex text-sm [&>li>a]:transition-colors [&>li>a]:duration-500 [&>li>a]:text-current [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-2 [&>li>a]:py-2">
     <li id="logo" title="Inicio" class="block">
-      <a href="/">
+      <a href="/#pantalla1"  onclick="detachScene()">
         <Logo/>
       </a>
     </li>
@@ -68,4 +68,12 @@ const textColor = `text-${color}`;
       menuBackDrop.style.visibility = "hidden"
     })
   })
+</script>
+
+<script is:inline>
+    function detachScene(){
+    const pant0 = document.getElementById("pantalla0");
+    console.log("detachhhhhhhh");
+    pant0.remove();
+  }
 </script>
