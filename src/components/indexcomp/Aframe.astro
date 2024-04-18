@@ -5,43 +5,56 @@
     <img src="favicon.png" id="logo-link" />
   </a-assets>
   <a-sky src="#sky"></a-sky>
-  <a-plane
+  <!-- <a-plane
     position="-1.5 1.5 -1"
     rotation="0 40 0"
     width="1"
     height="2.5"
     color="#000000"
-    opacity="0.2"></a-plane>
+    opacity="0.2"
+  >
+  </a-plane> -->
   <a-curvedimage
+    id="alogo-nat"
     src="#logo-nat"
     width="5"
-    height="5"
-    radius="5"
+    height="10"
+    radius="50"
     theta-length="100"
-    position="0 3 0"
-    rotation="0 122 0"
-    scale="2 2 2">
+    position="0 1.5 0"
+    rotation="0 120 0"
+    scale="1 5 1"
+    opacity="1"
+  >
   </a-curvedimage>
-  <a-plane
+  <!-- <a-camera
+    far="10000"
+    fov="80"
+    look-controls-enabled="true"
+    near="1"
+    reverse-mouse-drag="true"
+    wasd-controls-enabled="true"
+  >
+
+  </a-camera> -->
+  <!-- <a-plane
   position="1.5 1.5 -1"
   rotation="0 -40 0"
   width="1"
   height="2.5"
   color="#000000"
-  opacity="0.2">
-</a-plane>
-
-  <a-link window.location.href="https://google.com"></a-link>
-  <a-entity position="0 0 0.5" rotation="0 0 0">
-    <a-camera>
-
-    </a-camera>
-  </a-entity>
+  opacity="0.2"
+  >
+  </a-plane> -->
 </a-scene>
 
 <style>
   a-scene {
     width: 100dvw;
     height: 100dvh;
+  }
+
+  #logo-nat {
+    justify-self: center;
   }
 </style>
