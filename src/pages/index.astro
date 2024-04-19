@@ -1,19 +1,14 @@
 ---
-import LandingHeader from "../components/layout/LandingHeader.astro";
-import ModalGoogle from "../components/layout/ModalGoogle.astro";
 import Layout from "../layouts/Layout.astro";
 import Welcome from "../components/indexcomp/Welcome.astro";
+import AframeHeader from "../components/layout/AframeHeader.astro";
 ---
 
 <Layout title="Fly Drone">
-  <LandingHeader color="white" />
+  <AframeHeader color="white" />
 
   <main>
     <div id="pantalla0">
       <Welcome />
-    </div>
-    <div class="snap-center">
-      <ModalGoogle />
-    </div>
   </main>
 </Layout>

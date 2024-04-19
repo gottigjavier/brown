@@ -1,7 +1,4 @@
 ---
-import Logo from "./Logo.astro"
-import Redes from "./Redes.astro"
-import Scroll from "./Scroll.astro"
 const { color } = Astro.props;
 const textColor = `text-${color}`;
 ---
@@ -10,22 +7,11 @@ const textColor = `text-${color}`;
   id="landing-header"
   class=`py-3 px-2 flex items-center fixed top-0 w-full justify-between z-40 ${textColor}`
 >
-<nav class="flex flex-grow justify-start basis-0">
-  <ul class="flex text-sm [&>li>a]:transition-colors [&>li>a]:duration-500 [&>li>a]:text-current [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-2 [&>li>a]:py-2">
-    <li id="logo" title="Inicio" class="block">
-      <a href="/nextindex">
-        <Logo/>
-      </a>
-    </li>
-  </ul>
-</nav>
-
-  <nav class="flex flex-grow justify-end basis-0">
+  <nav class="flex flex-grow justify-end basis-0 m-5">
     <ul
       class="flex text-sm [&>li>a]:transition-colors [&>li>a]:duration-500 [&>li>a]:text-current [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:pb-2"
     >
-      <li class="block"><a href="/galeria">Galería</a></li>
-      <li class="block"><a id="open-modal" href="#">Contacto</a></li>
+      <li class="block"><a href="/nextindex">Ejemplos</a></li>
     </ul>
   </nav>
 
@@ -43,7 +29,6 @@ const textColor = `text-${color}`;
   >
 
 </div>
-<Redes />
 </header>
 
 <script>
