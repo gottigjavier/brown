@@ -45,7 +45,7 @@
         this.aUp3.title = 'Pantalla Previa';
         this.aUp3.style = 'margin: 0 5px;'
         this.imgUp3 = document.createElement('img');
-        this.imgUp3.src = '/up.png';
+        this.imgUp3.src = '/icons/up.png';
         this.imgUp3.width = '25'
         this.aUp3.appendChild(this.imgUp3);
         scroll3.appendChild(this.aUp3);
@@ -56,7 +56,7 @@
         this.aDown3.title = 'Pantalla Siguiente';
         this.aDown3.style = 'margin: 0 5px;'
         this.imgDown3 = document.createElement('img');
-        this.imgDown3.src = '/down.png';
+        this.imgDown3.src = '/icons/down.png';
         this.imgDown3.width = '25'
         this.aDown3.appendChild(this.imgDown3);
         scroll3.appendChild(this.aDown3);
@@ -71,7 +71,7 @@ customElements.define('scroll3-button', CustomScroll3Button);
 
   const viewer = new Viewer({
     container: document.querySelector("#room1"),
-    panorama: "/room111.avif",
+    panorama: "/backgrounds/room111.avif",
     caption: "<b>Interiores 360º</b>",
     defaultPitch: animatedValues.pitch.start,
     defaultYaw: animatedValues.yaw.start,

@@ -44,7 +44,7 @@ class CustomScroll2Button extends HTMLElement {
         this.aUp2.title = 'Pantalla Previa';
         this.aUp2.style = 'margin: 0 5px;'
         this.imgUp2 = document.createElement('img');
-        this.imgUp2.src = '/up.png';
+        this.imgUp2.src = '/icons/up.png';
         this.imgUp2.width = '25'
         this.aUp2.appendChild(this.imgUp2);
         scroll2.appendChild(this.aUp2);
@@ -55,7 +55,7 @@ class CustomScroll2Button extends HTMLElement {
         this.aDown2.title = 'Pantalla Siguiente';
         this.aDown2.style = 'margin: 0 5px;'
         this.imgDown2 = document.createElement('img');
-        this.imgDown2.src = '/down.png';
+        this.imgDown2.src = '/icons/down.png';
         this.imgDown2.width = '25'
         this.aDown2.appendChild(this.imgDown2);
         scroll2.appendChild(this.aDown2);
@@ -71,7 +71,7 @@ customElements.define('scroll2-button', CustomScroll2Button);
 
     const viewer = new Viewer({
       container: document.querySelector("#hotel-ext1"),
-      panorama: "/hotel-ext111.avif",
+      panorama: "/backgrounds/hotel-ext111.avif",
       caption: "<b>Aéreas 360º</b>",
       defaultPitch: animatedValues.pitch.start,
       defaultYaw: animatedValues.yaw.start,
