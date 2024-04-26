@@ -5,13 +5,17 @@ const textColor = `text-${color}`;
 
 <header
   id="landing-header"
-  class=`py-3 px-2 flex items-center fixed top-0 w-full justify-between z-40 ${textColor}`
+  class=`py-1 px-2 flex items-center fixed top-0 w-full justify-between z-40 ${textColor}`
 >
   <nav class="flex flex-grow justify-end basis-0 m-5">
     <ul
-      class="flex text-sm [&>li>a]:transition-colors [&>li>a]:duration-500 [&>li>a]:text-current [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:pb-2"
+      class="btn-menu flex text-sm [&>li>a]:transition-colors [&>li>a]:duration-500 [&>li>a]:text-current [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2"
     >
-      <li class="block"><a href="/examples">Ingresar</a></li>
+      <li class="block">
+        <a href="/examples">
+          Ingresar
+        </a>
+      </li>
     </ul>
   </nav>
 
@@ -54,3 +58,17 @@ const textColor = `text-${color}`;
     })
   })
 </script>
+
+<style>
+  .btn-menu {
+    border: solid 1px;
+    border-radius: 5%;
+    background-color: rgb(147, 180, 89);
+    opacity: 0.7;
+  }
+  .btn-menu:hover {
+    border: solid 1px;
+    border-radius: 5%;
+    opacity: 1;
+  }
+</style>
