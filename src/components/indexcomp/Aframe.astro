@@ -60,8 +60,20 @@
           animation__position_reverse="property: position; to: 35 -15 0; dur: 200; startEvents: mouseleave"
          ></a-mixin>
          <a-mixin
-          id="poster"
-          geometry="primitive: box; width: 25; height: 5"
+          id="poster-left"
+          geometry="primitive: box; width: 25; height: 5; depth: 1"
+          material="color: white; shader: flat"
+          position="0 8 1"
+         ></a-mixin>
+         <a-mixin
+          id="poster-central"
+          geometry="primitive: box; width: 25; height: 5; depth: 10"
+          material="color: white; shader: flat"
+          position="0 8 1"
+         ></a-mixin>
+         <a-mixin
+          id="poster-right"
+          geometry="primitive: box; width: 25; height: 5; depth: 10"
           material="color: white; shader: flat"
           position="0 8 1"
          ></a-mixin>
@@ -122,17 +134,17 @@
     <!-- Poster menu -->
     <a-entity id="menu" highlight>
       <a-entity id="myave" position="-35 -15 0" mixin="frame-left" class="raycastable menu-button">
-        <a-entity material="src: #ave;" mixin="poster" scale="1 1 1" position="0 0 1">
+        <a-entity material="src: #ave;" mixin="poster-left" scale="1 1 1" position="0 0 1">
         </a-entity>
       </a-entity>
 
       <a-entity id="myobelisco" position="0 -15 0" mixin="frame-central" class="raycastable menu-button">
-        <a-entity material="src: #obelisco" mixin="poster" scale="1 1 0.1" position="0 0 1">
+        <a-entity material="src: #obelisco" mixin="poster-central" scale="1 1 0.1" position="0 0 1">
         </a-entity>
       </a-entity>
 
       <a-entity id="mydunas" position="35 -15 0" mixin="frame-right" class="raycastable menu-button">
-        <a-entity material="src: #dunas" mixin="poster" scale="1 1 0.1" position="0 0 1">
+        <a-entity material="src: #dunas" mixin="poster-right" scale="1 1 0.1" position="0 0 1">
         </a-entity>
       </a-entity>
   </a-entity>
