@@ -2,8 +2,7 @@
   environment
   cursor="rayOrigin: mouse; fuse: false" 
   raycaster="objects: .raycastable"
-  info-message="htmlSrc: #messageText"
->
+ >
   <a-assets>
     <img src="/backgrounds/cascada360.avif" id="sky" />
     <img src="/icons/jorgeflynat.png" id="logo-nat" />
@@ -12,25 +11,6 @@
     <img src="/backgrounds/ave.avif" id="ave" />
     <img src="/backgrounds/dunas.avif" id="dunas" />
 
-    <a-asset-item id="messageText" src="message.html"></a-asset-item>
-        <!--
-          Image source: http://www.ghibli.jp/works/kazetachinu/#frame&gid=1&pid=1
-          Image author: Studio Ghibli
-        -->
-        <img id="kazetachinu" src="https://cdn.aframe.io/examples/ui/kazetachinu.jpg" crossorigin="anonymous"/>
-        <img id="kazetachinuPoster" src="/backgrounds/flydrone.avif" crossorigin="anonymous"/>
-        <!--
-          Image source: http://www.ghibli.jp/works/ponyo/#frame&gid=1&pid=36
-          Image author: Studio Ghibli
-        -->
-        <img id="ponyo" src="https://cdn.aframe.io/examples/ui/ponyo.jpg" crossorigin="anonymous"/>
-        <img id="ponyoPoster" src="/backgrounds/flydrone.avif" crossorigin="anonymous"/>
-        <!--
-          Image source: http://www.ghibli.jp/works/karigurashi/#frame&gid=1&pid=32
-          Image author: Studio Ghibli
-        -->
-        <img id="karigurashi" src="https://cdn.aframe.io/examples/ui/karigurashi.jpg" crossorigin="anonymous"/>
-        <img id="karigurashiPoster" src="/backgrounds/flydrone.avif" crossorigin="anonymous"/>
         
         <a-mixin
           id="frame-left"
@@ -86,15 +66,6 @@
          
   </a-assets>
   <a-sky src="#sky" rotation="0 -90 0" position="-10 -165 0"></a-sky>
-  <!-- <a-plane
-    position="-1.5 1.5 -1"
-    rotation="0 40 0"
-    width="1"
-    height="2.5"
-    color="#000000"
-    opacity="0.2"
-  >
-  </a-plane> -->
   <a-curvedimage
     id="alogo-nat"
     src="#logo-nat"
@@ -106,20 +77,13 @@
     rotation="0 138 0"
     scale="1 5 1"
     opacity="1"
-
   >
 </a-curvedimage>
 
-  <!-- <a-entity 
-    layer="type: quad; src: #logo-link; width:10; height: 10" 
-    position="0 0 0"
-    rotation="0 0 0"
-  >
-  </a-entity> -->
-
   <!-- Hand controls -->
-  <!-- <a-entity id="leftHand" laser-controls="hand: left" raycaster="objects: .raycastable"></a-entity>
-  <a-entity id="rightHand" laser-controls="hand: right" raycaster="objects: .raycastable" line="color: #118A7E"></a-entity> -->
+  <a-entity id="leftHand" laser-controls="hand: left" raycaster="objects: .raycastable"></a-entity>
+  <a-entity id="rightHand" laser-controls="hand: right" raycaster="objects: .raycastable" line="color: #118A7E"></a-entity>
+  
   <a-curvedimage
   id="ui"
   width="5"
