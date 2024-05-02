@@ -5,16 +5,31 @@ const textColor = `text-${color}`;
 
 <header
   id="landing-header"
-  class=`py-1 px-2 flex items-center fixed top-0 w-full justify-between z-40 ${textColor}`
+  class=`py-1 px-2 flex items-center fixed top-0 end-0 justify-between z-40 ${textColor}`
 >
-  <nav class="flex flex-grow justify-end basis-0 m-5">
+  <nav class="flex flex-grow justify-end basis-0 md:m-5">
     <ul
-      class="btn-menu flex text-sm [&>li>a]:transition-colors [&>li>a]:duration-500 [&>li>a]:text-current [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2"
+      class="nav-menu text-sm [&>li>a]:transition-colors [&>li>a]:duration-500 [&>li>a]:text-current [&>li>a]:font-medium [&>li>a]:px-4 [&>li>a]:py-2"
     >
-      <li class="block">
+      <li class="btn-menu">
         <a href="/examples">
           Ingresar
         </a>
+      </li>
+      <li>
+        <img id="ave" class="menu-img" src="/backgrounds/ave.avif" alt="Ave">
+      </li>
+      <li>
+        <img id="obelisco" class="menu-img" src="/backgrounds/obelisco.avif" alt="Obelisco">
+      </li>
+      <li>
+        <img id="dunas" class="menu-img" src="/backgrounds/dunas.avif" alt="Dunas">
+      </li>
+      <li>
+        <img id="vluna" class="menu-img" src="/backgrounds/vluna.avif" alt="Valle de la Luna">
+      </li>
+      <li>
+        <img id="gaviota" class="menu-img" src="/backgrounds/gaviota.avif" alt="Gaviota">
       </li>
     </ul>
   </nav>
@@ -61,14 +76,157 @@ const textColor = `text-${color}`;
 
 <style>
   .btn-menu {
+    position: fixed;
+    width: 6rem;
+    right: 1dvw;
+    padding: 0.9dvh 0;
     border: solid 1px;
     border-radius: 5%;
     background-color: rgb(147, 180, 89);
     opacity: 0.7;
   }
   .btn-menu:hover {
+    width: 6rem;
     border: solid 1px;
     border-radius: 5%;
     opacity: 1;
   }
+
+  .menu-img {
+    position: fixed;
+  }
+
+  #ave {
+    width: 6rem;
+    height: 4rem;
+    top: 11dvh;
+    right: 1dvw;
+  }
+  #obelisco {
+    width: 6rem;
+    height: 4rem;
+    top: 23dvh;
+    right: 1dvw;
+  }
+  #dunas {
+    width: 6rem;
+    height: 4rem;
+    top: 35dvh;
+    right: 1dvw;
+  }
+  #vluna {
+    width: 6rem;
+    height: 4rem;
+    top: 47dvh;
+    right: 1dvw;
+  }
+  #gaviota {
+    width: 6rem;
+    height: 4rem;
+    top: 59dvh;
+    right: 1dvw;
+  }
+
+  #ave:hover {
+    width: 80dvw;
+    height: 80dvh;
+    top: 3dvh;
+    right: 2dvh;
+    z-index: 50;
+  }
+
+  #obelisco:hover {
+    width: 80dvw;
+    height: 80dvh;
+    top: 3dvh;
+    right: 2dvh;
+    z-index: 50;
+  }
+
+  #dunas:hover {
+    width: 80dvw;
+    height: 80dvh;
+    top: 3dvh;
+    right: 2dvh;
+    z-index: 50;
+  }
+
+  #vluna:hover {
+    width: 80dvw;
+    height: 80dvh;
+    top: 3dvh;
+    right: 2dvh;
+    z-index: 50;
+  }
+
+  #gaviota:hover {
+    width: 80dvw;
+    height: 80dvh;
+    top: 3dvh;
+    right: 2dvh;
+    z-index: 50;
+  }
+
+
+
+
+
+
+  @media (max-width: 460px) and (orientation: portrait) {
+    .nav-menu {
+      margin: 0.5dvh 0;
+    }
+
+.btn-menu{
+        width: 4rem;
+        height: 1.7rem;
+        display: flex;
+        flex-direction: row !important;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.7rem;
+        
+}
+
+.menu-img {
+  margin: 1dvh 0;
+  width: 4rem;
+}
+
+.menu-img:active {
+  margin: 1dvh 0;
+  width: 30rem;
+}
+
+}
+
+
+/* CSS pantalla 768px o superior */
+@media (max-height: 460px) and (orientation: landscape) {
+  .nav-menu {
+      margin: 0.5dvh 0;
+    }
+
+.btn-menu{
+        width: 5rem;
+        height: 1.7rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.9rem;
+}
+
+.menu-img {
+  margin: 1dvh 0;
+  width: 5rem;
+}
+
+.menu-img:active {
+  float: left;
+  margin: 1dvh 0;
+  width: 40rem;
+  height: 80dvh;
+}
+
+}
 </style>

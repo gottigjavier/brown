@@ -4,111 +4,14 @@
   raycaster="objects: .raycastable"
  >
   <a-assets>
+    
     <img src="/backgrounds/cascada360.avif" id="sky" />
     <img src="/icons/jorgeflynat.png" id="logo-nat" />
-    <img src="/icons/ingresar-btn.png" id="ingresar-btn" />
-    <img src="/backgrounds/obelisco.avif" id="obelisco" />
-    <img src="/backgrounds/ave.avif" id="ave" />
-    <img src="/backgrounds/dunas.avif" id="dunas" />
-    <img src="/backgrounds/vluna.avif" id="vluna" />
-    <img src="/backgrounds/gaviota.avif" id="gaviota" />
-
-        
-        <a-mixin
-          id="frame-left"
-          geometry="primitive: box; width: 25; height: 5"
-          material="color: white; shader: flat; opacity: 0"
-          animation__scale="property: scale; to: 8 5 5; dur: 200; startEvents: mouseenter"
-          animation__scale_reverse="property: scale; to: 1 1 1; dur: 200; startEvents: mouseleave"
-          animation__position="property: position; to: 0 -11 0; dur: 200; startEvents: mouseenter"
-          animation__position_reverse="property: position; to: -35 -16 0; dur: 200; startEvents: mouseleave"
-          animation__rotation="property: rotation; to: 0 0 0; dur: 200; startEvents: mouseenter"
-          animation__rotation_reverse="property: rotation; to: -25 0 0; dur: 200; startEvents: mouseleave"
-         ></a-mixin>
-         <a-mixin
-          id="frame-central"
-          geometry="primitive: box; width: 25; height: 5"
-          material="color: white; shader: flat; opacity: 0"
-          animation__scale="property: scale; to: 8 5 5; dur: 200; startEvents: mouseenter"
-          animation__scale_reverse="property: scale; to: 1 1 1; dur: 200; startEvents: mouseleave"
-          animation__position="property: position; to: 0 -11 0; dur: 200; startEvents: mouseenter"
-          animation__position_reverse="property: position; to: 0 -16 0; dur: 200; startEvents: mouseleave"
-          animation__rotation="property: rotation; to: 0 0 0; dur: 200; startEvents: mouseenter"
-          animation__rotation_reverse="property: rotation; to: -25 0 0; dur: 200; startEvents: mouseleave"
-         ></a-mixin>
-         <a-mixin
-          id="frame-right"
-          geometry="primitive: box; width: 25; height: 5"
-          material="color: white; shader: flat; opacity: 0"
-          animation__scale="property: scale; to: 8 5 5; dur: 200; startEvents: mouseenter"
-          animation__scale_reverse="property: scale; to: 1 1 1; dur: 200; startEvents: mouseleave"
-          animation__position="property: position; to: 0 -11 0; dur: 200; startEvents: mouseenter"
-          animation__position_reverse="property: position; to: 35 -16 0; dur: 200; startEvents: mouseleave"
-          animation__rotation="property: rotation; to: 0 0 0; dur: 200; startEvents: mouseenter"
-          animation__rotation_reverse="property: rotation; to: -25 0 0; dur: 200; startEvents: mouseleave"
-         ></a-mixin>
-         <a-mixin
-          id="frame-vluna"
-          geometry="primitive: box; width: 25; height: 5"
-          material="color: white; shader: flat; opacity: 0"
-          animation__scale="property: scale; to: 8 5 5; dur: 200; startEvents: mouseenter"
-          animation__scale_reverse="property: scale; to: 1 1 1; dur: 200; startEvents: mouseleave"
-          animation__position="property: position; to: 0 -11 0; dur: 200; startEvents: mouseenter"
-          animation__position_reverse="property: position; to: -125 -10 0; dur: 200; startEvents: mouseleave"
-          animation__rotation="property: rotation; to: 0 0 0; dur: 200; startEvents: mouseenter"
-          animation__rotation_reverse="property: rotation; to: -45 30 0; dur: 200; startEvents: mouseleave"
-         ></a-mixin>
-         <a-mixin
-          id="frame-gaviota"
-          geometry="primitive: box; width: 25; height: 5"
-          material="color: white; shader: flat; opacity: 0"
-          animation__scale="property: scale; to: 8 5 5; dur: 200; startEvents: mouseenter"
-          animation__scale_reverse="property: scale; to: 1 1 1; dur: 200; startEvents: mouseleave"
-          animation__position="property: position; to: 0 -11 0; dur: 200; startEvents: mouseenter"
-          animation__position_reverse="property: position; to: 125 -10 0; dur: 200; startEvents: mouseleave"
-          animation__rotation="property: rotation; to: 0 0 0; dur: 200; startEvents: mouseenter"
-          animation__rotation_reverse="property: rotation; to: -45 -30 0; dur: 200; startEvents: mouseleave"
-         ></a-mixin>
-
-         <a-mixin
-          id="poster-left"
-          geometry="primitive: box; width: 25; height: 5; depth: 5"
-          material="color: white; shader: flat"
-          position="0 8 1"
-         ></a-mixin>
-         <a-mixin
-          id="poster-central"
-          geometry="primitive: box; width: 25; height: 5; depth: 5"
-          material="color: white; shader: flat"
-          position="0 8 1"
-         ></a-mixin>
-         <a-mixin
-          id="poster-right"
-          geometry="primitive: box; width: 25; height: 5; depth: 5"
-          material="color: white; shader: flat"
-          position="0 8 1"
-         ></a-mixin>
-         <a-mixin
-          id="poster-vluna"
-          geometry="primitive: box; width: 25; height: 5; depth: 5"
-          material="color: white; shader: flat"
-          position="0 8 1"
-         ></a-mixin>
-         <a-mixin
-          id="poster-gaviota"
-          geometry="primitive: box; width: 25; height: 5; depth: 5"
-          material="color: white; shader: flat"
-          position="0 8 1"
-         ></a-mixin>
-         <a-mixin
-          id="movieImage"
-          geometry="primitive: box; width: 25; height: 20"
-          material="src: #ponyo; shader: flat; transparent: false"
-          position="0 8 2"
-         ></a-mixin>
-         
+             
   </a-assets>
-  <a-sky src="#sky" rotation="0 -90 0" position="-10 -165 0"></a-sky>
+  
+  <a-sky src="#sky" rotation="0 -85 0" position="-10 -175 0"></a-sky>
+  
   <a-curvedimage
     id="alogo-nat"
     src="#logo-nat"
@@ -116,8 +19,8 @@
     height="25"
     radius="150"
     theta-length="80"
-    position="18 1 28"
-    rotation="0 138 0"
+    position="18 -0.3 0"
+    rotation="0 140 0"
     scale="1 5 1"
     opacity="1"
   >
@@ -127,58 +30,6 @@
   <a-entity id="leftHand" laser-controls="hand: left" raycaster="objects: .raycastable"></a-entity>
   <a-entity id="rightHand" laser-controls="hand: right" raycaster="objects: .raycastable" line="color: #118A7E"></a-entity>
   
-  <!-- <a-entity
-    id="ingresar"
-    link="href: /examples"
-    geometry="width: 40; height: 15; depth: 1"
-    material="src: #ingresar-btn; color: white; shader: flat"
-    position="0 50 -100"
-    rotation="5 0 0"
-    class="raycastable"
-  >
-  </a-entity> -->
-
-  <a-curvedimage
-  id="ui"
-  width="5"
-  height="10"
-  radius="20"
-  theta-length="10"
-  position="2.5 55 -95"
-  rotation="0 0 0"
-  scale="1 5 1"
-  opacity="0"
->
-    <!-- Poster menu -->
-    <a-entity id="menu" highlight>
-      <a-entity id="myobelisco" position="-35 -16 0" rotation="-25 0 0" mixin="frame-left" class="raycastable menu-button">
-        <a-entity material="src: #obelisco" mixin="poster-left" scale="1 1 0.1" position="0 0 1">
-        </a-entity>
-      </a-entity>
-      
-      <a-entity id="myave" position="0 -16 0" rotation="-25 0 0" mixin="frame-central" class="raycastable menu-button">
-        <a-entity material="src: #ave;" mixin="poster-central" scale="1 1 0.1" position="0 0 1">
-        </a-entity>
-      </a-entity>
-
-      <a-entity id="mydunas" position="35 -16 0" rotation="-25 0 0" mixin="frame-right" class="raycastable menu-button">
-        <a-entity material="src: #dunas" mixin="poster-right" scale="1 1 0.1" position="0 0 1">
-        </a-entity>
-      </a-entity>
-
-      <a-entity id="myvluna" position="-210 -10 5" rotation="-45 30 0" mixin="frame-vluna" class="raycastable menu-button">
-        <a-entity material="src: #vluna;" mixin="poster-vluna" scale="1 1 0.1" position="0 0 1">
-        </a-entity>
-      </a-entity>
-
-      <a-entity id="mygaviota" position="320 -16 0" rotation="0 -35 0">
-        <a-entity material="src: #gaviota" mixin="poster-gaviota" scale="8 8 0.2" position="0 0 7">
-        </a-entity>
-      </a-entity>
-
-  </a-entity>
-  
-  </a-curvedimage>
 </a-scene>
 
 
