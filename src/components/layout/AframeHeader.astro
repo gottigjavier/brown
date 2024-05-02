@@ -93,8 +93,13 @@ const textColor = `text-${color}`;
   }
 
   .menu-img {
+    transition-duration: 500ms;
     position: fixed;
   }
+  .menu-img:hover, .menu-img:active {
+    transition-duration: 500ms;
+    z-index: 50;
+   }
 
   #ave {
     width: 6rem;
@@ -127,44 +132,39 @@ const textColor = `text-${color}`;
     right: 1dvw;
   }
 
-  #ave:hover {
+  #ave:hover, #ave:active {
     width: 80dvw;
     height: 80dvh;
     top: 3dvh;
     right: 2dvh;
-    z-index: 50;
   }
 
-  #obelisco:hover {
+  #obelisco:hover, #obelisco:active {
     width: 80dvw;
     height: 80dvh;
     top: 3dvh;
     right: 2dvh;
-    z-index: 50;
   }
 
-  #dunas:hover {
+  #dunas:hover, #dunas:active {
     width: 80dvw;
     height: 80dvh;
     top: 3dvh;
     right: 2dvh;
-    z-index: 50;
   }
 
-  #vluna:hover {
+  #vluna:hover, #vluna:active {
     width: 80dvw;
     height: 80dvh;
     top: 3dvh;
     right: 2dvh;
-    z-index: 50;
   }
 
-  #gaviota:hover {
+  #gaviota:hover, #gaviota:active {
     width: 80dvw;
     height: 80dvh;
     top: 3dvh;
     right: 2dvh;
-    z-index: 50;
   }
 
 
