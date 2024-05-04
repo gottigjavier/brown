@@ -10,6 +10,7 @@ const textColor = `text-${color}`;
   <div class="logo">
     <img id="logo"  src="/icons/jorgeflynat.png" id="logo-nat" />
     <p id="logo-text">Producción de Imágenes</p>
+    <p id="logo-text1">360º - Videos</p>
   </div>
   <nav class="flex flex-grow justify-end basis-0 md:m-5">
     <ul
@@ -21,21 +22,22 @@ const textColor = `text-${color}`;
         </a>
       </li>
       <li id="video" class="menu-img">
-          <video muted autoplay loop src="/backgrounds/faro02.webm">
+          <video muted autoplay loop src="/backgrounds/hotel-text.webm">
           </video>
       </li>
-      <!-- <li>
-        <img id="obelisco" class="menu-img" src="/backgrounds/obelisco.avif" alt="Obelisco">
+      <li>
+        <img id="city" class="menu-img" src="/backgrounds/city-nocturna.avif" alt="Inmobiliarias">
       </li>
       <li>
-        <img id="dunas" class="menu-img" src="/backgrounds/dunas.avif" alt="Dunas">
-      </li>
+      <img id="obelisco" class="menu-img" src="/backgrounds/obelisco-t.avif" alt="Empresariales">
+    </li>
+    <li>
+      <img id="dunas" class="menu-img" src="/backgrounds/dunas-t.avif" alt="Eventos">
+    </li>
+      
       <li>
-        <img id="vluna" class="menu-img" src="/backgrounds/vluna.avif" alt="Valle de la Luna">
+        <img id="parana" class="menu-img" src="/backgrounds/parana-costa.avif" alt="Turismo">
       </li>
-      <li>
-        <img id="gaviota" class="menu-img" src="/backgrounds/gaviota.avif" alt="Gaviota">
-      </li> -->
     </ul>
   </nav>
 
@@ -82,20 +84,10 @@ const textColor = `text-${color}`;
 <style>
   .btn-menu {
     position: fixed;
-    width: 6rem;
-    right: 1dvw;
+    right: 1.2dvw;
     padding: 0.9dvh 0;
-    border: solid 1px;
-    border-radius: 5%;
-    background-color: rgb(147, 180, 89);
-    opacity: 0.7;
   }
-  .btn-menu:hover {
-    width: 6rem;
-    border: solid 1px;
-    border-radius: 5%;
-    opacity: 1;
-  }
+
 
   .menu-img {
     transition-duration: 500ms;
@@ -109,66 +101,72 @@ const textColor = `text-${color}`;
   #video {
     width: 6rem;
     height: 4rem;
-    top: 15dvh;
+    top: 16dvh;
     right: 1dvw;
   }
-  #obelisco {
+  #city {
     width: 6rem;
-    height: 4rem;
-    top: 23dvh;
-    right: 1dvw;
-  }
-  #dunas {
-    width: 6rem;
-    height: 4rem;
-    top: 35dvh;
-    right: 1dvw;
-  }
-  #vluna {
-    width: 6rem;
-    height: 4rem;
-    top: 47dvh;
-    right: 1dvw;
-  }
-  #gaviota {
-    width: 6rem;
-    height: 4rem;
-    top: 59dvh;
+    height: 3.5rem;
+    top: 26.5dvh;
     right: 1dvw;
   }
 
+  #obelisco {
+    width: 6rem;
+    height: 3.5rem;
+    top: 37.5dvh;
+    right: 1dvw;
+  }
+
+  #dunas {
+    width: 6rem;
+    height: 3.5rem;
+    bottom: 43dvh;
+    right: 1dvw;
+  }
+
+  #parana {
+    width: 6rem;
+    height: 3.5rem;
+    bottom: 32dvh;
+    right: 1dvw;
+  }
+
+
   #video:hover, #video:active {
     width: 32dvw;
-    top: 12dvh;
+    top: 16dvh;
+    right: 1dvw;
+  }
+
+  #city:hover, #city:active {
+    width: 32dvw;
+    height: 18.5dvw;
+    top: 26.5dvh;
     right: 1dvw;
   }
 
   #obelisco:hover, #obelisco:active {
-    width: 80dvw;
-    height: 80dvh;
-    top: 3dvh;
-    right: 2dvh;
+    width: 32dvw;
+    height: 18.5dvw;
+    top: 26dvh;
+    right: 1dvw;
   }
+
+
 
   #dunas:hover, #dunas:active {
-    width: 80dvw;
-    height: 80dvh;
-    top: 3dvh;
-    right: 2dvh;
+    width: 32dvw;
+    height: 18.5dvw;
+    bottom: 43dvh;
+    right: 1dvw;
   }
 
-  #vluna:hover, #vluna:active {
-    width: 80dvw;
-    height: 80dvh;
-    top: 3dvh;
-    right: 2dvh;
-  }
-
-  #gaviota:hover, #gaviota:active {
-    width: 80dvw;
-    height: 80dvh;
-    top: 3dvh;
-    right: 2dvh;
+  #parana:hover, #parana:active {
+    width: 32dvw;
+    height: 18.5dvw;
+    bottom: 32dvh;
+    right: 1dvw;
   }
 
   #logo {
@@ -180,11 +178,20 @@ const textColor = `text-${color}`;
 
   #logo-text {
     position: fixed;
-    color: rgb(255, 235, 121);
+    color: rgb(253, 211, 96);
     font-weight: 500;
-    font-size: 2.65rem;
+    font-size: 2.5rem;
     top: 68dvh;
-    left: 26.9dvw
+    left: 28dvw
+  }
+
+  #logo-text1 {
+    position: fixed;
+    color: rgb(253, 211, 96);
+    font-weight: 500;
+    font-size: 2.4rem;
+    top: 75dvh;
+    left: 36.9dvw
   }
 
 
@@ -211,7 +218,7 @@ const textColor = `text-${color}`;
   width: 4rem;
 }
 
-.menu-img:active {
+.menu-img:hover {
   margin: 1dvh 0;
   width: 30rem;
 }
@@ -239,7 +246,7 @@ const textColor = `text-${color}`;
   width: 5rem;
 }
 
-.menu-img:active {
+.menu-img:hover {
   float: left;
   margin: 1dvh 0;
   width: 40rem;
