@@ -8,10 +8,10 @@ const textColor = `text-${color}`;
 
 <header
   id="landing-header"
-  class=`py-3 px-2 flex items-center fixed top-0 w-full justify-between z-40 ${textColor}`
+  class=`py-3 px-2 flex items-center fixed top-0 w-full justify-between z-40`
 >
 <nav class="flex flex-grow justify-start basis-0">
-  <ul class="flex text-sm [&>li>a]:transition-colors [&>li>a]:duration-500 [&>li>a]:text-current [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-2 [&>li>a]:py-2">
+  <ul class="flex text-sm [&>li>a]:duration-500 [&>li>a]:inline-block [&>li>a]:px-2">
     <li id="logo" title="Inicio" class="block">
       <a href="/">
         <Logo/>
@@ -22,7 +22,7 @@ const textColor = `text-${color}`;
 
   <nav class="flex flex-grow justify-end basis-0">
     <ul
-      class="sm:flex text-sm [&>li>a]:transition-colors [&>li>a]:duration-500 [&>li>a]:text-current [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-2 [&>li>a]:pb-1"
+      class="right-nav sm:flex [&>li>a]:transition-colors [&>li>a]:duration-500 [&>li>a]:text-current [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-3 [&>li>a]:pb-1"
     >
     <li class="block"><a href="/">Bienvenida</a></li>
       <li class="block"><a href="/galeria">Galería</a></li>
@@ -79,3 +79,29 @@ const textColor = `text-${color}`;
     pant0.remove();
   }
 </script>
+
+<style>
+  
+  .right-nav {
+    font-size: 1dvw;
+    text-shadow: -1px -1px 1px #b96300, 1px -1px 1px #333, -1px 1px 1px #333, 1px 1px 1px #333;
+  }
+
+
+@media (max-width: 460px) and (orientation: portrait) {
+
+  .right-nav {
+    padding: 5px 0;
+    text-align: end;
+    font-size: 3dvw;
+  }
+}
+
+@media (max-height: 460px) and (orientation: landscape) {
+  .right-nav {
+    margin-top: -8dvh;
+    font-size: 1.5dvw;
+  }
+}
+
+</style>
