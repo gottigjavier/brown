@@ -12,7 +12,31 @@ import TrabajosHeader from "../components/layout/TrabajosHeader.astro";
     <div class="flex p-3 mb-10 justify-center">
         <h1 class="works-title flex p-3 rounded-lg text-xl shdw">Trabajos Realizados</h1>
     </div>
+    <div class="flex p-3 justify-center">
+        <p class="works-text flex rounded-lg text-lg">
+            Algunos de los trabajos realizados para nuestros clientes.
+        </p>
+    </div>
+    <div class="flex mb-10 justify-center">
+        <p class="works-mini flex rounded-lg text-sm">
+            Click en la imagen para acceder.
+        </p>
+    </div>
     <div class="flex flex-wrap justify-center">
+        <PrevPic 
+        xhref="https://photos.app.goo.gl/P2eKbRweQeK17LCFA"
+        xsrc="/thumbnails/sadop.avif"
+        xalt="Trabajos Realizados"
+        xtitle="Trabajos Realizados"
+        xcaption="SADOP Hotel. Cosquín."      
+        />
+        <PrevPic 
+        xhref="https://photos.app.goo.gl/aKKHiXRMhER2ZQoD9"
+        xsrc="/thumbnails/ansenuza.avif"
+        xalt="Trabajos Realizados"
+        xtitle="Trabajos Realizados"
+        xcaption="Ansenuza. Hotel - Casino - Spa."      
+        />
         <PrevPic 
           xhref="https://photos.google.com/share/AF1QipN3Tz0bF7eV8DB_cbKh94UQI88yXXbZf1NdcHXSXd1FaS7WzCr9EwnAZN_FZXHM0w?key=NkJnRkRRVWVTUnlyb3NCV1hXNnhTLTJXWlRIdTd3"
           xsrc="/thumbnails/fabrega-thum.avif"
@@ -36,6 +60,16 @@ import TrabajosHeader from "../components/layout/TrabajosHeader.astro";
 <style>
     .works-title {
         background-color: rgb(21, 32, 32);
+    }
+    .works-text p {
+        background-color: rgb(188, 194, 194);
+        text-wrap: pretty;
+    }
+    .works-mini {
+        background-color: rgb(188, 194, 194);
+        text-wrap: pretty;
+        color: black;
+        padding-inline: 5px;
     }
     .shdw {
         box-shadow: 0 8px 16px 0 rgba(253, 253, 253, 0.2), 0 6px 20px 0 rgba(128, 128, 128, 0.699);

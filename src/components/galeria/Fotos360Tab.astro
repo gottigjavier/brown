@@ -2,33 +2,34 @@
 import PrevPic from "./PrevPic.astro";
 ---
 
+<div class="flex p-3 mb-10 justify-center">
+  <p class="works-title flex p-3 rounded-lg text-lg">
+      Imágenes aéreas y terrestres para ver en 360º.<br>
+      Más ejemplos en nuestras redes sociales.
+  </p>
+</div>
 <div class="flex flex-wrap justify-center">
     <PrevPic 
-      xhref="https://photos.app.goo.gl/7fsbUibH6vNVqaf79"
-      xsrc="/thumbnails/fabrega-hotel.avif"
-      xalt="Fábrega Hotel"
-      xtitle="Fábrega Hotel"
-      xcaption="El Castillo Hotel Fábrega. Valle Hermoso, Córdoba, Argentina."      
-    />
-    <PrevPic 
-      xhref="https://photos.app.goo.gl/T7gCR5rTf3GLeQBE6"
-      xsrc="/thumbnails/enjoy-hotel.avif"
-      xalt="Enjoy Hotel"
-      xtitle="Enjoy Hotel"
-      xcaption="Enjoy Hotel. Mendoza, Argentina"      
-    />
-    <PrevPic 
-      xhref="https://photos.app.goo.gl/aKKHiXRMhER2ZQoD9"
-      xsrc="/thumbnails/ansenuza-hotel.avif"
-      xalt="Ansenuza Hotel"
-      xtitle="Ansenuza Hotel"
-      xcaption="Ansenuza Hotel. Miramar, Córdoba, Argentina."      
-    />
-    <PrevPic 
-      xhref="https://photos.app.goo.gl/P2eKbRweQeK17LCFA"
-      xsrc="/thumbnails/sadop-hotel.avif"
-      xalt="Sadop Hotel"
-      xtitle="Sadop Hotel"
-      xcaption="Sadop Hotel. Cosquín, Córdoba, Argentina."      
+      xhref="https://photos.app.goo.gl/kvyKQjywDH6zzaPB9"
+      xsrc="/thumbnails/parana.avif"
+      xalt="Fotos 360"
+      xtitle="Fotos 360"
+      xcaption="Click en la imagen para acceder."      
     />
 </div>
+
+<style>
+  .works-title {
+    background-color: rgb(124, 118, 129);
+    }
+    .works-title p {
+        text-wrap: pretty;
+    }
+    .shdw {
+        box-shadow: 0 8px 16px 0 rgba(253, 253, 253, 0.2), 0 6px 20px 0 rgba(128, 128, 128, 0.699);
+    }
+
+    .shdw:hover {
+        box-shadow: 0 12px 16px 0 rgba(182, 182, 182, 0.24), 0 17px 50px 0 rgba(141, 119, 119, 0.19);
+    }
+</style>
