@@ -9,6 +9,9 @@ const textColor = `text-${color}`;
 >
   <nav class="logo">
     <ul>
+      <li id="drone">
+        <img src="/backgrounds/flydrone-solo.gif" alt="gif">
+      </li>
       <li id="logo">
         <img src="/icons/jorgeflynat.png" id="logo-nat" />
       </li>
@@ -96,12 +99,20 @@ const textColor = `text-${color}`;
 .logo {
     position: fixed;
     width: 30dvw;
-    top: 15dvh;
+    top: 20dvh;
     left: 8dvw;
   }
 
   #logo {
     padding: 5dvh;
+  }
+
+  #drone {
+    z-index: 900;
+    position: fixed;
+    width: 30dvw;
+    top: 17dvh;
+    left: 22dvw;
   }
 
   .text-container {
@@ -225,6 +236,14 @@ const textColor = `text-${color}`;
 
   #logo {
     padding: 2dvh;
+  }
+
+  #drone {
+    z-index: 900;
+    position: fixed;
+    width: 25dvw;
+    top: 13dvh;
+    left: 45dvw;
   }
 
   .text-container {
@@ -354,6 +373,14 @@ const textColor = `text-${color}`;
 
   #logo {
     padding: 5dvh;
+  }
+
+  #drone {
+    z-index: 900;
+    position: fixed;
+    width: 12dvw;
+    top: 9dvh;
+    left: 25dvw;
   }
 
   .text-container {
