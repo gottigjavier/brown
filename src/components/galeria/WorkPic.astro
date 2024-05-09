@@ -1,18 +1,16 @@
 ---
-const { xhref, xsrc, xalt, xtext, xcaption } = Astro.props;
+const { xhref, xsrc, xalt, xtitle, xcaption } = Astro.props;
 ---
 
 <dir class="foto shdw">
 
     <figure>
-        <figcaption>
-            <i> {xtext}</i>
-        </figcaption>
         <a href={xhref} target="_blank" title={xalt}
         ><img src={xsrc} alt={xalt} /></a
         >
-            <small class="flex justify-end pb-2 pe-4"><i> {xcaption}</i></small>
-        
+        <figcaption>
+            <small><i> {xcaption}</i></small>
+        </figcaption>
     </figure>
     
 </dir>
@@ -23,7 +21,7 @@ const { xhref, xsrc, xalt, xtext, xcaption } = Astro.props;
         border-radius: 2%;
     }
     figure{
-        max-width: 75vmax;
+        max-width: 35vmax;
         width: 100%;
         padding: 2px;
         margin: 20px 0 0 -20px;
@@ -32,12 +30,11 @@ const { xhref, xsrc, xalt, xtext, xcaption } = Astro.props;
         color: aliceblue;
         font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
         text-wrap: pretty;
-        padding: 0 14px;
+        padding: 0 4px;
     }
     img{
         object-fit: fill;
         border-radius: 2%;
-        padding: 12px;
 
     }
 
