@@ -53,26 +53,25 @@
   <style>
       /* CSS general */
 .mi-iframe {
-width: 280px;
-height: 560px;
+width: 50dvw;
+height: 80dvh;
 }
 
 /* CSS pantallas de 320px o superior */
-@media (min-width: 320px) {
+@media (max-width: 460px) and (orientation: portrait) {
 
 .mi-iframe {
-  width: 320px;
-  height: 420px;
+  width: 80dvw;
+  
 } 
 
 }
 
 /* CSS pantalla 768px o superior */
-@media (min-width: 768px) {
+@media (max-height: 460px) and (orientation: landscape) {
 
 .mi-iframe {
-  width: 800px;
-  height: 480px;
+  width: 80dvw;
 } 
 
 }

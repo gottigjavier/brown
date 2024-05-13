@@ -24,53 +24,21 @@ const textColor = `text-${color}`;
       class="right-nav sm:flex text-sm [&>li>a]:transition-colors [&>li>a]:duration-500 [&>li>a]:text-current [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-2 [&>li>a]:py-1"
     >
       <li class="block"><a href="/">Bienvenida</a></li>
-      <li class="block"><a href="/examples">Inicio</a></li>
+      <li class="block"><a href="/inicio">Inicio</a></li>
       <li class="block"><a href="/galeria">Galería</a></li>
       <li class="block"><a id="open-modal" href="#">Contacto</a></li>
     </ul>
   </nav>
 
-  
-  <div
-  id="menu-backdropp"
-  class={`
-      absolute bg-gray-700 backdrop-blur-lg rounded-lg
-      translate-x-[var(--left)] translate-y-[var(--top)]
-      left-0 top-0
-      w-[var(--width)] h-[var(--height)]
-      transition-all duration-500
-      ease-in-out opacity-0 -z-10
-      `}
-  >
-</div>
 <Redes />
 </header>
 
-<script>
-  const listItemm = document.querySelectorAll("#galeria-header li")
-  const menuBackDropp = document.querySelector("#menu-backdropp") as HTMLElement
-
-  listItemm.forEach((itemm) => {
-    itemm.addEventListener("mouseenter", () => {
-      const { left, top, width, height } = itemm.getBoundingClientRect()
-
-      menuBackDropp.style.setProperty("--left", `${left}px`)
-      menuBackDropp.style.setProperty("--top", `${top}px`)
-      menuBackDropp.style.setProperty("--width", `${width}px`)
-      menuBackDropp.style.setProperty("--height", `${height}px`)
-
-      menuBackDropp.style.opacity = "1"
-      menuBackDropp.style.visibility = "visible"
-    })
-
-    itemm.addEventListener("mouseleave", () => {
-      menuBackDropp.style.opacity = "0"
-      menuBackDropp.style.visibility = "hidden"
-    })
-  })
-</script>
-
 <style>
+
+li:hover {
+    background-color: darkslategrey;
+    border-radius: 5%;
+  }
   
   .right-nav {
     font-size: 1dvw;

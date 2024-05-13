@@ -1,0 +1,65 @@
+---
+import Logo from "../components/layout/Logo.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Flydrone">
+    <div class="cont">
+        <div class="logo flex">
+            <img src="/backgrounds/flydrone-solo.gif" alt="drone">
+        </div>
+        <div class="text">
+            <h1>Ups. Parece que lo que intentas ver no existe</h1>
+        </div>
+        <div class="text but">
+            <a href="/inicio">Ir a Inicio</a>
+        </div>
+</div>
+</Layout>
+
+<style>
+    .cont {
+        position: fixed;
+        top: 10dvh;
+        left: 35dvw;
+    }
+     .logo {
+        justify-content: center;
+     }
+
+     .text {
+        margin-block: 5dvh;
+        text-align: center;
+        text-wrap: pretty;
+     }
+
+     .but>a {
+        padding: 1dvw;
+        border-radius: 5%;
+        background-color: darkslategrey;
+     }
+
+     /* CSS pantallas de 320px o superior */
+@media (max-width: 460px) and (orientation: portrait) {
+
+    .cont {
+        top: 15dvh;
+        left: 10%;
+        margin-right: 10%;
+        
+    } 
+
+}
+
+/* CSS pantalla 768px o superior */
+@media (max-height: 460px) and (orientation: landscape) {
+
+    .cont {
+        top: 10dvh;
+        left: 30%;
+        margin-right: 30%;
+        
+    }
+
+}
+</style>
