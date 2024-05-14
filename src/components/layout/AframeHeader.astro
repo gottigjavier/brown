@@ -70,6 +70,30 @@ const textColor = `text-${color}`;
 </header>
 
 <script>
+  const listImg = document.querySelectorAll(".menu-img")
+  const tetxCont = document.querySelector(".text-container") as HTMLElement
+  let stype = screen.orientation.type;
+  screen.orientation.addEventListener("change", (event) => {
+    stype = event.target['type'];
+    console.log('stipe --> ', stype)
+  });
+  if (stype == 'landscape-primary'){
+
+    listImg.forEach((imgItem) => {
+      imgItem.addEventListener("mouseenter", () => {
+        tetxCont.style.opacity = "0"
+        tetxCont.style.visibility = "hidden"
+      })
+      
+      imgItem.addEventListener("mouseleave", () => {
+        tetxCont.style.opacity = "1"
+        tetxCont.style.visibility = "visible"
+      })
+    })
+  }
+</script>
+
+<script>
   const listItem = document.querySelectorAll("#landing-header li")
   const menuBackDrop = document.querySelector("#menu-backdrop") as HTMLElement
 
@@ -79,8 +103,8 @@ const textColor = `text-${color}`;
 
       menuBackDrop.style.setProperty("--left", `${left}px`)
       menuBackDrop.style.setProperty("--top", `${top}px`)
-      menuBackDrop.style.setProperty("--width", `${width}px`)
-      menuBackDrop.style.setProperty("--height", `${height}px`)
+      menuBackDrop.style.setProperty("--width", `${width-1}px`)
+      menuBackDrop.style.setProperty("--height", `${height-1}px`)
 
       menuBackDrop.style.opacity = "1"
       menuBackDrop.style.visibility = "visible"
@@ -98,30 +122,30 @@ const textColor = `text-${color}`;
 
 .logo {
     position: fixed;
-    width: 30dvw;
-    top: 20dvh;
-    left: 8dvw;
+    width: 30%;
+    top: 20%;
+    left: 5%;
   }
 
   
   #drone {
-    z-index: 900;
+    z-index: 100;
     position: fixed;
-    width: 30dvw;
-    top: 14dvh;
-    left: 22dvw;
+    width: 30%;
+    top: 14%;
+    left: 22%;
   }
 
   .text-container {
-    width: 45dvw;
+    width: 45%;
     text-align: center;
     position: fixed;
     transition-duration: 500ms;
     color: rgb(253, 211, 96);
     font-weight: 500;
-    font-size: 2dvw;
-    top: 34dvh;
-    left: 43dvw;
+    font-size: 1.8rem;
+    top: 20vw;
+    right: 15%;
     text-wrap: pretty;
     text-shadow: -1px -1px 1px #b96300, 1px -1px 1px #333, -1px 1px 1px #333, 1px 1px 1px #333;
   }
@@ -132,17 +156,17 @@ const textColor = `text-${color}`;
   }
 
   #degree-360 {
-    width: 3dvw;
+    width: 3%;
     position: fixed;
-    left: 3dvw;
-    top: 3dvh;
+    left: 3%;
+    top: 3%;
   }
 
   .btn-menu {
     font-size: 1.1vmax;
     position: fixed;
-    right: 1dvw;
-    padding: 0.9dvh 0.5dvw;
+    right: 1%;
+    padding: 0.9% 0.5%;
   }
 
 
@@ -158,100 +182,100 @@ const textColor = `text-${color}`;
   #video {
     width: 15vmin;
     height: 9vmin;
-    top: 16dvh;
-    right: 1dvw;
+    top: 16%;
+    right: 1%;
   }
   #city {
     width: 15vmin;
     height: 9vmin;
-    top: 26.5dvh;
-    right: 1dvw;
+    top: 26.5%;
+    right: 1%;
   }
 
   #obelisco {
     width: 15vmin;
     height: 9vmin;
-    top: 37.5dvh;
-    right: 1dvw;
+    top: 37.5%;
+    right: 1%;
   }
 
   #dunas {
     width: 15vmin;
     height: 9vmin;
-    top: 48.5dvh;
-    right: 1dvw;
+    top: 48.5%;
+    right: 1%;
   }
 
   #parana {
     width: 15vmin;
     height: 9vmin;
-    top: 59.5dvh;
-    right: 1dvw;
+    top: 59.5%;
+    right: 1%;
   }
 
 
   #video:hover, #video:active {
-    width: 60dvw;
-    top: 15dvh;
-    right: 0.9dvw;
+    width: 64%;
+    top: 15%;
+    right: 0.9%;
   }
 
   #city:hover, #city:active {
-    width: 60dvw;
-    top: 15dvh;
-    right: 0.9dvw;
+    width: 64%;
+    top: 15%;
+    right: 0.9%;
   }
 
   #obelisco:hover, #obelisco:active {
-    width: 60dvw;
-    top: 15dvh;
-    right: 0.9dvw;
+    width: 64%;
+    top: 15%;
+    right: 0.9%;
   }
 
   #dunas:hover, #dunas:active {
-    width: 60dvw;
-    top: 15dvh;
-    right: 0.9dvw;
+    width: 64%;
+    top: 15%;
+    right: 0.9%;
   }
 
   #parana:hover, #parana:active {
-    width: 60dvw;
-    top: 15dvh;
-    right: 0.9dvw;
+    width: 64%;
+    top: 24%;
+    right: 0.9%;
   }
 
 
-  @media (max-width: 460px) and (orientation: portrait) {
+  @media (orientation: portrait) {
 
     .logo {
     position: fixed;
-    width: 60dvw;
-    top: 15dvh;
-    left: 13dvw;
+    width: 60%;
+    top: 15%;
+    left: 13%;
   }
 
   #logo {
-    padding: 2dvh;
+    padding: 2%;
   }
 
   #drone {
     z-index: 900;
     position: fixed;
-    width: 25dvw;
-    top: 13dvh;
-    left: 45dvw;
+    width: 25%;
+    top: 13%;
+    left: 45%;
   }
 
   .text-container {
-    width: 45dvw;
+    width: 50%;
     text-align: center;
     position: fixed;
     transition-duration: 500ms;
     color: rgb(253, 211, 96);
     font-weight: 500;
-    font-size: 3.5dvw;
-    top: 36dvh;
-    left: 20dvw;
+    font-size: 2vh;
+    top: 38%;
+    left: 20%;
     text-wrap: pretty;
     text-shadow: -1px -1px 1px #b96300, 1px -1px 1px #333, -1px 1px 1px #333, 1px 1px 1px #333;
   }
@@ -265,9 +289,9 @@ const textColor = `text-${color}`;
     .btn-menu {
     font-size: 1.5vmax;
     position: fixed;
-    right: 0dvw;
-    top: 2dvh;
-    padding: 0.9dvh 0.9dvw;
+    right: 0%;
+    top: 2%;
+    padding: 0.9% 0.9%;
   }
 
   .menu-img {
@@ -280,114 +304,114 @@ const textColor = `text-${color}`;
    }
 
    #degree-360 {
-    width: 5dvw;
+    width: 5%;
     position: fixed;
-    left: 3dvw;
-    top: 3dvh;
+    left: 3%;
+    top: 3%;
   }
 
   #video {
     width: 15vmin;
     height: 9vmin;
-    top: 26dvh;
-    right: 1dvw;
+    top: 26%;
+    right: 1%;
   }
   #city {
     width: 15vmin;
     height: 9vmin;
-    top: 32.5dvh;
-    right: 1dvw;
+    top: 32.5%;
+    right: 1%;
   }
 
   #obelisco {
     width: 15vmin;
     height: 9vmin;
-    top: 39.5dvh;
-    right: 1dvw;
+    top: 39.5%;
+    right: 1%;
   }
 
   #dunas {
     width: 15vmin;
     height: 9vmin;
-    top: 46.5dvh;
-    right: 1dvw;
+    top: 46.5%;
+    right: 1%;
   }
 
   #parana {
     width: 15vmin;
     height: 9.5vmin;
-    top: 53.5dvh;
-    right: 1dvw;
+    top: 53.5%;
+    right: 1%;
   }
 
 
   #video:hover, #video:active {
-    width: 76dvw;
-    top: 65dvh;
-    right: 11dvw;
+    width: 76%;
+    top: 65%;
+    right: 11%;
   }
 
   #city:hover, #city:active {
-    width: 76dvw;
-    height: 50dvw;
-    top: 65dvh;
-    right: 11dvw;
+    width: 76%;
+    height: 50%;
+    top: 65%;
+    right: 11%;
   }
 
   #obelisco:hover, #obelisco:active {
-    width: 76dvw;
-    height: 50dvw;
-    top: 65dvh;
-    right: 11dvw;
+    width: 76%;
+    height: 50%;
+    top: 65%;
+    right: 11%;
   }
 
   #dunas:hover, #dunas:active {
-    width: 76dvw;
-    height: 50dvw;
-    top: 65dvh;
-    right: 11dvw;
+    width: 76%;
+    height: 50%;
+    top: 65%;
+    right: 11%;
   }
 
   #parana:hover, #parana:active {
-    width: 76dvw;
-    height: 75dvw;
-    top: 65dvh;
-    right: 11dvw;
+    width: 76%;
+    height: 75%;
+    top: 65%;
+    right: 11%;
   }
 
 }
 
-@media (max-height: 460px) and (orientation: landscape) {
+@media (max-height: 600px) and (orientation: landscape) {
 
   .logo {
     position: fixed;
-    width: 30dvw;
-    top: 6dvh;
-    left: 7dvw;
+    width: 30%;
+    top: 6%;
+    left: 7%;
   }
 
   #logo {
-    padding: 5dvh;
+    padding: 5%;
   }
 
   #drone {
     z-index: 900;
     position: fixed;
-    width: 12dvw;
-    top: 9dvh;
-    left: 25dvw;
+    width: 12%;
+    top: 9%;
+    left: 25%;
   }
 
   .text-container {
-    width: 45dvw;
+    width: 45%;
     text-align: center;
     position: fixed;
     transition-duration: 500ms;
     color: rgb(253, 211, 96);
     font-weight: 500;
-    font-size: 2dvw;
-    top: 43dvh;
-    left: 41dvw;
+    font-size: 1rem;
+    top: 37%;
+    left: 41%;
     text-wrap: pretty;
     text-shadow: -1px -1px 1px #b96300, 1px -1px 1px #333, -1px 1px 1px #333, 1px 1px 1px #333;
   }
@@ -404,8 +428,8 @@ const textColor = `text-${color}`;
   .btn-menu {
     font-size: 1.1vmax;
     position: fixed;
-    right: 1dvw;
-    padding: 0.5dvh;
+    right: 1%;
+    padding: 0.5%;
   }
 
 
@@ -421,66 +445,66 @@ const textColor = `text-${color}`;
   #video {
     width: 15vmin;
     height: 9vmin;
-    top: 16dvh;
-    right: 1dvw;
+    top: 16%;
+    right: 1%;
   }
   #city {
     width: 15vmin;
     height: 9vmin;
-    top: 26.5dvh;
-    right: 1dvw;
+    top: 26.5%;
+    right: 1%;
   }
 
   #obelisco {
     width: 15vmin;
     height: 9vmin;
-    top: 37.5dvh;
-    right: 1dvw;
+    top: 37.5%;
+    right: 1%;
   }
 
   #dunas {
     width: 15vmin;
     height: 9vmin;
-    top: 48.5dvh;
-    right: 1dvw;
+    top: 48.5%;
+    right: 1%;
   }
 
   #parana {
     width: 15vmin;
     height: 9vmin;
-    top: 59.5dvh;
-    right: 1dvw;
+    top: 59.5%;
+    right: 1%;
   }
 
 
   #video:hover, #video:active {
-    width: 110dvh;
-    top: 35dvh;
-    right: 13dvw;
+    width: 50%;
+    top: 25%;
+    right: 12%;
   }
 
   #city:hover, #city:active {
-    width: 110dvh;
-    top: 35dvh;
-    right: 13dvw;
+    width: 50%;
+    top: 25%;
+    right: 12%;
   }
 
   #obelisco:hover, #obelisco:active {
-    width: 110dvh;
-    top: 35dvh;
-    right: 13dvw;
+    width: 50%;
+    top: 25%;
+    right: 12%;
   }
 
   #dunas:hover, #dunas:active {
-    width: 110dvh;
-    top: 35dvh;
-    right: 13dvw;
+    width: 50%;
+    top: 25%;
+    right: 12%;
   }
 
   #parana:hover, #parana:active {
-    width: 110dvh;
-    top: 35dvh;
-    right: 13dvw;
+    width: 50%;
+    top: 25%;
+    right: 12%;
   }
 
 
