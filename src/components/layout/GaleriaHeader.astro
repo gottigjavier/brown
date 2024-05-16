@@ -10,7 +10,7 @@ const textColor = `text-${color}`;
   class=`py-3 px-2 flex items-center top-0 w-full justify-between z-40 ${textColor}`
 >
 <nav class="flex flex-grow justify-start basis-0">
-  <ul class="flex text-sm [&>li>a]:transition-colors [&>li>a]:duration-500 [&>li>a]:text-current [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-2 [&>li>a]:py-2">
+  <ul class="flex [&>li>a]:inline-block [&>li>a]:px-2 [&>li>a]:py-2">
     <li title="Inicio" id="logo" class="block">
       <a href="/">
         <span class="flex"><Logo/></span>
@@ -21,7 +21,7 @@ const textColor = `text-${color}`;
 
   <nav class="flex flex-grow justify-end basis-0">
     <ul
-      class="right-nav sm:flex text-sm [&>li>a]:transition-colors [&>li>a]:duration-500 [&>li>a]:text-current [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-2 [&>li>a]:py-1"
+      class="right-nav sm:flex text-sm [&>li>a]:transition-colors [&>li>a]:duration-500 [&>li>a]:text-current [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-2"
     >
       <li class="block"><a href="/">Bienvenida</a></li>
       <li class="block"><a href="/inicio">Inicio</a></li>
@@ -47,7 +47,7 @@ const textColor = `text-${color}`;
   }
 
 
-@media (max-width: 600px) and (orientation: portrait) {
+@media (max-width: 460px) and (orientation: portrait) {
 
   .right-nav {
     padding: 5px 0;
@@ -56,9 +56,9 @@ const textColor = `text-${color}`;
   }
 }
 
-@media (max-height: 600px) and (orientation: landscape) {
+@media (max-height: 460px) and (orientation: landscape) {
   .right-nav {
-    margin-top: -10%;
+    margin-top: 0;
     font-size: 0.6rem;
   }
 }

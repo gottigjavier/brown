@@ -2,7 +2,7 @@
 const { xhref, xsrc, xalt, xtext, xcaption } = Astro.props;
 ---
 
-<dir class="foto shdw">
+<div class="thumbnail shdw">
 
     <figure>
         <figcaption>
@@ -11,34 +11,63 @@ const { xhref, xsrc, xalt, xtext, xcaption } = Astro.props;
         <a href={xhref} target="_blank" title={xalt}
         ><img src={xsrc} alt={xalt} /></a
         >
-            <small class="flex justify-end pb-2 pe-4"><i> {xcaption}</i></small>
+            <small class="flex justify-end py-2 pe-10"><i> {xcaption}</i></small>
         
     </figure>
     
-</dir>
+</div>
+
 <style>
-    .foto {
-        margin: 0.4ch;
+    .thumbnail {
+        margin: 2vw 1vw;
         background-color: rgb(21, 32, 32);
         border-radius: 2%;
+        max-width: 75vw;
     }
     figure{
-        max-width: 75vmax;
+        width: 65vw;
         width: 100%;
         padding: 2px;
-        margin: 20px 0 0 -20px;
+        margin: 20px;
     }
     figcaption{
+        width: 65vw;
         color: aliceblue;
         font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
         text-wrap: pretty;
-        padding: 0 14px;
+        padding: 0 4px;
     }
     img{
+        max-width: 65vw;
         object-fit: fill;
         border-radius: 2%;
-        padding: 12px;
+    }
 
+    @media(max-width: 1024px){
+        .thumbnail {
+        margin: 2vw 1vw;
+        background-color: rgb(21, 32, 32);
+        border-radius: 2%;
+        max-width: 85vw;
+    }
+    figure{
+        width: 75vw;
+        width: 100%;
+        padding: 2px;
+        margin: 20px;
+    }
+    figcaption{
+        width: 75vw;
+        color: aliceblue;
+        font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        text-wrap: pretty;
+        padding: 0 4px;
+    }
+    img{
+        max-width: 75vw;
+        object-fit: fill;
+        border-radius: 2%;
+    }
     }
 
     .shdw {

@@ -70,30 +70,6 @@ const textColor = `text-${color}`;
 </header>
 
 <script>
-  const listImg = document.querySelectorAll(".menu-img")
-  const tetxCont = document.querySelector(".text-container") as HTMLElement
-  let stype = screen.orientation.type;
-  screen.orientation.addEventListener("change", (event) => {
-    stype = event.target['type'];
-    console.log('stipe --> ', stype)
-  });
-  if (stype == 'landscape-primary'){
-
-    listImg.forEach((imgItem) => {
-      imgItem.addEventListener("mouseenter", () => {
-        tetxCont.style.opacity = "0"
-        
-      })
-      
-      imgItem.addEventListener("mouseleave", () => {
-        tetxCont.style.opacity = "1"
-        
-      })
-    })
-  }
-</script>
-
-<script>
   const listItem = document.querySelectorAll("#landing-header li")
   const menuBackDrop = document.querySelector("#menu-backdrop") as HTMLElement
 
@@ -115,7 +91,34 @@ const textColor = `text-${color}`;
       menuBackDrop.style.visibility = "hidden"
     })
   })
+
+
+  const listImg = document.querySelectorAll(".menu-img")
+  const tetxCont = document.querySelector(".text-container") as HTMLElement
+  let stype = screen.orientation.type || '';
+  screen.orientation.addEventListener("change", (event) => {
+    stype = event.target['type'];
+    hiddenText(stype);
+  });
+
+  function hiddenText(stype: string){
+    if (stype === 'landscape-primary'){
+      listImg.forEach((imgItem) => {
+      imgItem.addEventListener("mouseenter", () => {
+        tetxCont.style.opacity = "0"
+        
+      })
+      
+      imgItem.addEventListener("mouseleave", () => {
+        tetxCont.style.opacity = "1"
+        
+      })
+    })
+  }
+};
+hiddenText(stype);
 </script>
+
 
 <style>
 
@@ -381,7 +384,7 @@ const textColor = `text-${color}`;
 
 }
 
-@media (max-height: 600px) and (orientation: landscape) {
+@media (max-height: 460px) and (orientation: landscape) {
 
   .logo {
     position: fixed;

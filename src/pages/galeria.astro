@@ -4,39 +4,73 @@ import GaleriaHeader from "../components/layout/GaleriaHeader.astro";
 import ModalGoogle from "../components/layout/ModalGoogle.astro";
 import FooterMenu from "../components/layout/FooterMenu.astro";
 import Tabs from "../components/galeria/Tabs.astro";
+import Speech from "../components/galeria/Speech.astro";
 ---
+
 <Layout title="Fly Drone">
     <div class="galería-header">
-        <GaleriaHeader color="white"/>
+        <GaleriaHeader color="white" />
     </div>
-    <div class="flex p-3 mb-10 justify-center">
-        <h1 class="works-title flex p-3 rounded-lg lg:text-xl shdw">Galería de Imágenes</h1>
+    <div class="container-background shdw">
+        <Speech />
     </div>
-    <div class="tabs">
-        <Tabs event />
-    </div>
-    <div>
-        <ModalGoogle />
+    <div class="container-tabs overflow-x-hidden">
+        <div class="flex p-3 mb-4 justify-center">
+            <h1 class="works-title flex p-3 rounded-lg lg:text-xl shdw">
+                Galería de Imágenes
+            </h1>
+        </div>
+        <div class="tabs">
+            <Tabs event />
+        </div>
+        <div>
+            <ModalGoogle />
+        </div>
     </div>
     <div class="bottom-0 h-full w-full z-10">
         <div class="z-30 relative h-full flex flex-col mb-5 mt-5">
             <footer class="flex flex-col flex-grow justify-end pb-10">
-                <FooterMenu color = white/>
+                <FooterMenu color="white/" />
             </footer>
         </div>
     </div>
 </Layout>
 
 <style>
+    .container-background {
+        position: relative;
+        border-radius: 2%;
+        margin: 1vh 3vw 0 18vw;
+        max-width: 65vw;
+    }
+
+    .container-tabs {
+        position: relative;
+        justify-content: center;
+        margin: 10vh 0 0 2vw;
+    }
     .works-title {
         background-color: rgb(21, 32, 32);
     }
+
     .shdw {
-        box-shadow: 0 8px 16px 0 rgba(253, 253, 253, 0.2), 0 6px 20px 0 rgba(128, 128, 128, 0.699);
+        box-shadow:
+            0 8px 16px 0 rgba(253, 253, 253, 0.2),
+            0 6px 20px 0 rgba(128, 128, 128, 0.699);
     }
 
     .shdw:hover {
-        box-shadow: 0 12px 16px 0 rgba(182, 182, 182, 0.24), 0 17px 50px 0 rgba(141, 119, 119, 0.19);
+        box-shadow:
+            0 12px 16px 0 rgba(182, 182, 182, 0.24),
+            0 17px 50px 0 rgba(141, 119, 119, 0.19);
     }
-    
+
+    @media (max-width: 1024px) {
+        .container-background {
+        position: relative;
+        border-radius: 2%;
+        margin: 1vh 3vw 0 8vw;
+        max-width: 90vw;
+    }
+    }
 </style>

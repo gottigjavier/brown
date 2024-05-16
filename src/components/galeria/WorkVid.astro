@@ -6,7 +6,13 @@ const { xhref, xsrc, xalt, xtitle, xcaption } = Astro.props;
 
     <figure>
         <a href={xhref} target="_blank" title={xalt}
-        ><img src={xsrc} alt={xalt} /></a
+        >
+        <video 
+        src={xsrc} 
+        autoplay
+        loop
+        ></video>
+        </a
         >
         <figcaption>
             <small><i> {xcaption}</i></small>
@@ -19,7 +25,6 @@ const { xhref, xsrc, xalt, xtitle, xcaption } = Astro.props;
         margin: 2vw 1vw;
         background-color: rgb(21, 32, 32);
         border-radius: 2%;
-        max-width: 45vmax;
     }
     figure{
         max-width: 35vmax;
@@ -33,9 +38,10 @@ const { xhref, xsrc, xalt, xtitle, xcaption } = Astro.props;
         text-wrap: pretty;
         padding: 0 4px;
     }
-    img{
+    video{
         object-fit: fill;
         border-radius: 2%;
+
     }
 
     .shdw {
