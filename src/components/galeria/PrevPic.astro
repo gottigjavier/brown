@@ -11,7 +11,7 @@ const { xhref, xsrc, xalt, xtext, xcaption } = Astro.props;
         <a href={xhref} target="_blank" title={xalt}
         ><img src={xsrc} alt={xalt} /></a
         >
-            <small class="flex justify-end py-2 pe-10"><i> {xcaption}</i></small>
+            <small class="flex justify-end"><i> {xcaption}</i></small>
         
     </figure>
     
@@ -19,28 +19,31 @@ const { xhref, xsrc, xalt, xtext, xcaption } = Astro.props;
 
 <style>
     .thumbnail {
-        margin: 2vw 1vw;
+        margin: 2vw 1vw 1vw 0;
         background-color: rgb(21, 32, 32);
         border-radius: 2%;
-        max-width: 75vw;
+        max-width: 80vw;
     }
     figure{
-        width: 65vw;
-        width: 100%;
+        width: 75vw;
         padding: 2px;
         margin: 20px;
     }
     figcaption{
-        width: 65vw;
+        width: 75vw;
         color: aliceblue;
         font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
         text-wrap: pretty;
-        padding: 0 4px;
+        padding: 0 0 15px 0;
     }
     img{
-        max-width: 65vw;
+        max-width: 75vw;
         object-fit: fill;
         border-radius: 2%;
+    }
+
+    small {
+        padding: 1vw 1vw 0 2vw;
     }
 
     @media(max-width: 1024px){
@@ -67,6 +70,9 @@ const { xhref, xsrc, xalt, xtext, xcaption } = Astro.props;
         max-width: 75vw;
         object-fit: fill;
         border-radius: 2%;
+    }
+    small {
+        padding: 3vw 8vw 0 2vw;
     }
     }
 
