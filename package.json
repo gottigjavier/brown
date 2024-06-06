@@ -11,7 +11,6 @@
   },
   "dependencies": {
     "@astrojs/tailwind": "^5.1.0",
-    "@photo-sphere-viewer/core": "^5.7.1",
     "astro": "^4.6.3",
     "astro-imagetools": "^0.2.7",
     "sass": "^1.70.0",
