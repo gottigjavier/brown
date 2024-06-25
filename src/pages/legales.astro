@@ -1,0 +1,65 @@
+---
+import Layout from "../layouts/Layout.astro";
+import GaleriaHeader from "../components/layout/GaleriaHeader.astro";
+const { fcolor } = Astro.props;
+const ftextColor = `text-${fcolor}`;
+---
+
+<Layout title="Dron Video 360">
+    <div class="galería-header">
+        <GaleriaHeader color="white" />
+    </div>
+    <div class="container-background legal">
+     <h2 class="legal-title">Privacidad y tratamiento de datos.</h2>
+     <p class="legal-text">
+        DRON VIDEO 360 <b>no</b> recopila datos más allá de los entregados por el usuario 
+        en el formulario de contacto, los cuales no pertecen al tipo de datos privados o sensibles.
+     </p>
+     <p class="legal-text">
+        Como la mayoría de los sitios web, DRON VIDEO 360 utiliza librerías así como hosting de terceros.
+        Cualquier tipo de monitoreo que se realice a través de estos elementos, ya sea sólo 
+        estadístico para beneficio de la experiencia de usuario o que exceda lo permitido por 
+        las leyes vigentes, DRON VIDEO 360 carece de todo conocimiento y control sobre este.
+     </p>
+    </div>
+<footer
+	class=`flex justify-center ${ftextColor} text-xs font-medium`
+	id="landing-footer"
+>
+<nav>
+	<ul class="flex [&>li>a]:inline-block [&>li>a]:px-2 [&>li>a]:py-0">
+	    <li class="text-center">
+            <a href="mailto:dronvideo360.ar@gmail.com?subject=DRON%20VIDEO%20360.%20Contacto">DRON VIDEO 360 © 2024</a>
+        </li>
+	</ul>
+  </nav>
+</footer>
+
+</Layout>
+
+<style>
+    .container-background {
+        position: relative;
+        border-radius: 2%;
+        margin: 1vh 3vw 0 10vw;
+        max-width: 80vw;
+        z-index: 1;
+    }
+
+    .legal-title {
+        font-size: large;
+        text-align: center;
+        margin-bottom: 2%;
+    }
+
+    .legal-text {
+        margin: 1% 0;
+        text-wrap:pretty;
+    }
+    
+    footer {
+        bottom: 0;
+        padding: 40vh 0 10px 0 !important;
+    }
+    
+</style>
