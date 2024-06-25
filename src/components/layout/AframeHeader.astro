@@ -13,7 +13,13 @@ const textColor = `text-${color}`;
         <img src="/backgrounds/flydrone-solo.gif" alt="gif">
       </div>
       <div id="logo">
-        <img src="/icons/jorgeflynat.png" id="logo-nat" />
+        <video
+          id="video-earth"
+          muted 
+          autoplay
+          loop 
+          src="/backgrounds/dronvideo.mp4">
+        </video> 
       </div>
 
       <div class="text-container">
@@ -126,17 +132,22 @@ hiddenText(stype);
 .logo {
     position: fixed;
     width: 30%;
-    top: 20%;
-    left: 5%;
+    top: 8%;
+    left: 4.5%;
+  }
+
+  #video-earth {
+    border-radius: 50%;
+    transform: skew(10deg);
   }
 
   
   #drone {
-    z-index: 100;
+    z-index: 90;
     position: fixed;
     width: 30%;
-    top: 14%;
-    left: 22%;
+    top: 65%;
+    left: 11%;
   }
 
   .text-container {
@@ -253,7 +264,7 @@ hiddenText(stype);
     .logo {
     position: fixed;
     width: 60%;
-    top: 15%;
+    top: 8%;
     left: 13%;
   }
 
@@ -261,12 +272,12 @@ hiddenText(stype);
     padding: 2%;
   }
 
+  
   #drone {
-    z-index: 900;
     position: fixed;
     width: 25%;
-    top: 13%;
-    left: 45%;
+    top: 3%;
+    left: 50%;
   }
 
   .text-container {
@@ -277,7 +288,7 @@ hiddenText(stype);
     color: rgb(253, 211, 96);
     font-weight: 500;
     font-size: 2vh;
-    top: 38%;
+    top: 42%;
     left: 20%;
     text-wrap: pretty;
     text-shadow: -1px -1px 1px #b96300, 1px -1px 1px #333, -1px 1px 1px #333, 1px 1px 1px #333;
@@ -398,11 +409,10 @@ hiddenText(stype);
   }
 
   #drone {
-    z-index: 900;
     position: fixed;
     width: 12%;
-    top: 9%;
-    left: 25%;
+    top: 8%;
+    left: 55%;
   }
 
   .text-container {

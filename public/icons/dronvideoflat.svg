@@ -4,12 +4,15 @@
 <svg
    version="1.1"
    id="svg1"
-   width="200"
-   height="70"
+   width="1248"
+   height="333.33334"
    viewBox="0 0 1248 333.33334"
+   sodipodi:docname="dronvideoflat.png"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns="http://www.w3.org/2000/svg"
-   >
+   xmlns:svg="http://www.w3.org/2000/svg">
   <defs
      id="defs1" />
   <sodipodi:namedview
@@ -23,6 +26,8 @@
      inkscape:deskcolor="#d1d1d1"
      showgrid="false" />
   <g
+     inkscape:groupmode="layer"
+     inkscape:label="Image"
      id="g1">
     <image
        width="1248"
