@@ -1,34 +1,51 @@
 ---
 export interface Props {
-  title: string
+  title: string;
 }
 
-const { title } = Astro.props
+const { title } = Astro.props;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
   <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      is:inline
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-L7KJ73SQHP"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-L7KJ73SQHP");
+    </script>
+
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/icons/favicon.png" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    
+
     <!-- for optimal display on high DPI devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+
     <script type="importmap">
       {
-          "imports": {
-              "three": "https://cdn.jsdelivr.net/npm/three/build/three.module.js",
-              "@photo-sphere-viewer/core": "https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/core@5/index.module.js",
-              "@photo-sphere-viewer/autorotate-plugin": "https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/autorotate-plugin@5/index.module.js"
-          }
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three/build/three.module.js",
+          "@photo-sphere-viewer/core": "https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/core@5/index.module.js",
+          "@photo-sphere-viewer/autorotate-plugin": "https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/autorotate-plugin@5/index.module.js"
+        }
       }
-  </script>
+    </script>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/core/index.min.css" />
-
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/core/index.min.css"
+    />
   </head>
   <body>
     <slot />
@@ -37,7 +54,7 @@ const { title } = Astro.props
 
 <style is:global>
   :root {
-  color-scheme: dark lighten;
+    color-scheme: dark lighten;
   }
   @font-face {
     font-family: "Gotham SSm A";

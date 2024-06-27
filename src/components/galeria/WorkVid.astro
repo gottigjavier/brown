@@ -25,9 +25,10 @@ const { xhref, xsrc, xalt, xtitle, xcaption } = Astro.props;
         margin: 2vw 1vw;
         background-color: rgb(21, 32, 32);
         border-radius: 2%;
+        max-width: 35vmax;
     }
     figure{
-        max-width: 35vmax;
+        max-width: 25vmax;
         width: 100%;
         padding: 2px;
         margin: 20px;
@@ -39,6 +40,8 @@ const { xhref, xsrc, xalt, xtitle, xcaption } = Astro.props;
         padding: 0 4px;
     }
     video{
+        max-width: 25vmax;
+        aspect-ratio: 4/3;
         object-fit: fill;
         border-radius: 2%;
 

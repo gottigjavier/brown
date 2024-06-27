@@ -9,6 +9,20 @@ const { title } = Astro.props
 <!DOCTYPE html>
 <html lang="es">
   <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      is:inline
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-L7KJ73SQHP"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-L7KJ73SQHP");
+    </script>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/icons/favicon.png" />
     <meta name="generator" content={Astro.generator} />
