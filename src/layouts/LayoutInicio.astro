@@ -35,16 +35,16 @@ const { title } = Astro.props;
     <script type="importmap">
       {
         "imports": {
-          "three": "https://cdn.jsdelivr.net/npm/three/build/three.module.js",
-          "@photo-sphere-viewer/core": "https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/core@5/index.module.js",
-          "@photo-sphere-viewer/autorotate-plugin": "https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/autorotate-plugin@5/index.module.js"
+          "three": "/js/three.js",
+          "@photo-sphere-viewer/core": "/js/core.js",
+          "@photo-sphere-viewer/autorotate-plugin": "/js/autorotate.js"
         }
       }
     </script>
 
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/core/index.min.css"
+      href="/css/photo-sphere.css"
     />
   </head>
   <body>
