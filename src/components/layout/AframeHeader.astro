@@ -78,7 +78,6 @@ const textColor = `text-${color}`;
       w-[var(--width)] h-[var(--height)]
       transition-all duration-500
       ease-in-out opacity-0 -z-10
-      border-2
       `}
   >
 
@@ -170,7 +169,7 @@ hiddenText(stype);
 
   #video-earth {
     clip-path: xywh(2% 6px 95% 93% round 50% 50%);
-    transform: skew(3deg);
+    transform: skew(3deg) scale(0.7);
     object-fit: cover;
   }
 
@@ -216,7 +215,6 @@ hiddenText(stype);
     padding: 0.6rem 1.5rem;
     background: rgba(255,255,255,0.08);
     backdrop-filter: blur(8px);
-    border: 1px solid rgba(255,255,255,0.2);
     border-radius: 8px;
     font-weight: 600;
     letter-spacing: 0.5px;
@@ -225,7 +223,6 @@ hiddenText(stype);
 
   .saber-mas-btn:hover {
     background: rgba(255,255,255,0.18);
-    border-color: rgb(253, 211, 96);
     box-shadow: 0 0 20px rgba(253, 211, 96, 0.15);
   }
 
