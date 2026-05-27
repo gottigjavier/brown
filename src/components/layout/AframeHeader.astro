@@ -5,12 +5,12 @@ const textColor = `text-${color}`;
 
 <header
   id="landing-header"
-  class=`py-1 px-2 flex items-center fixed top-0 z-40 ${textColor} overflow-x-hidden overflow-y-hidden`
+  class=`py-1 px-2 flex items-center fixed top-0 z-40 ${textColor} overflow-x-hidden overflow-y-hidden w-full`
 >
   <nav class="logo">
     
       <div id="drone">
-        <img src="/backgrounds/flydrone-solo.gif" alt="gif">
+        <img src="/backgrounds/flydrone-solo.gif" alt="gif" class="drone-float">
       </div>
       <div id="logo">
         <video
@@ -28,12 +28,18 @@ const textColor = `text-${color}`;
       </div>
     
   </nav>
-  <nav class="flex flex-grow justify-end basis-0 md:m-5">
+
+  <!-- Mobile hamburger -->
+  <button id="hamburger" class="sm:hidden z-50 p-2 fixed top-2 right-2" aria-label="Menú">
+    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="text-white"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+
+  <nav class="hidden sm:flex flex-grow justify-end basis-0 md:m-5">
     <ul
       class="nav-menu text-sm [&>li>a]:transition-colors [&>li>a]:duration-500 [&>li>a]:text-current [&>li>a]:font-medium [&>li>a]:py-2"
     >
       <li class="btn-menu">
-        <a href="/inicio">
+        <a href="/inicio" class="saber-mas-btn">
           Saber más
         </a>
       </li>
@@ -53,8 +59,15 @@ const textColor = `text-${color}`;
     </ul>
   </nav>
 
-  <img id="degree-360" src="/icons/360-degrees.png" alt="360 icon">
+  <!-- Mobile menu overlay -->
+  <div id="mobile-menu" class="fixed inset-0 bg-black/95 backdrop-blur-lg z-40 hidden flex-col items-center justify-center gap-8">
+    <a class="text-white text-2xl tracking-wider" href="/inicio">Inicio</a>
+    <a class="text-white text-2xl tracking-wider" href="/galeria">Galería</a>
+    <a class="text-white text-2xl tracking-wider" href="/trabajos">Realizaciones</a>
+    <a class="text-white text-2xl tracking-wider" href="/inicio">Contacto</a>
+  </div>
 
+  <img id="degree-360" src="/icons/360-degrees.png" alt="360 icon">
   
   <div
   id="menu-backdrop"
@@ -120,6 +133,28 @@ const textColor = `text-${color}`;
   }
 };
 hiddenText(stype);
+
+  // Hamburger toggle
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', () => {
+      const isOpen = !mobileMenu.classList.contains('hidden');
+      mobileMenu.classList.toggle('hidden', isOpen);
+      mobileMenu.classList.toggle('flex', !isOpen);
+      hamburger.innerHTML = isOpen
+        ? `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="text-white"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>`
+        : `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="text-white"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`;
+    });
+
+    mobileMenu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        mobileMenu.classList.remove('flex');
+        hamburger.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="text-white"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>`;
+      });
+    });
+  }
 </script>
 
 
@@ -148,6 +183,15 @@ hiddenText(stype);
     left: 13%;
   }
 
+  .drone-float {
+    animation: droneFloat 3s ease-in-out infinite;
+  }
+
+  @keyframes droneFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
   .text-container {
     width: 45%;
     text-align: center;
@@ -165,6 +209,24 @@ hiddenText(stype);
   .text-container:hover {
     transition-duration: 500ms;
     color: rgb(253, 211, 96);
+  }
+
+  .saber-mas-btn {
+    display: inline-block;
+    padding: 0.6rem 1.5rem;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+  }
+
+  .saber-mas-btn:hover {
+    background: rgba(255,255,255,0.18);
+    border-color: rgb(253, 211, 96);
+    box-shadow: 0 0 20px rgba(253, 211, 96, 0.15);
   }
 
   #degree-360 {

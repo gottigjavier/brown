@@ -4,11 +4,25 @@ import Welcome from "../components/indexcomp/Welcome.astro";
 import AframeHeader from "../components/layout/AframeHeader.astro";
 ---
 
-<Layout title="Dron Video 360">
+<Layout title="Dron Video 360 — Fotografía y video 360° con drones">
   <AframeHeader color="white" />
 
   <main>
     <div id="pantalla0">
       <Welcome />
+    </div>
   </main>
+
+  <!-- Vignette overlay for depth -->
+  <div class="vignette-overlay"></div>
 </Layout>
+
+<style>
+  .vignette-overlay {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background: radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.6) 100%);
+  }
+</style>

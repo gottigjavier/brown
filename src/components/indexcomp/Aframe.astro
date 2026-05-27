@@ -1,23 +1,42 @@
 <a-scene
-xr-mode-ui="enabled: false"
-cursor="rayOrigin: mouse; fuse: false" 
-raycaster="objects: .raycastable"
- >
+  xr-mode-ui="enabled: false"
+  cursor="rayOrigin: mouse; fuse: false" 
+  raycaster="objects: .raycastable"
+  loading-screen="enabled: true; backgroundColor: #000000"
+>
   <a-assets>
-    
     <img src="/backgrounds/cascada360.avif" id="sky" />
-             
   </a-assets>
-  
-  <a-sky src="#sky" rotation="0 -80 10" position="-10 -175 -100"></a-sky>
-  
+
+  <a-sky src="#sky" rotation="0 -80 10" animation="property: rotation; to: 0 440 10; loop: true; dur: 90000; easing: linear"></a-sky>
+
   <!-- Hand controls -->
   <a-entity id="leftHand" laser-controls="hand: left" raycaster="objects: .raycastable"></a-entity>
   <a-entity id="rightHand" laser-controls="hand: right" raycaster="objects: .raycastable" line="color: #118A7E"></a-entity>
-  
+
+  <!-- Drag hint text -->
+  <a-entity id="drag-hint" position="0 -1.5 -3" rotation="0 0 0">
+    <a-text value="Arrastrá para mirar 360°" color="#ffffff" align="center" width="6" opacity="0.7" font="mozillavr" animation="property: opacity; to: 0; startEvents: click; dur: 1500; delay: 4000"></a-text>
+  </a-entity>
 </a-scene>
 
 <script src="../../../public/js/aframe160">
+</script>
+
+<script>
+  const hint = document.getElementById('drag-hint');
+  if (hint) {
+    const scene = document.querySelector('a-scene');
+    const hideHint = () => {
+      hint.setAttribute('animation', 'property: opacity; to: 0; dur: 1000');
+      setTimeout(() => hint.setAttribute('visible', 'false'), 1000);
+    };
+    scene?.addEventListener('click', hideHint, { once: true });
+    scene?.addEventListener('touchstart', hideHint, { once: true });
+    scene?.addEventListener('mousedown', hideHint, { once: true });
+    // Also hide after 6s if no interaction
+    setTimeout(hideHint, 6000);
+  }
 </script>
 
 <style>
