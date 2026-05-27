@@ -19,7 +19,12 @@ const textColor = `text-${color}`;
   </ul>
 </nav>
 
-  <nav class="flex flex-grow justify-end basis-0">
+  <!-- Mobile hamburger -->
+  <button id="hamburger" class="sm:hidden z-50 p-2" aria-label="Menú">
+    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="text-white"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+
+  <nav class="hidden sm:flex flex-grow justify-end basis-0">
     <ul
       class="right-nav sm:flex [&>li>a]:transition-colors [&>li>a]:duration-500 [&>li>a]:text-current [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-3 [&>li>a]:pb-1"
     >
@@ -30,6 +35,13 @@ const textColor = `text-${color}`;
     </ul>
   </nav>
 
+  <!-- Mobile menu overlay -->
+  <div id="mobile-menu" class="fixed inset-0 bg-black/95 backdrop-blur-lg z-40 hidden flex-col items-center justify-center gap-8">
+    <a class="text-white text-2xl tracking-wider" href="/">Bienvenida</a>
+    <a class="text-white text-2xl tracking-wider" href="/galeria">Galería</a>
+    <a class="text-white text-2xl tracking-wider" href="/trabajos">Realizaciones</a>
+    <a class="text-white text-2xl tracking-wider" id="open-modal-mobile" href="#">Contacto</a>
+  </div>
   
   <div
   id="menu-backdrop"
@@ -69,6 +81,29 @@ const textColor = `text-${color}`;
       menuBackDrop.style.visibility = "hidden"
     })
   })
+
+  // Hamburger toggle
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', () => {
+      const isOpen = !mobileMenu.classList.contains('hidden');
+      mobileMenu.classList.toggle('hidden', isOpen);
+      mobileMenu.classList.toggle('flex', !isOpen);
+      hamburger.innerHTML = isOpen
+        ? `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="text-white"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>`
+        : `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="text-white"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`;
+    });
+
+    // Close mobile menu on nav click
+    mobileMenu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        mobileMenu.classList.remove('flex');
+        hamburger.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="text-white"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>`;
+      });
+    });
+  }
 </script>
 
 <script is:inline>

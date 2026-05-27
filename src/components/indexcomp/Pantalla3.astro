@@ -32,6 +32,26 @@
     opacity: 0.8;
     
 }
+.nav-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    margin: 0 4px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(4px);
+    transition: background 0.3s;
+}
+.nav-btn:hover {
+    background: rgba(255,255,255,0.25);
+}
+.nav-btn svg {
+    width: 20px;
+    height: 20px;
+    stroke: white;
+}
 `;
         dom.appendChild(style);
 
@@ -43,22 +63,16 @@
         this.aUp3.href = '#pantalla2';
         this.aUp3.id = 'aUp3'
         this.aUp3.title = 'Pantalla Previa';
-        this.aUp3.style = 'margin: 0 5px;'
-        this.imgUp3 = document.createElement('img');
-        this.imgUp3.src = '/icons/up.png';
-        this.imgUp3.width = '25'
-        this.aUp3.appendChild(this.imgUp3);
+        this.aUp3.className = 'nav-btn';
+        this.aUp3.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>`;
         scroll3.appendChild(this.aUp3);
         
         this.aDown3 = document.createElement('a');
         this.aDown3.href = '#pantalla4';
         this.aDown3.id = 'aDown3';
         this.aDown3.title = 'Pantalla Siguiente';
-        this.aDown3.style = 'margin: 0 5px;'
-        this.imgDown3 = document.createElement('img');
-        this.imgDown3.src = '/icons/down.png';
-        this.imgDown3.width = '25'
-        this.aDown3.appendChild(this.imgDown3);
+        this.aDown3.className = 'nav-btn';
+        this.aDown3.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>`;
         scroll3.appendChild(this.aDown3);
 
     }
@@ -84,7 +98,7 @@ customElements.define('scroll3-button', CustomScroll3Button);
       "autorotate",
       "zoom",
       {
-        title: "Inicio Animación",
+        title: "Reiniciar Animación",
         content: "<b>&#x2940;</b>",
         onClick: reset,
       },

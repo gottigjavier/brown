@@ -31,6 +31,26 @@ class CustomScroll2Button extends HTMLElement {
     opacity: 0.8;
     
 }
+.nav-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    margin: 0 4px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(4px);
+    transition: background 0.3s;
+}
+.nav-btn:hover {
+    background: rgba(255,255,255,0.25);
+}
+.nav-btn svg {
+    width: 20px;
+    height: 20px;
+    stroke: white;
+}
 `;
         dom.appendChild(style);
 
@@ -42,22 +62,16 @@ class CustomScroll2Button extends HTMLElement {
         this.aUp2.href = '#pantalla1';
         this.aUp2.id = 'aUp2'
         this.aUp2.title = 'Pantalla Previa';
-        this.aUp2.style = 'margin: 0 5px;'
-        this.imgUp2 = document.createElement('img');
-        this.imgUp2.src = '/icons/up.png';
-        this.imgUp2.width = '25'
-        this.aUp2.appendChild(this.imgUp2);
+        this.aUp2.className = 'nav-btn';
+        this.aUp2.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>`;
         scroll2.appendChild(this.aUp2);
         
         this.aDown2 = document.createElement('a');
         this.aDown2.href = '#pantalla3';
         this.aDown2.id = 'aDown2';
         this.aDown2.title = 'Pantalla Siguiente';
-        this.aDown2.style = 'margin: 0 5px;'
-        this.imgDown2 = document.createElement('img');
-        this.imgDown2.src = '/icons/down.png';
-        this.imgDown2.width = '25'
-        this.aDown2.appendChild(this.imgDown2);
+        this.aDown2.className = 'nav-btn';
+        this.aDown2.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>`;
         scroll2.appendChild(this.aDown2);
 
     }
@@ -84,7 +98,7 @@ customElements.define('scroll2-button', CustomScroll2Button);
         "autorotate",
         "zoom",
         {
-          title: "Inicio Animación",
+          title: "Reiniciar Animación",
           content: "<b>&#x2940;</b>",
           onClick: reset,
         },

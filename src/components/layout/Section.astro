@@ -15,7 +15,6 @@ import Detalles from "../indexcomp/Detalles.astro";
     <Detalles {texto} />
     <footer class="flex flex-col flex-grow justify-end pb-20 text-gray-800">
       <slot name="footer" />
-      <!-- Contidionally load footer: -->
       {showFooterContent && <FooterMenu />}
     </footer>
   </div>
@@ -23,5 +22,6 @@ import Detalles from "../indexcomp/Detalles.astro";
   <div class="absolute top-0 bottom-0 h-full w-full z-10">
     <slot name="background" />
   </div>
-</section>
 
+  <div class="absolute inset-0 z-20 bg-gradient-to-t from-black/80 via-black/10 to-transparent pointer-events-none"></div>
+</section>

@@ -8,6 +8,7 @@ import ModalGoogle from "../components/layout/ModalGoogle.astro";
 import Pantalla2 from "../components/indexcomp/Pantalla2.astro";
 import Pantalla3 from "../components/indexcomp/Pantalla3.astro";
 import LayoutInicio from "../layouts/LayoutInicio.astro";
+import Reveal from "../components/layout/Reveal.astro";
 ---
 
 <LayoutInicio title="Dron Video 360">
@@ -15,28 +16,63 @@ import LayoutInicio from "../layouts/LayoutInicio.astro";
     <LandingHeader color="white" />
   </div>
   <div
+    id="scroll-container"
     class="snap-y snap-mandatory relative w-full h-screen overflow-y-auto overflow-x-hidden scroll-none"
   >
     <div id="pantalla1" class="snap-center">
-      <VideoInicial />
+      <Reveal>
+        <VideoInicial />
+      </Reveal>
     </div>
     <div id="pantalla2" class="snap-center">
-      <Pantalla2 />
+      <Reveal>
+        <Pantalla2 />
+      </Reveal>
     </div>
     <div id="pantalla3" class="snap-center">
-      <Pantalla3 />
+      <Reveal>
+        <Pantalla3 />
+      </Reveal>
     </div>
     <div id="pantalla4" class="snap-center">
-      <BuqueDesdemona />
+      <Reveal>
+        <BuqueDesdemona />
+      </Reveal>
     </div>
     <div id="pantalla5" class="snap-center">
-      <ThompsonPNA />
+      <Reveal>
+        <ThompsonPNA />
+      </Reveal>
     </div>
     <div id="pantalla6" class="snap-center">
-      <FlyDrone />
+      <Reveal>
+        <FlyDrone />
+      </Reveal>
     </div>
     <div class="snap-center">
-      <ModalGoogle />
+      <Reveal>
+        <ModalGoogle />
+      </Reveal>
     </div>
   </div>
 </LayoutInicio>
+
+<script>
+  const container = document.getElementById('scroll-container');
+  const parallaxImgs = document.querySelectorAll('.parallax-img');
+
+  if (container && parallaxImgs.length) {
+    container.addEventListener('scroll', () => {
+      const scrollTop = container.scrollTop;
+      const containerHeight = container.clientHeight;
+      parallaxImgs.forEach((img) => {
+        const rect = img.closest('.landing-section')?.getBoundingClientRect();
+        if (rect) {
+          const offset = (rect.top - containerHeight) / containerHeight;
+          const translateY = Math.max(-15, Math.min(15, offset * 8));
+          img.style.objectPosition = `50% ${50 + translateY}%`;
+        }
+      });
+    });
+  }
+</script>

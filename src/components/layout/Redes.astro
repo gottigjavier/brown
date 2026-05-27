@@ -54,6 +54,33 @@
 
 
 /* CSS pantalla 768px o superior */
+@media (max-width: 768px) and (orientation: portrait) {
+  .asside{
+    margin: 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(8px);
+    padding: 6px 0;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .asside ul {
+    display: flex;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+  }
+  .itemss {
+    width: 36px;
+    font-size: 20px;
+    margin: 0 4px;
+  }
+}
+
 @media (max-width: 460px) and (orientation: portrait) {
   .asside{
   margin: 90vh 0 0 -10px;

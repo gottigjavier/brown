@@ -2,8 +2,10 @@
     <img
         src="/backgrounds/machupichu.avif"
         alt="Background Image"
+        loading="lazy"
     />
 </div>
+<div class="galeria-gradient"></div>
 <p class="galeria-text marq"><i>
     En DRON VIDEO 360, nos apasiona compartir el mundo a través de una
     perspectiva única. <br /> Con tecnología de vanguardia, como drones y
@@ -41,7 +43,7 @@
         padding: 0 3vw 0 3vw;
         font-size: 1.7vw;
         text-wrap:pretty;
-        z-index: 2;
+        z-index: 3;
     }
     .signature {
         position: absolute;
@@ -51,7 +53,7 @@
         font-size: 1.8vw;
         text-wrap:pretty;
         text-align: end;
-        z-index: 2;
+        z-index: 3;
     }
     .galeria-background {
         z-index: 1;
@@ -63,6 +65,15 @@
         padding: 1%;
         width: 100%;
     }
+
+    .galeria-gradient {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.1) 50%, transparent 100%);
+        pointer-events: none;
+    }
+
     .mar{
         opacity: 0.7;
         text-shadow: 1px 1px 1px #242424;
