@@ -89,6 +89,7 @@ const textColor = `text-${color}`;
   const menuBackDrop = document.querySelector("#menu-backdrop") as HTMLElement
 
   listItem.forEach((item) => {
+    if (item.classList.contains('btn-menu')) return;
     item.addEventListener("mouseenter", () => {
       const { left, top, width, height } = item.getBoundingClientRect()
 
