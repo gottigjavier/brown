@@ -3,13 +3,15 @@
   cursor="rayOrigin: mouse; fuse: false" 
   raycaster="objects: .raycastable"
   loading-screen="enabled: true; backgroundColor: #000000"
-  device-orientation-permission-ui="enabled: true"
+  device-orientation-permission-ui="enabled: false"
 >
   <a-assets>
     <img src="/backgrounds/cascada360.avif" id="sky" />
   </a-assets>
 
   <a-sky src="#sky" rotation="0 -80 10" animation="property: rotation; to: 0 440 10; loop: true; dur: 90000; easing: linear"></a-sky>
+
+  <a-camera look-controls="magicWindowTrackingEnabled: false" wasd-controls="enabled: false"></a-camera>
 
   <!-- Hand controls -->
   <a-entity id="leftHand" laser-controls="hand: left" raycaster="objects: .raycastable"></a-entity>
