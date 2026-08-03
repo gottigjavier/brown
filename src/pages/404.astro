@@ -12,7 +12,7 @@ import Layout from "../layouts/Layout.astro";
             <h1>Ups. Parece que lo que intentas ver no existe</h1>
         </div>
         <div class="text but">
-            <a href="/inicio">Ir a Inicio</a>
+            <a href="/">Ir a Inicio</a>
         </div>
 </div>
 </Layout>
@@ -20,7 +20,7 @@ import Layout from "../layouts/Layout.astro";
 <style>
     .cont {
         position: fixed;
-        top: 10vh;
+        top: var(--header-offset);
         left: 35vw;
     }
      .logo {
@@ -43,7 +43,7 @@ import Layout from "../layouts/Layout.astro";
 @media (max-width: 460px) and (orientation: portrait) {
 
     .cont {
-        top: 15vh;
+        top: var(--header-offset);
         left: 10%;
         margin-right: 10%;
         
@@ -55,7 +55,7 @@ import Layout from "../layouts/Layout.astro";
 @media (max-height: 460px) and (orientation: landscape) {
 
     .cont {
-        top: 10vh;
+        top: var(--header-offset);
         left: 30%;
         margin-right: 30%;
         

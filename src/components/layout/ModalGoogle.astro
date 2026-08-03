@@ -30,24 +30,30 @@
       </footer>
   </div>
 
-  <!-- Javascript code -->
+  <!-- Javascript code (AD-005: multi-trigger null-safe — desktop #open-modal, menú mobile #open-modal-mobile, hero #open-modal-hero) -->
   <script>
-      var openButton = document.getElementById('open-modal');
-      var dialog = document.getElementById('dialog');
-      var closeButton = document.getElementById('close');
-      var overlay = document.getElementById('overlay');
+      const dialog = document.getElementById('dialog');
+      const closeButton = document.getElementById('close');
+      const overlay = document.getElementById('overlay');
 
-      // show the overlay and the dialog
-      openButton.addEventListener('click', function () {
-          dialog.classList.remove('hidden');
-          overlay.classList.remove('hidden');
-      });
+      if (dialog && overlay) {
+        // show the overlay and the dialog — bind ANY element with [data-open-modal]
+        document.querySelectorAll('[data-open-modal]').forEach((trigger) => {
+          trigger.addEventListener('click', function (e) {
+            e.preventDefault();
+            dialog.classList.remove('hidden');
+            overlay.classList.remove('hidden');
+          });
+        });
 
-      // hide the overlay and the dialog
-      closeButton.addEventListener('click', function () {
-          dialog.classList.add('hidden');
-          overlay.classList.add('hidden');
-      });
+        // hide the overlay and the dialog
+        if (closeButton) {
+          closeButton.addEventListener('click', function () {
+            dialog.classList.add('hidden');
+            overlay.classList.add('hidden');
+          });
+        }
+      }
   </script>
 
   <style>

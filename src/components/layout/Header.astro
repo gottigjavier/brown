@@ -1,0 +1,160 @@
+---
+import Logo from "./Logo.astro";
+import Redes from "./Redes.astro";
+
+export interface Props {
+  variant?: 'default' | 'minimal';
+  links?: Array<{ href: string; label: string }>;
+  color?: string;
+}
+
+const { variant = 'default', links, color = 'white' } = Astro.props;
+const textColor = `text-${color}`;
+
+// NAV-001 / AD-006 (DEFAULT_ANCHORS): anclas de la landing — labels placeholder a confirmar con copy (6.7).
+// Layout.astro pasa links={DEFAULT_ANCHORS} explícito; este defaultLinks queda como fuente única del componente
+// (mismos datos, consistencia total si Header se usa sin la prop links).
+const defaultLinks = [
+  { href: '/#speech', label: 'Speech' },
+  { href: '/#galeria', label: 'Galería' },
+  { href: '/#trabajos', label: 'Trabajos' },
+];
+const navLinks = links ?? defaultLinks;
+---
+
+<header
+  id="site-header"
+  class={`py-3 px-2 flex items-center fixed top-0 w-full justify-between z-40 ${textColor}`}
+  data-variant={variant}
+>
+  <!-- LEFT: Logo -->
+  <nav class="flex flex-grow justify-start basis-0">
+    <ul class="flex [&>li>a]:inline-block [&>li>a]:px-2 [&>li>a]:py-2">
+      <li id="logo" title="Página de Bienvenida" class="block">
+        <a href="/">
+          <span class="flex"><Logo /></span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Mobile hamburger -->
+  <button id="hamburger" class="sm:hidden z-50 p-2" aria-label="Menú">
+    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="text-white"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+
+  <!-- RIGHT: Desktop nav -->
+  <nav class="hidden sm:flex flex-grow justify-end basis-0">
+    <ul
+      class="right-nav sm:flex [&>li>a]:transition-colors [&>li>a]:duration-500 [&>li>a]:text-current [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-2"
+    >
+      {navLinks.map((link) => (
+        <li class="block">
+          <a href={link.href}>{link.label}</a>
+        </li>
+      ))}
+      <!-- Contact modal trigger (AD-005: data-open-modal; id conservado para compat) -->
+      <li class="block"><a id="open-modal" href="#" data-open-modal>Contacto</a></li>
+    </ul>
+  </nav>
+
+  <!-- Mobile menu overlay -->
+  <div id="mobile-menu" class="fixed inset-0 bg-black/95 backdrop-blur-lg z-40 hidden flex-col items-center justify-center gap-8">
+    {navLinks.map((link) => (
+      <a class="text-white text-2xl tracking-wider" href={link.href}>{link.label}</a>
+    ))}
+    <a class="text-white text-2xl tracking-wider" id="open-modal-mobile" href="#" data-open-modal>Contacto</a>
+  </div>
+
+  <!-- Backdrop hover effect -->
+  <div
+    id="menu-backdrop"
+    class="absolute bg-white/5 backdrop-blur-lg rounded translate-x-[var(--left)] translate-y-[var(--top)] left-0 top-0 w-[var(--width)] h-[var(--height)] transition-all duration-500 ease-in-out opacity-0 -z-10"
+  ></div>
+
+  <Redes />
+</header>
+
+<script>
+  // Backdrop hover effect
+  const listItems = document.querySelectorAll("#site-header li");
+  const menuBackDrop = document.querySelector("#menu-backdrop");
+
+  if (listItems && menuBackDrop) {
+    listItems.forEach((item) => {
+      item.addEventListener("mouseenter", () => {
+        const { left, top, width, height } = item.getBoundingClientRect();
+        menuBackDrop.style.setProperty("--left", `${left}px`);
+        menuBackDrop.style.setProperty("--top", `${top}px`);
+        menuBackDrop.style.setProperty("--width", `${width}px`);
+        menuBackDrop.style.setProperty("--height", `${height}px`);
+        menuBackDrop.style.opacity = "1";
+        menuBackDrop.style.visibility = "visible";
+      });
+      item.addEventListener("mouseleave", () => {
+        menuBackDrop.style.opacity = "0";
+        menuBackDrop.style.visibility = "hidden";
+      });
+    });
+  }
+
+  // Hamburger toggle
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', () => {
+      const isOpen = !mobileMenu.classList.contains('hidden');
+      mobileMenu.classList.toggle('hidden', isOpen);
+      mobileMenu.classList.toggle('flex', !isOpen);
+      hamburger.innerHTML = isOpen
+        ? `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="text-white"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>`
+        : `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="text-white"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`;
+    });
+
+    mobileMenu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        mobileMenu.classList.remove('flex');
+        hamburger.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="text-white"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>`;
+      });
+    });
+  }
+  </script>
+
+  <!-- NAV-002 / ENM-005: scroll suave custom en links de ancla (igual a la flecha ↓ del carrusel).
+       Solo links internos href^="/#" (Speech / Galería / Trabajos). Contacto ([data-open-modal])
+       abre el modal → NO se toca. Si el target no existe en la página actual, se permite la
+       navegación normal (cross-page: ej. clickear Speech desde /galeria → carga /#speech). -->
+  <script type="module">
+    import { smoothScrollTo } from "/js/smoothScroll.js";
+
+    document.querySelectorAll('a[href^="/#"]:not([data-open-modal])').forEach((link) => {
+      link.addEventListener("click", (e) => {
+        const hash = new URL(link.href).hash;
+        if (!hash || hash === "#" || !document.querySelector(hash)) return;
+        e.preventDefault();
+        smoothScrollTo(hash);
+      });
+    });
+  </script>
+
+  <style>
+  .right-nav {
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 460px) and (orientation: portrait) {
+    .right-nav {
+      padding: 5px 0;
+      text-align: end;
+      font-size: 0.6rem;
+    }
+  }
+
+  @media (max-height: 460px) and (orientation: landscape) {
+    .right-nav {
+      margin-top: 0;
+      font-size: 0.6rem;
+    }
+  }
+</style>

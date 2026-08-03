@@ -1,114 +1,19 @@
----
-import Layout from "../layouts/Layout.astro";
-import ModalGoogle from "../components/layout/ModalGoogle.astro";
-import FooterMenu from "../components/layout/FooterMenu.astro";
-import TrabajosHeader from "../components/layout/TrabajosHeader.astro";
-import WorkPic from "../components/galeria/WorkPic.astro";
-import WorkVid from "../components/galeria/WorkVid.astro";
----
-<Layout title="Dron Video 360">
-    <div class="galería-header">
-        <TrabajosHeader color="white"/>
-    </div>
-    <div class="flex p-3 mb-10 justify-center">
-        <h1 class="works-title flex p-3 rounded-lg lg:text-xl shdw">Trabajos Realizados</h1>
-    </div>
-    <div class="flex ms-8 me-2 py-3 justify-center text-center">
-        <p class="works-text flex rounded-lg text-md">
-            Algunos de los trabajos realizados para nuestros clientes.
-        </p>
-    </div>
-    <div class="flex mb-10 justify-center">
-        <p class="works-mini flex rounded-lg text-sm">
-            Click en la imagen para ver más.
-        </p>
-    </div>
-    <div class="flex flex-wrap justify-center thumbnails">
-        <WorkVid 
-        xhref="https://photos.app.goo.gl/htPPdWGrJkNFNggNA"
-        xsrc="/thumbnails/puntanegra.webm"
-        xalt="Trabajos Realizados"
-        xtitle="Trabajos Realizados"
-        xcaption="Cabañas Punta Negra. Villa Pehuenia."      
-        />
-        <WorkVid 
-          xhref="https://photos.app.goo.gl/pzHY6U22ADMLQisp8"
-          xsrc="/thumbnails/fabrega.mp4"
-          xalt="Trabajos Realizados"
-          xtitle="Trabajos Realizados"
-          xcaption="El Castillo. Hotel Fábrega."      
-        />
-        <WorkVid 
-          xhref="https://photos.app.goo.gl/XLcA8MFE8Pqrg2Np9"
-          xsrc="/thumbnails/pirepillan.webm"
-          xalt="Trabajos Realizados"
-          xtitle="Trabajos Realizados"
-          xcaption="Cabañas Piré Pillán. Caviahue."      
-        />
-        <WorkPic 
-        xhref="https://photos.app.goo.gl/uQudYCeFSW8sQLWX7"
-        xsrc="/thumbnails/sadop.avif"
-        xalt="Trabajos Realizados"
-        xtitle="Trabajos Realizados"
-        xcaption="SADOP Hotel. Cosquín."      
-        />
-        <WorkPic 
-        xhref="https://photos.app.goo.gl/svepbXiZDoRzXbbX9"
-        xsrc="/thumbnails/ansenuza.avif"
-        xalt="Trabajos Realizados"
-        xtitle="Trabajos Realizados"
-        xcaption="Ansenuza. Hotel - Casino - Spa."      
-        />
-        <WorkPic 
-        xhref="https://photos.app.goo.gl/otHyMsjCL42kpGiu7"
-        xsrc="/thumbnails/panaholma.avif"
-        xalt="Trabajos Realizados"
-        xtitle="Trabajos Realizados"
-        xcaption="Terraza de Panaholma. Cabañas."      
-        />
-        <WorkPic 
-        xhref="https://www.youtube.com/channel/UCSzxKL1PYl2HHQ6SXOmHLew"
-        xsrc="/icons/dronvideoearth.png"
-        xalt="Trabajos Realizados"
-        xtitle="Trabajos Realizados"
-        xcaption="Recorridos Turísticos."      
-        />
-    </div>
-    <div>
-        <ModalGoogle />
-    </div>
-    <div class="bottom-0 h-full w-full z-10">
-        <div class="z-30 relative h-full flex flex-col mb-5 mt-5">
-            <footer class="flex flex-col flex-grow justify-end pb-10">
-                <FooterMenu color = white/>
-            </footer>
-        </div>
-    </div>
-</Layout>
-
-<style>
-    .thumbnails {
-        margin-left: 1.5vw;
-    }
-    .works-title {
-        background-color: rgb(21, 32, 32);
-    }
-    .works-text p {
-        background-color: rgb(188, 194, 194);
-        text-wrap: pretty;
-    }
-    .works-mini {
-        background-color: rgb(188, 194, 194);
-        text-wrap: pretty;
-        color: black;
-        padding-inline: 5px;
-    }
-    .shdw {
-        box-shadow: 0 8px 16px 0 rgba(253, 253, 253, 0.2), 0 6px 20px 0 rgba(128, 128, 128, 0.699);
-    }
-
-    .shdw:hover {
-        box-shadow: 0 12px 16px 0 rgba(182, 182, 182, 0.24), 0 17px 50px 0 rgba(141, 119, 119, 0.19);
-    }
-    
-</style>
+<!-- Stub de redirección (AD-003): /trabajos → /#trabajos
+Deno Deploy file_server no expone reglas de redirect ni _redirects;
+el meta refresh es el mecanismo universal de hosts estáticos.
+El fragment scrollea al ancla porque la landing es HTML server-rendered. -->
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="refresh" content="0; url=/#trabajos" />
+    <link rel="canonical" href="/#trabajos" />
+    <title>Dron Video 360</title>
+  </head>
+  <body>
+    <p style="font-family: system-ui, sans-serif; text-align: center; margin-top: 2rem">
+      <a href="/#trabajos">Ir a trabajos</a>
+    </p>
+  </body>
+</html>

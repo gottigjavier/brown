@@ -1,8 +1,8 @@
 ---
-const { xhref, xsrc, xalt, xtext, xcaption } = Astro.props;
+const { xhref, xsrc, xalt, xtext, xcaption, class: className } = Astro.props;
 ---
 
-<div class="thumbnail shdw">
+<div class={`thumbnail shdw ${className ?? ""}`}>
 
     <figure>
         <figcaption>

@@ -590,3 +590,24 @@
 }
 
 /*# sourceMappingURL=/sm/6a77317b8a7dea8d2c37580a9a4103e4b221d92add808a0f2e4393979982d66a.map */
+
+/* ========================================
+   OVERRIDES: brown-landing dark theme
+   Reemplaza fondos blancos por defecto
+   ======================================== */
+
+.psv-container {
+  background: radial-gradient(#1a1a24, #0a0a0f) !important;
+}
+
+.psv-overlay {
+  background: radial-gradient(#1a1a24, #0a0a0f) !important;
+}
+
+.psv-overlay-title {
+  color: #f1f5f9 !important;
+}
+
+.psv-overlay-text {
+  color: #94a3b8 !important;
+}

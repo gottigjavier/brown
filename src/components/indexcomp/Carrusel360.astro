@@ -1,0 +1,668 @@
+---
+// Carrusel360.astro — hero 360° MIXTO: UN SOLO Photo Sphere Viewer 5.8.2 para los panoramas (AD-001)
+// + capa de media plana (video/foto) para slides no-360 (wing-copy: faro-brasil, islote,
+// buque-desdemona, thompson).
+// Spec: CAR-001..010, PER-001/002, MOB-001/002 | Design: AD-001/002/007/010/011
+//
+// - UN solo Viewer; cambio de slide pano = setPanorama sobre la MISMA instancia (CAR-001/003)
+// - Slides no-360 (video/fotos planas): se muestran en #carrusel-media (z-index 2) por encima del
+//   viewer — PSV solo renderiza equirect, un video o foto plana NO puede ir por setPanorama.
+// - Navegación flechas + dots + teclado ←/→ (foco dentro del hero); SIN swipe (CAR-004/005)
+// - Preload bajo demanda: room111 tras el primer load; cascada360 SOLO idle desde slide 1 (CAR-006)
+// - Cache en memoria por defecto de core.js (maxItems 10 / ttl 10 min) (CAR-007)
+// - Sin animación de entrada: el autorotate arranca directo en ready y tras cada setPanorama
+//   (la intro con fisheye 2→0 y fov 130→90 se eliminó por pedido del usuario)
+// - slot para el overlay del hero (headline+subtitle vía heroCopy en index.astro — HER-001; sin CTA tras ENM-003)
+// - ENM-004/006: flecha ↓ tipo V (forma V abierta), 2x tamaño original, opacity 0.7, contorno blur
+//   cuadrado con esquinas redondeadas (como .carrusel-btn). Alineada verticalmente con .carrusel-controls
+//   por defecto; si hay overlap (mobile portrait / pantallas estreitas), JS alinea la flecha con el
+//   .carrusel-caption via clase --caption-aligned (bottom:100px/150px, no 60% top).
+//   scroll de UNA PANTALLA hacia abajo (window.scrollBy: viewport height, behavior smooth).
+//   reduced-motion delega al browser; scroll manual cancela la animación nativamente.
+// - MOB-003: en pantallas < 457px, .carrusel-controls se compactan (íconos 36px, 3 dots visibles
+//   centrados: activo+prev+next). Breakpoint: 457px (max-width:456px).
+---
+
+<div
+  id="carrusel-hero"
+  class="carrusel"
+  role="group"
+  aria-roledescription="carrusel"
+  aria-label="Carrusel de experiencias 360 y material audiovisual"
+  tabindex="-1"
+>
+  <div id="carrusel-360" class="carrusel-viewer"></div>
+
+  <!-- Media plana del carrusel MIXTO (wing-copy): video/fotos no-360, superpuestas al viewer.
+       Invisible mientras el slide activo es pano (hidden). PSV queda vivo debajo. -->
+  <div id="carrusel-media" class="carrusel-media" hidden>
+    <video id="carrusel-video" muted playsinline loop preload="none"></video>
+    <img id="carrusel-img" alt="" hidden />
+  </div>
+
+  <!-- Caption CUSTOM del slide activo (AD-007): overlay propio, no el caption del navbar PSV -->
+  <div id="carrusel-caption" class="carrusel-caption" aria-live="polite"></div>
+
+  <!-- Overlay del hero vía slot (HER-001/AD-007): index.astro inyecta headline+subtítulo.
+       ENM-003 quitó CTA y features del overlay. pointer-events:none para que el drag del viewer
+       siga funcionando; si se vuelve a agregar contenido interactivo, DEBE re-habilitar
+       pointer-events:auto sobre ese contenido. -->
+  <div class="carrusel-overlay"><slot /></div>
+
+  <!-- Controles: flechas + dots (CAR-005/009). Los dots se generan en runtime desde slides[]
+       para mantener UNA única fuente de datos (AD-008). -->
+  <div class="carrusel-controls">
+    <button type="button" id="carrusel-prev" class="carrusel-btn" aria-label="Slide anterior">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <div id="carrusel-dots" class="carrusel-dots"></div>
+    <button type="button" id="carrusel-next" class="carrusel-btn" aria-label="Slide siguiente">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+  </div>
+
+  <!-- Flecha ↓ scroll una pantalla — elemento PROPIO del carrusel (ya no vive en el navbar PSV:
+       la barra de control 360 se eliminó por completo; la flecha es un botón independiente,
+       pegado al borde derecho y centrado verticalmente, visible en TODOS los slides). -->
+  <button
+    type="button"
+    id="carrusel-scroll-down"
+    class="carrusel-scroll-down"
+    aria-label="Bajar una pantalla"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 5 L12 15 L18 5"/></svg>
+  </button>
+</div>
+
+<script type="module">
+  import { Viewer } from "@photo-sphere-viewer/core";
+  import { AutorotatePlugin } from "@photo-sphere-viewer/autorotate-plugin";
+
+  // slides[] = única fuente de datos del carrusel (CAR-002 / AD-001 / AD-008).
+  // slides[0] = hotel-ext111 SIEMPRE al montar (CAR-002 / AC-PER-001);
+  // slides[2] = cascada360 (2.5MB) SOLO bajo demanda (CAR-006).
+  const slides = [
+    { type: "pano", src: "/backgrounds/hotel-ext111.avif", caption: "Turismo 360º", position: { yaw: 0, pitch: 0 }, zoom: 50 },
+    { type: "pano", src: "/backgrounds/room111.avif", caption: "Interiores 360º", position: { yaw: 0.35, pitch: 0 }, zoom: 50 },
+    { type: "pano", src: "/backgrounds/cascada360.avif", caption: "Naturaleza 360º", position: { yaw: 0, pitch: 0 }, zoom: 45 },
+    // Carrusel MIXTO (wing-copy): NO son panoramas → media plana en #carrusel-media.
+    // Orden: los 3 panoramas NO se tocan (decisión: mantener hotel-ext111 primero por LCP).
+    { type: "video", src: "/backgrounds/faro-brasil.mp4", caption: "Aéreas 4K" },
+    { type: "pic", src: "/backgrounds/islote.avif", caption: "Turísticas 4K" },
+    { type: "pic", src: "/backgrounds/buque-desdemona.avif", caption: "Artísticas 4K" },
+    { type: "pic", src: "/backgrounds/thompson.avif", caption: "Nocturnas 4K" },
+  ];
+
+  const container = document.getElementById("carrusel-360");
+  const scrollDownBtn = document.getElementById("carrusel-scroll-down");
+  const heroEl = document.getElementById("carrusel-hero");
+  const captionEl = document.getElementById("carrusel-caption");
+  const dotsContainer = document.getElementById("carrusel-dots");
+  const prevBtn = document.getElementById("carrusel-prev");
+  const nextBtn = document.getElementById("carrusel-next");
+  const mediaLayer = document.getElementById("carrusel-media");
+  const mediaVideo = document.getElementById("carrusel-video");
+  const mediaImg = document.getElementById("carrusel-img");
+
+  let viewer = null;
+  let currentSlide = 0; // hotel-ext111 SIEMPRE al montar (AC-CAR-003)
+  let transitioning = false; // evita encolar saltos durante una transición (CAR-003)
+  let idleTimer = null;
+  let dots = [];
+
+  // Wrap cíclico 0..n-1; no crashea con índices fuera de rango (CAR-002 S2)
+  function wrapIndex(index) {
+    return ((index % slides.length) + slides.length) % slides.length;
+  }
+
+  function updateControls() {
+    captionEl.textContent = slides[currentSlide].caption;
+    // MOB-003: pantallas < 457px → modo compacto: solo 3 dots visibles (activo+prev+next)
+    const isCompact = window.innerWidth < 457;
+    const prevIdx = wrapIndex(currentSlide - 1);
+    const nextIdx = wrapIndex(currentSlide + 1);
+    dotsContainer.classList.toggle("carrusel-dots--compact", isCompact);
+    dots.forEach((dot, i) => {
+      const active = i === currentSlide;
+      dot.classList.toggle("is-active", active);
+      if (active) dot.setAttribute("aria-current", "true");
+      else dot.removeAttribute("aria-current");
+      // compacto: ocultar dots que no son activo/prev/next
+      const visible = !isCompact || i === currentSlide || i === prevIdx || i === nextIdx;
+      dot.classList.toggle("carrusel-dot--hidden", !visible);
+    });
+  }
+
+  // cascada360 (2.5MB): SOLO bajo demanda — idle ~3s sin interacción desde el slide 1 (AD-011)
+  function scheduleIdlePreload() {
+    clearTimeout(idleTimer);
+    if (currentSlide !== 1) return;
+    idleTimer = setTimeout(() => {
+      if (viewer) viewer.textureLoader.preloadPanorama(slides[2].src).catch(() => {});
+    }, 3000);
+  }
+
+  function cancelIdle() {
+    clearTimeout(idleTimer);
+  }
+
+  // Media plana (slides no-360): oculta la capa y resetea el video (no gasta recursos al volver)
+  function hideMedia() {
+    if (mediaLayer.hidden) return;
+    mediaVideo.pause();
+    mediaVideo.currentTime = 0;
+    mediaLayer.hidden = true;
+  }
+
+  // Slides no-360: video/foto en #carrusel-media superpuesta al viewer (carrusel mixto)
+  function showMedia(slide, next) {
+    mediaLayer.hidden = false;
+    if (slide.type === "video") {
+      mediaImg.hidden = true;
+      mediaVideo.hidden = false;
+      if (mediaVideo.getAttribute("src") !== slide.src) {
+        // Lazy: el video (3.3MB) SOLO se descarga al activar su slide (PER-001)
+        mediaVideo.setAttribute("src", slide.src);
+      }
+      const p = mediaVideo.play();
+      if (p) p.catch(() => {});
+    } else {
+      mediaVideo.pause();
+      mediaVideo.currentTime = 0;
+      mediaVideo.hidden = true;
+      mediaImg.hidden = false;
+      if (mediaImg.getAttribute("src") !== slide.src) {
+        mediaImg.setAttribute("src", slide.src);
+        mediaImg.setAttribute("alt", slide.caption);
+      }
+    }
+    currentSlide = next;
+    transitioning = false;
+    updateControls();
+    preloadNextMedia();
+  }
+
+  // Precarga el slide media SIGUIENTE SOLO si es foto chica (≤~240KB); el video (3.3MB)
+  // NUNCA se precarga (PER-001); los panoramas los maneja PSV (CAR-006: room111 / cascada idle).
+  function preloadNextMedia() {
+    const nextSlide = slides[wrapIndex(currentSlide + 1)];
+    if (nextSlide.type === "pic") {
+      const img = new Image();
+      img.src = nextSlide.src;
+    }
+  }
+
+  // Cambio de slide: pano → setPanorama sobre la MISMA instancia (CAR-003 / AC-CAR-005/006);
+  // no-360 → media plana en #carrusel-media (carrusel mixto)
+  function goTo(index) {
+    const next = wrapIndex(index);
+    if (next === currentSlide || transitioning || !viewer) return;
+    cancelIdle();
+    // Al navegar se frena la rotación automática; si el destino es pano, el .then del
+    // setPanorama la vuelve a arrancar al terminar la transición. En media (video/foto) NO
+    // rota — es contenido plano.
+    viewer.getPlugin(AutorotatePlugin)?.stop();
+    transitioning = true;
+    const slide = slides[next];
+    if (slide.type === "pano") {
+      hideMedia();
+      viewer
+        .setPanorama(slide.src, {
+          transition: true,
+          position: slide.position,
+          zoom: slide.zoom,
+          caption: slide.caption,
+        })
+        .then(() => {
+          currentSlide = next;
+          transitioning = false;
+          updateControls();
+          scheduleIdlePreload();
+          // Sin intro de entrada (eliminada por pedido del usuario): la rotación automática
+          // vuelve a arrancar al terminar la transición del panorama.
+          viewer.getPlugin(AutorotatePlugin)?.start();
+        })
+        .catch(() => {
+          // Error de descarga: se mantiene el slide anterior visible y la UI operativa (CAR-003 S2)
+          transitioning = false;
+          updateControls();
+        });
+    } else {
+      showMedia(slide, next);
+    }
+  }
+
+  function mount() {
+    viewer = new Viewer({
+      container,
+      panorama: slides[0].src,
+      caption: slides[0].caption,
+      // Sin animación de entrada (eliminada por pedido del usuario): el slide 0 se muestra
+      // directo en su posición/zoom final, sin fisheye (2→0) ni fov amplio (130→90).
+      defaultPitch: slides[0].position.pitch,
+      defaultYaw: slides[0].position.yaw,
+      defaultZoomLvl: slides[0].zoom,
+      // Barra de control 360 ELIMINADA (decisión del usuario): navbar:false → PSV no crea el
+      // navbar (core.js: navbar===false → null). Sin autorotate/zoom/fullscreen/caption de barra.
+      // El zoom por rueda del ratón (mousewheel:true, default del core) sigue activo — es del
+      // viewer, no de la barra. La flecha ↓ (scroll una pantalla) es un botón PROPIO del carrusel.
+      navbar: false,
+      plugins: [
+        [
+          AutorotatePlugin,
+          {
+            // autostartOnIdle:true + delay 2000 → reanudación post-interacción NATIVA del core:
+            // cualquier StopAllEvent (drag, dblclick, wheel) detiene el plugin y el __beforeRender
+            // lo REANUDA 2s después del fin de la inercia (idleTime se resetea al terminar la
+            // inercia, core.js). El bug del slide 0 (commit 970501d) era la intro pisando el
+            // roll de un arranque temprano; SIN intro ya no hay nada que pise la rotación, así
+            // que el mecanismo original del core es correcto y determinista. El arranque al
+            // cargar y tras cada setPanorama es MANUAL (start() en ready / .then).
+            autostartDelay: 2000,
+            autostartOnIdle: true,
+            autorotatePitch: 0,
+          },
+        ],
+      ],
+    });
+
+    viewer.addEventListener(
+      "ready",
+      () => {
+        // Preload del slide ADYACENTE (room111, 85KB) — permitido (CAR-006: "a lo sumo room111").
+        // API PSV 5.8.2: preloadPanorama vive en TextureLoader (viewer.textureLoader),
+        // no en el Viewer ni en DataHelper.
+        viewer.textureLoader.preloadPanorama(slides[1].src).catch(() => {});
+        // Sin animación de entrada (eliminada por pedido del usuario): el autorotate arranca
+        // directo cuando la primera textura está lista (evento "ready" = pano renderizado).
+        // La reanudación tras interacción la cubre autostartOnIdle (config del plugin).
+        viewer.getPlugin(AutorotatePlugin)?.start();
+      },
+      { once: true }
+    );
+
+    // "A full": la interacción NO detiene la rotación de forma permanente — el core la pausa
+    // durante el drag (StopAllEvent) y autostartOnIdle (config del plugin) la REANUDA 2s
+    // después del fin de la inercia (el core resetea el idleTime al terminar la inercia).
+    document.addEventListener(
+      "touchstart",
+      () => {
+        cancelIdle();
+      },
+      { passive: true }
+    );
+
+    // Dots generados en runtime desde slides[] (única fuente de datos)
+    slides.forEach((slide, i) => {
+      const dot = document.createElement("button");
+      dot.type = "button";
+      dot.className = "carrusel-dot";
+      dot.setAttribute("aria-label", `Ir al slide ${i + 1} de ${slides.length}`);
+      dot.addEventListener("click", () => goTo(i));
+      dotsContainer.appendChild(dot);
+      dots.push(dot);
+    });
+
+    prevBtn.addEventListener("click", () => goTo(currentSlide - 1));
+    nextBtn.addEventListener("click", () => goTo(currentSlide + 1));
+
+    // ←/→ SOLO con foco dentro del hero (AC-CAR-011): no roba el scroll horizontal de la página
+    heroEl.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        goTo(currentSlide - 1);
+      } else if (e.key === "ArrowRight") {
+        e.preventDefault();
+        goTo(currentSlide + 1);
+      }
+    });
+
+    updateControls();
+
+    // Flecha ↓ independiente (fuera del navbar PSV, que ya no existe): scroll una pantalla.
+    // stopPropagation: el listener va SOLO en el botón; el drag del viewer sigue funcionando.
+    if (scrollDownBtn) {
+      scrollDownBtn.setAttribute("aria-label", "Bajar una pantalla");
+
+      // ENM-005: scroll de una pantalla hacia abajo (window.scrollBy viewport height, smooth).
+      // El browser respeta prefers-reduced-motion (degrada smooth a salto) y cancela la
+      // animación nativamente ante scroll manual (wheel/touch) — no pelea con el viewer.
+      scrollDownBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        window.scrollBy({ top: window.innerHeight, behavior: "smooth" });
+      });
+
+      // Nicety: ocultar la flecha cuando el hero queda <20% visible (al aterrizar en #speech
+      // queda ~15% → no flota sobre Speech). Barato (un observer); no toca la config del
+      // navbar ni la captura de eventos.
+      if ("IntersectionObserver" in window) {
+        const heroObserver = new IntersectionObserver(
+          (entries) => {
+            const visible = entries[0]?.isIntersecting ?? true;
+            scrollDownBtn.classList.toggle("carrusel-scroll-down--hidden", !visible);
+          },
+          { threshold: 0.2 }
+        );
+        heroObserver.observe(heroEl);
+      }
+
+      // Posición dinámica: por defecto la flecha está alineada verticalmente con .carrusel-controls
+      // (bottom CSS). Si hay overlap (controles centrados chocan con el botón derecha), JS agrega
+      // .carrusel-scroll-down--caption-aligned → se alinea con .carrusel-caption (100px/150px),
+      // no con 60% top, para no superponerse al texto del hero centrado. También recheckea
+      // modo compacto (MOB-003) al resize/orientationchange.
+      function handleLayoutChange() {
+        updateControls(); // recheckea compact dots según ancho
+        const controls = document.querySelector(".carrusel-controls");
+        if (!controls) return;
+        const cRect = controls.getBoundingClientRect();
+        const bRect = scrollDownBtn.getBoundingClientRect();
+        // AABB horizontal overlap: los controles centrados chocan con el botón derecha
+        const overlaps = cRect.right > bRect.left && bRect.right > cRect.left;
+        scrollDownBtn.classList.toggle("carrusel-scroll-down--caption-aligned", overlaps);
+      }
+      handleLayoutChange();
+      window.addEventListener("resize", handleLayoutChange);
+      window.addEventListener("orientationchange", handleLayoutChange);
+    }
+  }
+
+  // Montaje diferido (AD-010): deja pintar el overlay/headline antes de ejecutar three.js (LCP)
+  function deferMount() {
+    const run = () => {
+      try {
+        mount();
+      } catch (err) {
+        // CAR-010: un error del viewer NO rompe el resto de la página
+        console.error("[carrusel] error al montar el viewer:", err);
+      }
+    };
+    if ("requestIdleCallback" in window) {
+      window.requestIdleCallback(run, { timeout: 400 });
+    } else {
+      setTimeout(run, 400);
+    }
+  }
+
+  deferMount();
+</script>
+
+<!-- is:global: los dots se crean en RUNTIME desde slides[] (única fuente de datos) y no
+     llevan el hash de scope de Astro; los estilos scoped no les aplicarían. Las clases
+     carrusel-* son exclusivas de este componente → global sin riesgo de colisión. -->
+<style is:global>
+  .carrusel {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh; /* reserva 100vh desde el primer paint (PER-002): sin CLS al montar */
+    overflow: hidden; /* sin scroll horizontal del hero (AC-MOB-001) */
+    background: var(--color-surface, #0a0a0f);
+  }
+
+  .carrusel-viewer {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* La barra de control 360 se ELIMINÓ vía config (navbar:false), pero PSV instancia el
+     contenedor del navbar SIEMPRE (core.js: this.navbar = new Navbar(this)). Con navbar:false
+     queda un div .psv-navbar VACÍO, display:flex de 40px al pie, con psv--capture-event →
+     se ve como franja y ROBA drag/wheel del viewer en esa zona. display:none lo neutraliza. */
+  #carrusel-360 .psv-navbar {
+    display: none !important;
+  }
+
+  .carrusel-caption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 100px;
+    z-index: 5;
+    text-align: center;
+    color: var(--color-accent, #fbbf24);
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
+    pointer-events: none;
+  }
+
+  .carrusel-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none; /* el drag del viewer (mirar) sigue funcionando a través del overlay */
+  }
+
+  .carrusel-controls {
+    position: absolute;
+    left: 50%;
+    bottom: 32px;
+    transform: translateX(-50%);
+    z-index: 6;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .carrusel-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px; /* ≥ 44×44 mobile (AC-CAR-010 / AC-MOB-002) */
+    height: 44px;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: #ffffff;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s, border-color 0.3s;
+  }
+
+  .carrusel-btn:hover {
+    background: rgba(251, 191, 36, 0.18);
+    border-color: var(--color-accent, #fbbf24);
+    color: var(--color-accent, #fbbf24);
+  }
+
+  .carrusel-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .carrusel-btn:focus-visible,
+  .carrusel-dot:focus-visible {
+    outline: 2px solid var(--color-accent, #fbbf24);
+    outline-offset: 2px;
+  }
+
+  .carrusel-dots {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .carrusel-dot {
+    position: relative;
+    width: 44px; /* hit area 44×44 (AC-CAR-010) */
+    height: 44px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+  }
+
+  .carrusel-dot::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.45);
+    transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+  }
+
+  .carrusel-dot:hover::before {
+    background: rgba(251, 191, 36, 0.8);
+  }
+
+  .carrusel-dot.is-active::before {
+    background: var(--color-accent, #fbbf24);
+    transform: scale(1.25);
+    box-shadow: 0 0 10px rgba(251, 191, 36, 0.6);
+  }
+
+  /* Flecha ↓ "más contenido abajo" — botón PROPIO del carrusel (la barra de control 360 PSV se
+     eliminó: navbar:false). Por defecto alineada verticalmente con .carrusel-controls (z-index 6,
+     igual que los controles). Si hay overlap, JS agrega .carrusel-scroll-down--caption-aligned →
+     se alinea con .carrusel-caption (bottom:100px/150px), no con 60% top. Contorno blur cuadrado
+     con esquinas redondeadas (mismo estilo que .carrusel-btn). */
+  .carrusel-scroll-down {
+    position: absolute;
+    right: 16px;
+    bottom: 32px; /* alineado verticalmente con .carrusel-controls */
+    z-index: 6;
+    width: 60px;
+    height: 60px;
+    opacity: 0.7;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.08); /* contorno blur como .carrusel-btn */
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 10px; /* cuadrado con esquinas redondeadas */
+    cursor: pointer;
+    transition: color 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+  }
+
+  .carrusel-scroll-down:hover {
+    color: var(--color-accent, #fbbf24);
+    background: rgba(251, 191, 36, 0.15);
+  }
+
+  .carrusel-scroll-down:focus-visible {
+    outline: 2px solid var(--color-accent, #fbbf24);
+    outline-offset: 2px;
+  }
+
+  .carrusel-scroll-down svg {
+    width: 40px;
+    height: 40px;
+    animation: carrusel-scroll-bounce 1.8s ease-in-out infinite;
+  }
+
+  .carrusel-scroll-down--hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+  }
+
+  @keyframes carrusel-scroll-bounce {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(4px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .carrusel-scroll-down svg {
+      animation: none;
+    }
+  }
+
+  /* Carrusel MIXTO (wing-copy): capa de media plana (video/foto) superpuesta al viewer.
+     El PSV queda vivo debajo (z-index 2 < overlay 4 / caption 5 / controles 6).
+     [hidden] aplica display:none — la regla explícita con !important garantiza que el
+     elemento inactivo (img o video) no se vea aunque la regla base ponga display:block. */
+  .carrusel-media {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: var(--color-surface, #0a0a0f);
+  }
+
+  .carrusel-media video,
+  .carrusel-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .carrusel-media [hidden] {
+    display: none !important;
+  }
+
+  /* Alineada con .carrusel-caption cuando JS detecta overlap (desktop: bottom:100px).
+     Usa bottom (NO top/transform) para heredar el offset del caption. Va ANTES del
+     @media mobile: el override mobile (bottom:150px) debe ganar por source-order. */
+  .carrusel-scroll-down--caption-aligned {
+    top: auto;
+    bottom: 100px;
+    margin-top: 0;
+  }
+
+  /* MOB-003: pantallas < 457px — .carrusel-controls no caben (7 dots × 44px + 2 btns = 444px).
+     Compacta: íconos 36px, dots 36px, solo 3 visibles (JS .carrusel-dot--hidden). */
+  @media (max-width: 456px) {
+    .carrusel-btn {
+      width: 36px;
+      height: 36px;
+    }
+    .carrusel-btn svg {
+      width: 16px;
+      height: 16px;
+    }
+    .carrusel-dot {
+      width: 36px;
+      height: 36px;
+    }
+    .carrusel-dot::before {
+      width: 8px;
+      height: 8px;
+    }
+    .carrusel-dots--compact .carrusel-dot--hidden {
+      display: none;
+    }
+    .carrusel-scroll-down {
+      width: 52px;
+      height: 52px;
+    }
+    .carrusel-scroll-down svg {
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  /* Mobile portrait: controles, caption y flecha por encima de la barra inferior de Redes (MOB-001) */
+  @media (max-width: 768px) and (orientation: portrait) {
+    .carrusel-controls {
+      bottom: 84px;
+    }
+    .carrusel-caption {
+      bottom: 150px;
+    }
+    .carrusel-scroll-down {
+      bottom: 84px; /* alineado con .carrusel-controls en mobile */
+    }
+    /* overlap → alineada con el caption (150px) en mobile portrait */
+    .carrusel-scroll-down--caption-aligned {
+      bottom: 150px;
+    }
+  }
+</style>

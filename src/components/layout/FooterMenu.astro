@@ -1,18 +1,153 @@
 ---
-const { fcolor } = Astro.props;
+// FOO-001 / AD-008: footer multi-columna desde UNA fuente de datos (footerColumns[]).
+// ENM-001: unificación de contacto al Form A (ModalGoogle del shell) — un link puede
+// ser un trigger modal (`type: 'modal'` → `[data-open-modal]`) en vez de un link de página.
+// Placeholders aprobables — el copy final entra como cambio de strings (6.7, FOO-001 S1).
+type FooterLink =
+  | { label: string; href: string }
+  | { label: string; type: 'modal' };
+
+const footerColumns: { title: string; links: FooterLink[] }[] = [
+  {
+    title: 'Navegación', // FOO-003: anclas consistentes con el header (NAV-001)
+    links: [
+      { label: 'Speech', href: '/#speech' },
+      { label: 'Galería', href: '/#galeria' },
+      { label: 'Trabajos', href: '/#trabajos' },
+    ],
+  },
+  {
+    title: 'Contacto',
+    links: [
+      { label: 'WhatsApp', href: 'https://wa.me/5493436109763?text=Hola. Quisiera%20m%C3%A1s%20informaci%C3%B3n' },
+      { label: 'Mail', href: 'mailto:dronvideo360.ar@gmail.com?subject=DRON%20VIDEO%20360.%20Contacto' },
+      // ENM-001: abre ModalGoogle (Form A) — /contacto eliminado (ENM-002)
+      { label: 'Contacto', type: 'modal' },
+    ],
+  },
+  {
+    title: 'Redes',
+    links: [
+      { label: 'Instagram', href: 'https://www.instagram.com/dronvideo360/' },
+      { label: 'Facebook', href: 'https://www.facebook.com/profile.php?id=61558069982222' },
+      { label: 'YouTube', href: 'https://www.youtube.com/@dronvideo360/videos' },
+      { label: 'TikTok', href: 'https://www.tiktok.com/@dronvideo360' },
+    ],
+  },
+  {
+    title: 'Legal', // FOO-002: /legales ruta externa con layout unificado
+    links: [{ label: 'Privacidad y legal', href: '/legales' }],
+  },
+];
+
+const copyright = 'DRON VIDEO 360 © 2024';
+const { fcolor = 'white' } = Astro.props;
 const ftextColor = `text-${fcolor}`;
 ---
 <footer
-	class=`py-1 px-10 flex justify-center items-center absolute bottom-0 w-full z-40 ${ftextColor} text-xs font-medium`
-	id="landing-footer"
+  class={`w-full z-40 ${ftextColor} text-xs font-medium`}
+  id="landing-footer"
 >
-<nav>
-	<ul class="flex [&>li>a]:inline-block [&>li>a]:px-2 [&>li>a]:py-0">
-	  <li class="text-center"><a href="mailto:dronvideo360.ar@gmail.com?subject=DRON%20VIDEO%20360.%20Contacto">DRON VIDEO 360 © 2024</a></li>
-	  <li class="text-center"><a href="/legales">Privacidad y legal</a></li>
-	  <!-- <li><a class="" href="https://wa.me/5493436109763?text=Hola. Quisiera más información" target="_blank">
-		<img class="whatsapp" src="whatsapp.png" width="20">
-	  </a></li> -->
-	</ul>
-  </nav>
+  <div class="footer-cols">
+    {
+      footerColumns.map((col) => (
+        <div class="footer-col">
+          <h2 class="footer-title">{col.title}</h2>
+          <ul>
+            {col.links.map((link) => (
+              <li>
+                {link.type === 'modal' ? (
+                  // ENM-001: trigger del ModalGoogle del shell (Form A unificado)
+                  <a href="#" data-open-modal>{link.label}</a>
+                ) : (
+                  <a href={link.href} target={link.href.startsWith('http') ? '_blank' : undefined} rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}>{link.label}</a>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </div>
+  <div class="footer-copy">
+    <a href="mailto:dronvideo360.ar@gmail.com?subject=DRON%20VIDEO%20360.%20Contacto">{copyright}</a>
+  </div>
 </footer>
+
+<style>
+  #landing-footer {
+    background: var(--color-surface-card, #1a1a24);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    /* ⚠️ discovery #290: posicionamiento ESTÁTICO (flow) — el footer viejo era absolute bottom-0 y flotaba sobre el contenido */
+    position: static;
+    padding: 2.5rem 1.5rem 1.5rem;
+  }
+
+  .footer-cols {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .footer-col h2.footer-title {
+    margin: 0 0 0.75rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-muted, #64748b);
+    font-weight: 600;
+  }
+
+  .footer-col ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .footer-col a {
+    display: inline-block;
+    color: var(--color-text-secondary, #94a3b8);
+    text-decoration: none;
+    transition: color var(--transition-base, 0.3s ease);
+  }
+
+  .footer-col a:hover {
+    color: var(--color-accent, #fbbf24);
+  }
+
+  .footer-copy {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .footer-copy a {
+    color: var(--color-text-muted, #64748b);
+    text-decoration: none;
+    transition: color var(--transition-base, 0.3s ease);
+  }
+
+  .footer-copy a:hover {
+    color: var(--color-accent, #fbbf24);
+  }
+
+  /* Mobile: 2 columnas en portrait; 1 columna solo en pantallas muy angostas (< 320px) */
+  @media (max-width: 768px) and (orientation: portrait) {
+    .footer-cols {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+  }
+
+  @media (max-width: 320px) {
+    .footer-cols {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

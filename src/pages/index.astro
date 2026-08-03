@@ -1,28 +1,292 @@
 ---
+// index.astro — landing single page con 6 secciones por ancla (RUT-003)
+// Spec: RUT-003, HER-001/002, PER-003, MOB-001 | Design: AD-004/007/008
+//
+// Orden de secciones:
+//   1) hero = <Carrusel360> con overlay (headline + subtítulo + CTA + features vía slot)
+//   2) #speech   → Speech
+//   3) #galeria  → Tabs (Videos/Fotos 360º/Fotos)
+//   4) #trabajos → grilla 7 WorkPic/WorkVid desde la const trabajos[]
+//   5) #contacto → ModalGoogle + botón WhatsApp (wa.me)
+//   6) footer    → vía Layout (FooterMenu)
+// SIN sección de stats/social proof (RUT-003 / AC-RUT-006, SC-008).
 import Layout from "../layouts/Layout.astro";
-import Welcome from "../components/indexcomp/Welcome.astro";
-import AframeHeader from "../components/layout/AframeHeader.astro";
+import Carrusel360 from "../components/indexcomp/Carrusel360.astro";
+import Speech from "../components/galeria/Speech.astro";
+import Tabs from "../components/galeria/Tabs.astro";
+import WorkPic from "../components/galeria/WorkPic.astro";
+import WorkVid from "../components/galeria/WorkVid.astro";
+import Reveal from "../components/layout/Reveal.astro";
+
+// heroCopy: ÚNICA fuente de datos del overlay del hero (HER-001 / AD-008).
+// ENM-003: se eliminaron el CTA y las features → el hero queda limpio (headline + subtitle).
+// Placeholders aprobables — restricciones: headline ≤60, subtitle ≤140 (AC-HER-002).
+// El copy aprobado entra como cambio de strings (task 6.7).
+const heroCopy = {
+  // 23 chars → 1 línea desktop ≥1024px (HER-001); ≤60 chars. Placeholder aprobable (6.7).
+  headline: "Experiencias 360° únicas",
+  subtitle:
+    "Grabación, edición y producción de imágenes para turismo, hotelería, empresas.",
+};
+
+// trabajos[]: datos de la grilla de trabajos EXTRAÍDOS de trabajos.astro (task 3.1),
+// antes de que 5.3 lo convierta en stub de redirect. Es la ÚNICA fuente de la grilla.
+const trabajos = [
+  { type: "vid", href: "https://photos.app.goo.gl/htPPdWGrJkNFNggNA", src: "/thumbnails/puntanegra.webm", caption: "Cabañas Punta Negra. Villa Pehuenia." },
+  { type: "vid", href: "https://photos.app.goo.gl/pzHY6U22ADMLQisp8", src: "/thumbnails/fabrega.mp4", caption: "El Castillo. Hotel Fábrega." },
+  { type: "vid", href: "https://photos.app.goo.gl/XLcA8MFE8Pqrg2Np9", src: "/thumbnails/pirepillan.webm", caption: "Cabañas Piré Pillán. Caviahue." },
+  { type: "pic", href: "https://photos.app.goo.gl/uQudYCeFSW8sQLWX7", src: "/thumbnails/sadop.avif", caption: "SADOP Hotel. Cosquín." },
+  { type: "pic", href: "https://photos.app.goo.gl/svepbXiZDoRzXbbX9", src: "/thumbnails/ansenuza.avif", caption: "Ansenuza. Hotel - Casino - Spa." },
+  { type: "pic", href: "https://photos.app.goo.gl/otHyMsjCL42kpGiu7", src: "/thumbnails/panaholma.avif", caption: "Terraza de Panaholma. Cabañas." },
+  { type: "pic", href: "https://www.youtube.com/channel/UCSzxKL1PYl2HHQ6SXOmHLew", src: "/icons/dronvideoearth.png", caption: "Recorridos Turísticos." },
+  // wing-copy: tarjeta de video al lado derecho (abajo en móvil) de la de dronvideoearth.png.
+  // Flex-wrap justify-center: con 8 items el video cae a la derecha del PNG en la última fila.
+  { type: "vid", href: "https://www.youtube.com/channel/UCSzxKL1PYl2HHQ6SXOmHLew", src: "/backgrounds/dronvideonosus720.mp4", caption: "Dron Video 360" },
+];
 ---
 
 <Layout title="Dron Video 360 — Fotografía y video 360° con drones">
-  <AframeHeader color="white" />
-
-  <main>
-    <div id="pantalla0">
-      <Welcome />
+  <!-- (1) Hero: Carrusel360 + overlay vía slot (HER-001/AD-007).
+       ENM-003: sin CTA ni features — hero limpio (headline + subtitle).
+       El contacto queda unificado al ModalGoogle del shell (ENM-001). -->
+  <Carrusel360>
+    <div class="hero-overlay">
+      <h1 class="hero-headline">{heroCopy.headline}</h1>
+      <p class="hero-subtitle">{heroCopy.subtitle}</p>
     </div>
-  </main>
+  </Carrusel360>
 
-  <!-- Vignette overlay for depth -->
-  <div class="vignette-overlay"></div>
+  <!-- (2) Speech (RUT-003: sección por ancla) -->
+  <section id="speech" class="speech-section">
+    <Reveal>
+      <div class="container-background shdw">
+        <Speech />
+      </div>
+    </Reveal>
+  </section>
+
+  <!-- (3) Galería (tabs) -->
+  <section id="galeria" class="galeria-section">
+    <Reveal>
+      <div class="container-tabs overflow-x-hidden">
+        <div class="flex p-3 mb-4 justify-center">
+          <h2 class="works-title flex p-3 rounded-lg lg:text-xl shdw">
+            Galería de Imágenes
+          </h2>
+        </div>
+        <Tabs />
+      </div>
+    </Reveal>
+  </section>
+
+  <!-- (4) Trabajos (grilla desde trabajos[]) -->
+  <section id="trabajos" class="trabajos-section">
+    <Reveal>
+      <div class="flex p-3 mb-10 justify-center">
+        <h2 class="works-title flex p-3 rounded-lg lg:text-xl shdw">
+          Trabajos Realizados
+        </h2>
+      </div>
+      <div class="flex ms-8 me-2 py-3 justify-center text-center">
+        <p class="works-text flex rounded-lg text-md">
+          Algunos de los trabajos realizados para nuestros clientes.
+        </p>
+      </div>
+      <div class="flex mb-10 justify-center">
+        <p class="works-mini flex rounded-lg text-sm">
+          Click en la imagen para ver más.
+        </p>
+      </div>
+      <div class="flex flex-wrap justify-center thumbnails">
+        {trabajos.map((t) =>
+          t.type === "vid" ? (
+            <WorkVid
+              xhref={t.href}
+              xsrc={t.src}
+              xalt="Trabajos Realizados"
+              xtitle="Trabajos Realizados"
+              xcaption={t.caption}
+            />
+          ) : (
+            <WorkPic
+              xhref={t.href}
+              xsrc={t.src}
+              xalt="Trabajos Realizados"
+              xtitle="Trabajos Realizados"
+              xcaption={t.caption}
+            />
+          )
+        )}
+      </div>
+    </Reveal>
+  </section>
+
+  <!-- (5) Contacto final: WhatsApp (CON-003 / AD-004 — ENM-001: el formulario ya no se
+       monta acá; ModalGoogle vive en el Layout shell para TODAS las páginas). -->
+  <section id="contacto" class="contacto-section">
+    <Reveal>
+      <div class="contacto-box">
+        <h2 class="contacto-title">¿Hablamos de tu próximo proyecto?</h2>
+        <p class="contacto-text">
+          Contanos tu idea y te acercamos una propuesta con imágenes 360° que
+          impactan.
+        </p>
+        <a
+          class="contacto-whatsapp"
+          href="https://wa.me/5493436109763?text=Hola%2C%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20sus%20servicios%20360%C2%BA"
+          target="_blank"
+          rel="noopener"
+        >
+          WhatsApp
+        </a>
+      </div>
+    </Reveal>
+  </section>
+
+  <!-- (6) Footer: vía Layout (FooterMenu) — no se agrega acá -->
 </Layout>
 
 <style>
-  .vignette-overlay {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
+  /* ===== Hero overlay (slot de Carrusel360 — AD-007) =====
+     .carrusel-overlay (del carrusel) es pointer-events:none; el hero queda
+     no-interactivo (ENM-003: sin CTA) y el drag del viewer sigue funcionando. */
+  .hero-overlay {
+    width: min(90vw, 720px);
+    padding: 0 1rem;
+    text-align: center;
+    pointer-events: none; /* heredado; el drag del viewer sigue funcionando */
+  }
+
+  .hero-headline {
+    margin: 0;
+    font-size: clamp(1.6rem, 3.8vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.18;
+    color: #ffffff;
+    text-shadow: 0 2px 16px rgba(0, 0, 0, 0.55);
+  }
+
+  .hero-subtitle {
+    margin: 0.9rem auto 0;
+    max-width: 60ch;
+    font-size: clamp(0.95rem, 1.6vw, 1.15rem);
+    line-height: 1.5;
+    color: #e2e8f0;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
+  }
+
+  /* ===== Sección Speech (patrón galeria.astro) ===== */
+  .speech-section {
+    position: relative;
+    background: var(--color-surface);
+    padding: 1vh 0 0;
+  }
+
+  .container-background {
+    position: relative;
+    border-radius: 2%;
+    margin: 1vh 3vw 0 10vw;
+    max-width: 80vw;
     z-index: 1;
-    background: radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.6) 100%);
+  }
+
+  @media (max-width: 1024px) {
+    .container-background {
+      margin: 1vh 3vw 0 8vw;
+      max-width: 90vw;
+    }
+  }
+
+  /* ===== Sección Galería (patrón galeria.astro) ===== */
+  .galeria-section {
+    background: var(--color-surface);
+    padding: 8vh 0 2rem;
+  }
+
+  .container-tabs {
+    position: relative;
+    justify-content: center;
+    margin: 0 0 0 2vw;
+  }
+
+  /* ===== Sección Trabajos (patrón trabajos.astro) ===== */
+  .trabajos-section {
+    background: var(--color-surface);
+    padding: 2rem 0 4rem;
+  }
+
+  .thumbnails {
+    margin-left: 1.5vw;
+  }
+
+  .works-title {
+    background-color: rgb(21, 32, 32);
+  }
+
+  .works-text {
+    background-color: rgb(188, 194, 194);
+    text-wrap: pretty;
+  }
+
+  .works-mini {
+    background-color: rgb(188, 194, 194);
+    text-wrap: pretty;
+    color: black;
+    padding-inline: 5px;
+  }
+
+  .shdw {
+    box-shadow:
+      0 8px 16px 0 rgba(253, 253, 253, 0.2),
+      0 6px 20px 0 rgba(128, 128, 128, 0.699);
+  }
+
+  .shdw:hover {
+    box-shadow:
+      0 12px 16px 0 rgba(182, 182, 182, 0.24),
+      0 17px 50px 0 rgba(141, 119, 119, 0.19);
+  }
+
+  /* ===== Sección Contacto final ===== */
+  .contacto-section {
+    background: var(--color-surface);
+    padding: 5rem 1.5rem;
+    text-align: center;
+  }
+
+  .contacto-box {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .contacto-title {
+    margin: 0;
+    font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+    font-weight: 700;
+    color: var(--color-text-primary);
+  }
+
+  .contacto-text {
+    margin: 1rem auto 0;
+    color: var(--color-text-secondary);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .contacto-whatsapp {
+    display: inline-block;
+    margin-top: 1.6rem;
+    padding: 0.85rem 2.1rem;
+    background: #25d366;
+    color: #06251a;
+    font-weight: 600;
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: filter 0.3s var(--transition-base), transform 0.3s var(--transition-base);
+  }
+
+  .contacto-whatsapp:hover {
+    filter: brightness(1.1);
+    transform: translateY(-2px);
   }
 </style>
