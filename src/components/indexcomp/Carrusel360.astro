@@ -660,9 +660,23 @@
     .carrusel-scroll-down {
       bottom: 84px; /* alineado con .carrusel-controls en mobile */
     }
-    /* overlap → alineada con el caption (150px) en mobile portrait */
+    /* overlap → alineada con el caption (bottom:150px) en mobile portrait */
     .carrusel-scroll-down--caption-aligned {
       bottom: 150px;
+    }
+  }
+
+  /* MOB-005: landscape muy corto (alto ≤460px) — el overlay centrado (.carrusel-overlay,
+     align-items:center) y el caption (bottom:100px) se juntan en el medio y se solapan
+     (video corto: caption alto, subtitle centrado bajo). Fix: anclar el overlay ARRIBA,
+     despegando el header fijo (~96px), para dejar el subtitle bien arriba y lejos del caption.
+     NO se baja el caption (bottom:100px intacto) → sigue por encima de .carrusel-controls.
+     Misma convención de breakpoint que Header.astro (max-height:460px + landscape). */
+  @media (max-height: 460px) and (orientation: landscape) {
+    .carrusel-overlay {
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: calc(env(safe-area-inset-top, 0px) + 100px);
     }
   }
 </style>

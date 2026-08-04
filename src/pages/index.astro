@@ -175,6 +175,23 @@ const trabajos = [
     text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
   }
 
+  /* MOB-005: en landscape < 460px de alto el overlay se ancla arriba (ver Carrusel360.astro);
+     además se compacta el copy para asegurar margen con el caption en las alturas más reducidas. */
+  @media (max-height: 460px) and (orientation: landscape) {
+    .hero-overlay {
+      width: min(86vw, 720px);
+    }
+    .hero-headline {
+      font-size: clamp(1.2rem, 3.2vw, 1.6rem);
+      line-height: 1.1;
+    }
+    .hero-subtitle {
+      margin-top: 0.5rem;
+      font-size: clamp(0.85rem, 1.6vw, 1rem);
+      line-height: 1.4;
+    }
+  }
+
   /* ===== Sección Speech (patrón galeria.astro) ===== */
   .speech-section {
     position: relative;
